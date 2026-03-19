@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monteaki - Acesse Sua Conta</title>
+  <link rel="icon" href="{% static 'resources/Mini_Logo.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="logo">
+      <a href="{% url 'home' %}" class="logo-link">
+        <img src="{% static 'resources/Mini_Logo.png' %}">
+        <span class="logo-text">MONTE <strong>AKI</strong></span>
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><button>Montagem</button></li>
+        <li><button>PC Gamer</button></li>
+        <li><button>Escritório</button></li>
+        <li><button>Hardware</button></li>
+        <li><button>Periféricos</button></li>
+        <li><button>Frete Grátis</button></li>
+      </ul>
+    </nav>
+    <div>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone-usuario.png' %}"></a>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone-carrinho.png' %}"></a>
+    </div>
+  </div>
+  <div class="content-overlay">
+    <div class="main-login">
+      <h1>ACESSE SUA CONTA</h1>
+
+      {% if messages %}
+
+      {% for message in messages %}
+      <p style="color: red;">{{ message }}</p>
+      {% endfor %}
+
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="form-row">
+          <input type="text" name="username" placeholder="Usuário" required>
+        </div>
+
+        <div class="form-row">
+          <input type="password" name="password" placeholder="Senha" required>
+        </div>
+
+        <button type="submit">Entrar</button>
+
+        <p class="login-link">
+          Novo no Monte Aki! <a href="{% url 'cadastro' %}">CADASTRE-SE</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
