@@ -9,7 +9,7 @@ public class Conexao {
     public static Connection getConexao() throws SQLException {
         final String SERVIDOR = "jdbc:sqlserver://127.0.0.1:1433;databaseName=MonteAki;encrypt=false;trustServerCertificate=true";
         final String USUARIO = "sa";
-        final String SENHA = "SenhaForte#2026";
+        final String SENHA = "pw_user_app";
 
         return DriverManager.getConnection(SERVIDOR, USUARIO, SENHA);
 

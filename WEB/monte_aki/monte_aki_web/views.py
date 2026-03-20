@@ -71,9 +71,111 @@ def cadastro(request):
 
     return render(request,'cadastro.html')
 
+
+#------TELA MONTAGEM-----------
 def montagem(request):
-    return render(request, 'montagem.html')
+    produtos = Produto.objects.all()
+
+    return render(request, 'montagem.html', {
+        'produtos': produtos
+    })
+
 
 def hardware(request):
-    return render(request, 'hardware.html')
+    produtos = Produto.objects.all()
 
+    return render(request, 'hardware.html', {
+        'produtos': produtos
+    })
+
+
+def selecionar_produto(request):#Recebe dados do java Script
+
+    if request.method == "POST":
+
+        data = json.loads(request.body)#Converte o JSON enviado pelo JavaScript para um dicionário Python.
+
+        nome = data["nome"]
+        preco = data["preco"]
+
+        if "pc" not in request.session:#Converte o JSON enviado pelo JavaScript para um dicionário Python.
+            request.session["pc"] = []
+
+        request.session["pc"].append({#Adicionar peça
+            "nome": nome,
+            "preco": preco
+        })
+
+        request.session.modified = True #Força o Django a salvar a sessão.
+
+        return JsonResponse({"status": "ok"}) #Resposta enviada ao JavaScript:
+    
+#Tela do PC montado
+def pc_montado(request):
+
+    pc = request.session.get("pc", [])#Pega os dados salvos na sessão.
+
+    total = 0
+
+    for item in pc:
+        total += float(item["preco"])#Soma o preço de todas as peças.
+
+    return render(request, "pc_montado.html", {#Enviar para o HTML
+
+        "pc": pc,
+        "total": total
+
+    })
+
+
+#Detalhes do produto
+def produto_detalhes(request, id):
+
+    produto = Produto.objects.get(id_produto=id)
+
+    data = {
+        "descricao": produto.descricao,
+        "info": produto.informacoes_tecnicas
+    }
+
+    return JsonResponse(data)
+
+
+#------TELA HARDWARE-----------
+
+def hardware(request):
+    produtos = Produto.objects.all()
+
+    return render(request, 'hardware.html', {
+        'produtos': produtos
+    })
+
+
+#------TELA PCGAMER-----------
+
+def pcgamer(request):
+    produtos = Produto.objects.all()
+
+    return render(request, 'pcgamer.html', {
+        'produtos': produtos
+    })
+
+
+#------TELA PERIFERICOS-----------
+
+def perifericos(request):
+    produtos = Produto.objects.all()
+
+    return render(request, 'perifericos.html', {
+        'produtos': produtos
+    })
+
+
+#------TELA ESCRITORIO-----------
+
+def escritorio(request):
+    produtos = Produto.objects.all()
+
+    return render(request, 'escritorio.html', {
+        'produtos': produtos
+    })

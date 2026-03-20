@@ -20,50 +20,54 @@
     </div>
     <nav>
       <ul>
-        <li><button>Montagem</button></li>
-        <li><button>PC Gamer</button></li>
-        <li><button>Escritório</button></li>
-        <li><button>Hardware</button></li>
-        <li><button>Periféricos</button></li>
-        <li><button>Frete Grátis</button></li>
+        <li><a href="{% url 'montagem' %}"><button>Montagem</button></a></li>
+        <li><a href="{% url 'pcgamer' %}"><button>PC Gamer</button></a></li>
+        <li><a href="{% url 'escritorio' %}"><button>Escritório</button></a></li>
+        <li><a href="{% url 'hardware' %}"><button>Hardware</button></a></li>
+        <li><a href="{% url 'perifericos' %}"><button>Perifericos</button></a></li>
       </ul>
     </nav>
     <div>
-      <a href="{% url 'login' %}"><img src="{% static 'resources/icone-usuario.png' %}"></a>
-      <a href="{% url 'login' %}"><img src="{% static 'resources/icone-carrinho.png' %}"></a>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
     </div>
   </div>
   <div class="content-overlay">
-    <div class="main-login">
-      <h1>ACESSE SUA CONTA</h1>
 
-      {% if messages %}
+    <div class="login-container">
 
-      {% for message in messages %}
-      <p style="color: red;">{{ message }}</p>
-      {% endfor %}
+      <div class="main-login">
+        <h1>ACESSE SUA CONTA</h1>
 
-      {% endif %}
+        {% if messages %}
 
-      <form method="post">
-        {% csrf_token %}
+        {% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+        {% endfor %}
 
-        <div class="form-row">
-          <input type="text" name="username" placeholder="Usuário" required>
-        </div>
+        {% endif %}
 
-        <div class="form-row">
-          <input type="password" name="password" placeholder="Senha" required>
-        </div>
+        <form method="post">
+          {% csrf_token %}
 
-        <button type="submit">Entrar</button>
+          <div class="form-row">
+            <input type="text" name="username" placeholder="Usuário" required>
+          </div>
 
-        <p class="login-link">
-          Novo no Monte Aki! <a href="{% url 'cadastro' %}">CADASTRE-SE</a>
-        </p>
-      </form>
+          <div class="form-row">
+            <input type="password" name="password" placeholder="Senha" required>
+          </div>
+
+          <button type="submit">Entrar</button>
+
+          <p class="login-link">
+            Novo no Monte Aki! <a href="{% url 'cadastro' %}">CADASTRE-SE</a>
+          </p>
+        </form>
+      </div>
     </div>
   </div>
+
 </body>
 
 </html>

@@ -81,11 +81,11 @@ DATABASES = {
         'ENGINE': 'mssql',
         'NAME': 'MonteAki',
         'USER': 'sa',
-        'PASSWORD': 'SenhaForte#2026',
+        'PASSWORD': 'pw_user_app',
         'HOST': 'localhost',
         'PORT':'1433',
         'OPTIONS': {
-            'driver': 'ODBC Driver 18 for SQL Server',
+            'driver': 'ODBC Driver 17 for SQL Server',
             'extra_params': 'TrustServerCertificate=yes',
         },
     },

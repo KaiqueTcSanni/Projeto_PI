@@ -7,916 +7,483 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montagem</title>
 
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    <header>
-        <div class="top-bar">
-            <div class="logo">
-                <a href="{% url 'home' %}" class="logo-link">
-                    <img src="{% static 'resources/Mini_Logo.png' %}">
-                    <span class="logo-text">MONTE <strong>AKI</strong></span>
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><button>Montagem</button></li>
-                    <li><button>PC Gamer</button></li>
-                    <li><button>Escritório</button></li>
-                    <li><button>Hardware</button></li>
-                    <li><button>Periféricos</button></li>
-                    <li><button>Frete Grátis</button></li>
-                </ul>
-            </nav>
-            <div>
-                <a href="{% url 'login' %}"><img src="{% static 'resources/icone-usuario.png' %}"></a>
-                <a href="{% url 'login' %}"><img src="{% static 'resources/icone-carrinho.png' %}"></a>
-            </div>
+    <div class="top-bar">
+        <div class="logo">
+            <a href="{% url 'home' %}" class="logo-link">
+                <img src="{% static 'resources/Mini_Logo.png' %}">
+                <span class="logo-text">MONTE <strong>AKI</strong></span>
+            </a>
         </div>
-        <div class="content-overlay">
+        <nav>
+            <ul>
+                <li><a href="{% url 'montagem' %}"><button>Montagem</button></a></li>
+                <li><a href="{% url 'pcgamer' %}"><button>PC Gamer</button></a></li>
+                <li><a href="{% url 'escritorio' %}"><button>Escritório</button></a></li>
+                <li><a href="{% url 'hardware' %}"><button>Hardware</button></a></li>
+                <li><a href="{% url 'perifericos' %}"><button>Perifericos</button></a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
+            <a href="{% url 'login' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
         </div>
+    </div>
+
+    <div class="content-overlay">
+    </div>
     </header>
-<div class="content-overlay">
-    <!-- INICIO: CATEGORIAS DE PERIFERICOS -->
-    <section class="montagem-categorias">
+    <div class="content-overlay">
 
-        <button onclick="mudarPagina(1)" id="btn_processador" class="categoria ativa">
+        <!-- INICIO: CATEGORIAS DE PERIFERICOS -->
+        <section class="montagem-categorias">
 
-            <img src="Resources/processador.png" alt="">
-            <span>Processador</span>
+            <button onclick="mudarPagina(1)" id="btn_processador" class="categoria ativa">
 
-        </button>
-        <button onclick="mudarPagina(2)" id="btn_placaMae" class="categoria">
+                <img src="{% static 'resources/' %}" alt="">
+                <span>Processador</span>
 
-            <img src="Resources/placa-mae.png" alt="">
-            <span>Placa-Mãe</span>
+            </button>
 
-        </button>
-        <button onclick="mudarPagina(3)" id="btn_memoriaRam" class="categoria">
+            <button onclick="mudarPagina(2)" id="btn_placaMae" class="categoria">
 
-            <img src="Resources/memoria-ram.png" alt="">
-            <span>Memória RAM</span>
+                <img src="{% static 'resources/' %}" alt="">
+                <span>Placa-Mãe</span>
 
-        </button>
-        <button onclick="mudarPagina(4)" id="btn_placaVideo" class="categoria">
+            </button>
 
-            <img src="Resources/placa-grafica.png" alt="">
-            <span>Placa de Vídeo</span>
+            <button onclick="mudarPagina(3)" id="btn_memoriaRam" class="categoria">
 
-        </button>
-        <button onclick="mudarPagina(5)" id="btn_ssd" class="categoria">
+                <img src="{% static 'resources/' %}" alt="">
+                <span>Memória RAM</span>
 
-            <img src="Resources/ssd.png" alt="">
-            <span>HD & SDD</span>
+            </button>
 
-        </button>
-        <button onclick="mudarPagina(6)" id="btn_cooler" class="categoria">
+            <button onclick="mudarPagina(4)" id="btn_placaVideo" class="categoria">
 
-            <img src="Resources/cooler.png" alt="">
-            <span>Cooler</span>
+                <img src="{% static 'resources/' %}" alt="">
+                <span>Placa de Vídeo</span>
 
-        </button>
-        <button onclick="mudarPagina(7)" id="btn_fonte" class="categoria">
+            </button>
 
-            <img src="Resources/fonte-de-energia.png" alt="">
-            <span>Fonte</span>
+            <button onclick="mudarPagina(5)" id="btn_ssd" class="categoria">
 
-        </button>
-        <button onclick="mudarPagina(8)" id="btn_gabinete" class="categoria">
+                <img src="{% static 'resources/' %}" alt="">
+                <span>HD & SDD</span>
 
-            <img src="Resources/gabinete-de-computador.png" alt="">
-            <span>Gabinete</span>
+            </button>
 
-        </button>
-        <button onclick="mudarPagina(9)" id="btn_fans" class="categoria">
+            <button onclick="mudarPagina(6)" id="btn_cooler" class="categoria">
 
-            <img src="Resources/ventilador.png" alt="Fans">
-            <span>Fans</span>
+                <img src="{% static 'resources/' %}" alt="">
+                <span>Cooler</span>
 
-        </button>
+            </button>
 
-    </section>
-    <!-- FIM: CATEGORIAS DE PERIFERICOS -->
+            <button onclick="mudarPagina(7)" id="btn_fonte" class="categoria">
 
-    <!-- CONTEÚDO PRINCIPAL(precisa arrumar)
-    <main class="montagem-container">
+                <img src="{% static 'resources/' %}" alt="">
+                <span>Fonte</span>
 
-        <div class="produtos">
-            <div class="produto">
+            </button>
 
-                <img src="Resources/processador.png" alt="">
-                <h3>Processador</h3>
+            <button onclick="mudarPagina(8)" id="btn_gabinete" class="categoria">
 
-            </div>
-        </div>
-    
-    <aside class="resumo-montagem">
+                <img src="{% static 'resources/' %}" alt="Gabinete">
+                <span>Gabinete</span>
 
-            <img src="Resources/processador.png" alt="Produto">
+            </button>
 
-            <button class="btn-prosseguir">PROSSEGUIR</button>
+            <button onclick="mudarPagina(9)" id="btn_fans" class="categoria">
 
-            <p class="preco-total">R$ 0,00</p>
+                <img src="{% static 'resources/' %}" alt="Fans">
+                <span>Fans</span>
 
-            <button class="btn-info">DESCRIÇÃO DO PRODUTO</button>
-            <button class="btn-info">INFORMAÇÕES TÉCNICAS</button>
+            </button>
 
-        </aside>
+            <button onclick="mudarPagina(10)" id="btn_monitor" class="categoria">
 
-    </main>
--->
+                <img src="{% static 'resources/' %}" alt="Monitor">
+                <span>Monitor</span>
 
-    <!-- INICIO: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
-    <main class="montagem-container">
+            </button>
 
+            <button onclick="mudarPagina(11)" id="btn_perifericos" class="categoria">
 
-        <section class="produtos-grid">
+                <img src="{% static 'resources/' %}" alt="Perifericos">
+                <span>Periféricos</span>
 
-            <div id="dv_um" class="dv_um">
+            </button>
 
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
+            <button onclick="mudarPagina(12)" id="btn_energia" class="categoria">
 
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
+                <img src="{% static 'resources/' %}" alt="Energia">
+                <span>Energia</span>
 
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
+            </button>
 
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
+            <button onclick="mudarPagina(13)" id="btn_sistema" class="categoria">
 
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
+                <img src="{% static 'resources/' %}" alt="Sistema Operacional">
+                <span>Sistema Operacional</span>
 
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
+            </button>
 
+            <button onclick="mudarPagina(14)" id="btn_montado" class="categoria">
 
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
+                <img src="{% static 'resources/' %}" alt="Sistema Operacional">
+                <span>PC Montado</span>
 
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Processador AMD Ryzen 7 5700X3D, 3.0 GHz...
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_dois" class="dv_dois">
-
-                <div class="produto-card" data-nome="placa-mae b450" data-preco="577.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 577,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa-Mãe
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-
-            <div id="dv_tres" class="dv_tres">
-
-                <div class="produto-card" data-nome="Memoria Ram Husk" data-preco="456.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM 08gb
-                    </p>
-
-                    <span class="produto-preco">R$ 456,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Memoria RAM
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_quatro" class="dv_quatro">
-
-                <div class="produto-card" data-nome="Placa de Video 5060ti" data-preco="2250.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Video 5060ti
-                    </p>
-
-                    <span class="produto-preco">R$ 2.500,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Vídeo
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Vídeo
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Vídeo
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Vídeo
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Vídeo
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Placa de Vídeo
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_cinco" class="dv_cinco">
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        SSD
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_seis" class="dv_seis">
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Cooler
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_sete" class="dv_sete">
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fonte
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_oito" class="dv_oito">
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Gabinete
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-
-            <!--INICIO BLOCO DE CONTEÚDO-->
-            <div id="dv_nove" class="dv_nove">
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-
-                <div class="produto-card" data-nome="Processador AMD Ryzen 7 5700X3D" data-preco="0.00">
-                    <img src="Resources/processador.png" alt="CPU">
-
-                    <p class="produto-nome">
-                        Fans
-                    </p>
-
-                    <span class="produto-preco">R$ 0,00</span>
-                </div>
-
-            </div>
-            <!--FIM BLOCO DE CONTEÚDO-->
-
-
+            </button>
 
         </section>
+        <!-- FIM: CATEGORIAS DE PERIFERICOS -->
 
-        <div>
-            <!-- DIREITA: PRODUTO SELECIONADO -->
-            <aside class="produto-selecionado">
-
-                <img src="Resources/processador.png" id="resumo-img">
-
-                <p id="resumo-nome">
-                    Nenhum produto selecionado
-                </p>
-
-                <button onclick="mudarPagina()" class="btn-prosseguir">PROSSEGUIR</button>
-
-                <p class="resumo-preco" id="resumo-preco">R$ 0,00</p>
-
-                <button class="btn-info">DESCRIÇÃO DO PRODUTO</button>
-                <button class="btn-info">INFORMAÇÕES TÉCNICAS</button>
-
-            </aside>
-        </div>
+        <!-- INICIO: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
+        <main class="montagem-container">
 
 
+            <section class="produtos-grid">
 
-    </main>
-    <!-- FIM: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
-</div>
+                <div id="dv_um" class="dv_um"><!--PROCESSADOR-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Processador" %}
+
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+
+                        <img src="{{ produto.foto_produto.url }}">
+                        <p>{{ produto.nome_produto }}</p>
+                        <span>R$ {{ produto.valor }}</span>
+
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_dois" class="dv_dois"><!--PLACA-MÃE-->
+
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "placa_mae" %}
+
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+
+                        <img src="{{ produto.foto_produto.url }}">
+                        <p>{{ produto.nome_produto }}</p>
+                        <span>R$ {{ produto.valor }}</span>
+
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <!--FIM BLOCO DE CONTEÚDO-->
+
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_tres" class="dv_tres"> <!--MEMORIA RAM-->
+
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Memoria Ram" %}
+
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+
+                        <img src="{{ produto.foto_produto.url }}">
+                        <p>{{ produto.nome_produto }}</p>
+                        <span>R$ {{ produto.valor }}</span>
+
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+
+                <!--FIM BLOCO DE CONTEÚDO-->
+
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_quatro" class="dv_quatro"><!--PLACA DE VIDEO-->
+
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "GPU" %}
+
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+
+                        <img src="{{ produto.foto_produto.url }}">
+                        <p>{{ produto.nome_produto }}</p>
+                        <span>R$ {{ produto.valor }}</span>
+
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+
+                    <!--FIM BLOCO DE CONTEÚDO-->
+
+                    <!--INICIO BLOCO DE CONTEÚDO-->
+                    <div id="dv_cinco" class="dv_cinco"><!--HD & SSD-->
+
+                        {% for produto in produtos %}
+                        {% if produto.tipo_produto == "placa_mae" %}
+
+                        <div class="produto-card" data-id="{{ produto.id_produto }}"
+                            data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+
+                            <img src="{{ produto.foto_produto.url }}">
+                            <p>{{ produto.nome_produto }}</p>
+                            <span>R$ {{ produto.valor }}</span>
+
+                        </div>
+
+                        {% endif %}
+                        {% endfor %}
+
+                        <!--FIM BLOCO DE CONTEÚDO-->
+
+                        <!--INICIO BLOCO DE CONTEÚDO-->
+                        <div id="dv_seis" class="dv_seis"><!--COOLER-->
+
+                            {% for produto in produtos %}
+                            {% if produto.tipo_produto == "placa_mae" %}
+
+                            <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+
+                                <img src="{{ produto.foto_produto.url }}">
+                                <p>{{ produto.nome_produto }}</p>
+                                <span>R$ {{ produto.valor }}</span>
+
+                            </div>
+
+                            {% endif %}
+                            {% endfor %}
+                            <!--FIM BLOCO DE CONTEÚDO-->
+
+                            <!--INICIO BLOCO DE CONTEÚDO-->
+                            <div id="dv_sete" class="dv_sete"><!--FONTE-->
+
+                                {% for produto in produtos %}
+                                {% if produto.tipo_produto == "placa_mae" %}
+
+                                <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                    data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+
+                                    <img src="{{ produto.foto_produto.url }}">
+                                    <p>{{ produto.nome_produto }}</p>
+                                    <span>R$ {{ produto.valor }}</span>
+
+                                </div>
+
+                                {% endif %}
+                                {% endfor %}
+
+                                <!--FIM BLOCO DE CONTEÚDO-->
+
+                                <!--INICIO BLOCO DE CONTEÚDO-->
+                                <div id="dv_oito" class="dv_oito"><!--GABINETE-->
+
+                                    {% for produto in produtos %}
+                                    {% if produto.tipo_produto == "placa_mae" %}
+
+                                    <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                        data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+
+                                        <img src="{{ produto.foto_produto.url }}">
+                                        <p>{{ produto.nome_produto }}</p>
+                                        <span>R$ {{ produto.valor }}</span>
+
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!--FIM BLOCO DE CONTEÚDO-->
+
+                                    <!--INICIO BLOCO DE CONTEÚDO-->
+                                    <div id="dv_nove" class="dv_nove"><!--FANS-->
+
+                                        {% for produto in produtos %}
+                                        {% if produto.tipo_produto == "placa_mae" %}
+
+                                        <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                            data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+
+                                            <img src="{{ produto.foto_produto.url }}">
+                                            <p>{{ produto.nome_produto }}</p>
+                                            <span>R$ {{ produto.valor }}</span>
+
+                                        </div>
+
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        <!--FIM BLOCO DE CONTEÚDO-->
+
+                                        <!--INICIO BLOCO DE CONTEÚDO-->
+                                        <div id="dv_dez" class="dv_dez"><!--MONITOR-->
+
+                                            {% for produto in produtos %}
+                                            {% if produto.tipo_produto == "placa_mae" %}
+
+                                            <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                                data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+
+                                                <img src="{{ produto.foto_produto.url }}">
+                                                <p>{{ produto.nome_produto }}</p>
+                                                <span>R$ {{ produto.valor }}</span>
+
+                                            </div>
+
+                                            {% endif %}
+                                            {% endfor %}
+                                            <!--FIM BLOCO DE CONTEÚDO-->
+
+                                            <!--INICIO BLOCO DE CONTEÚDO-->
+                                            <div id="dv_onze" class="dv_onze"><!--PERIFERICOS-->
+
+                                                {% for produto in produtos %}
+                                                {% if produto.tipo_produto == "placa_mae" %}
+
+                                                <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                                    data-nome="{{ produto.nome_produto }}"
+                                                    data-preco="{{ produto.valor }}">
+
+                                                    <img src="{{ produto.foto_produto.url }}">
+                                                    <p>{{ produto.nome_produto }}</p>
+                                                    <span>R$ {{ produto.valor }}</span>
+
+                                                </div>
+
+                                                {% endif %}
+                                                {% endfor %}
+                                                <!--FIM BLOCO DE CONTEÚDO-->
+
+                                                <!--INICIO BLOCO DE CONTEÚDO-->
+                                                <div id="dv_doze" class="dv_doze"><!--ENERGIA-->
+
+                                                    {% for produto in produtos %}
+                                                    {% if produto.tipo_produto == "placa_mae" %}
+
+                                                    <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                                        data-nome="{{ produto.nome_produto }}"
+                                                        data-preco="{{ produto.valor }}">
+
+                                                        <img src="{{ produto.foto_produto.url }}">
+                                                        <p>{{ produto.nome_produto }}</p>
+                                                        <span>R$ {{ produto.valor }}</span>
+
+                                                    </div>
+
+                                                    {% endif %}
+                                                    {% endfor %}
+
+                                                    <!--FIM BLOCO DE CONTEÚDO-->
+
+                                                    <!--INICIO BLOCO DE CONTEÚDO-->
+                                                    <div id="dv_treze" class="dv_treze"><!--SISTEMA OPERACIONAL-->
+
+                                                        {% for produto in produtos %}
+                                                        {% if produto.tipo_produto == "placa_mae" %}
+
+                                                        <div class="produto-card" data-id="{{ produto.id_produto }}"
+                                                            data-nome="{{ produto.nome_produto }}"
+                                                            data-preco="{{ produto.valor }}">
+
+                                                            <img src="{{ produto.foto_produto.url }}">
+                                                            <p>{{ produto.nome_produto }}</p>
+                                                            <span>R$ {{ produto.valor }}</span>
+
+                                                        </div>
+
+                                                        {% endif %}
+                                                        {% endfor %}
+
+                                                        <!--FIM BLOCO DE CONTEÚDO-->
+
+                                                        <!--INICIO BLOCO DE CONTEÚDO-->
+                                                        <div id="dv_quatorze" class="dv_quatorze"><!--PC MONTADO-->
+
+                                                            <h2>Seu PC</h2>
+
+                                                            {% for item in pc %}
+
+                                                            <p>{{item.nome_produto}} - R$ {{ item.valor }}</p>
+
+                                                            {% endfor %}
+
+                                                            <h3>Total: R$ {{ total }}</h3>
+                                                            <!--FIM BLOCO DE CONTEÚDO-->
+
+            </section>
+
+            <div>
+                <!-- DIREITA: PRODUTO SELECIONADO -->
+                <aside class="produto-selecionado">
+
+                    <img src="{% static 'resources/' %}" id="resumo-img">
+
+                    <p id="resumo-nome">
+                        Nenhum produto selecionado
+                    </p>
+
+                    <button onclick="mudarPagina()" class="btn-prosseguir">PROSSEGUIR</button>
+
+                    <p class="resumo-preco" id="resumo-preco">R$ 0,00</p>
+
+                    <button onclick="mostrarDescricao()" class="btn-info">DESCRIÇÃO DO PRODUTO</button>
+                    <button onclick="mostrarInfoTecnica()" class="btn-info">INFORMAÇÕES TÉCNICAS</button>
+
+                </aside>
+            </div>
+        </main>
+        <!-- FIM: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
+
 </body>
 
 </html>
 
-<script>
-    let etapaAtual = 1; //variavel que armazena a página atual
 
+
+<script>
+
+    let etapaAtual = 1; //variavel que armazena a página atual(primeira página sempre a do processador)
+
+    //INICIO: FUNÇÃO PARA MOSTRAR AS ETAPAS DA MONTAGEM
     function mostrarEtapa(numero) {
-        // Esconde todos
-        for (let i = 1; i <= 9; i++) {
-            const div = document.getElementById(`dv_${nomeEtapa(i)}`);
-            if (div) div.style.display = "none";
+        // Esconde todas as etapas
+        for (let i = 1; i <= 14; i++) {
+
+            //Essa linha transforma o número da página atual em string
+            const div = document.getElementById(`dv_${nomeEtapa(i)}`);//para que seja possível o js ler a informação. Ex: nomeEtapa(1) = "cinco".
+            //Essa função transforma em "dv_cinco", que é o nome da div com as informações
+            if (div) div.style.display = "none";//Esconde cada div
         }
 
-        // Mostra a etapa atual
+        // Mostra apenas a etapa escolhida
         const atual = document.getElementById(`dv_${nomeEtapa(numero)}`);
-        if (atual) atual.style.display = "block";
+        if (atual) atual.style.display = "block";//deixa a div atual vísivel
 
-        // Atualiza botões de categoria
+        // Atualiza botões de categoria(Remove destaque dos botões)
         document.querySelectorAll('.categoria').forEach(btn => {
-            btn.classList.remove('ativa');
+            btn.classList.remove('ativa');//Remove a classe "ativa" da categoria
         });
 
         document.querySelectorAll('.categoria')[numero - 1].classList.add('ativa');
 
-        etapaAtual = numero;
+        etapaAtual = numero;//armazena a etapa atual
     }
+    //FIM: FUNÇÃO PARA MOSTRAR AS ETAPAS DA MONTAGEM
 
+    //INICIO: função que converter números em texto. EX: nomeEtapa(1)="um"
     function nomeEtapa(n) {
         const nomes = [
             "um",
@@ -927,35 +494,50 @@
             "seis",
             "sete",
             "oito",
-            "nove"
+            "nove",
+            "dez",
+            "onze",
+            "doze",
+            "treze",
+            "quatorze"
         ];
         return nomes[n - 1];
     }
-</script>
+    //FIM: função que converter números em texto
 
-<script>
+
+    //INICIO: FUNÇÃO PARA MUDAR A PÁGINA
+
     function mudarPagina(numero = null) {
 
-        // Se clicou em uma categoria
+        // se clicou nas categorias
         if (numero !== null) {
             mostrarEtapa(numero);
             return;
         }
 
-        // Se clicou em PROSSEGUIR
-        if (etapaAtual < 9) {
+        // 🚨 verifica se selecionou produto
+        if (!produtoSelecionado) {
+            alert("Selecione um produto antes de prosseguir.");
+            return;
+        }
+
+        // continua normalmente
+        if (etapaAtual < 14) {
             mostrarEtapa(etapaAtual + 1);
+
+            // limpa seleção da próxima etapa
+            produtoSelecionado = null;
+
         } else {
             alert("Montagem finalizada!");
-            // aqui pode redirecionar para checkout
         }
     }
-</script>
-
-<script>
+    //FIM: FUNÇÃO PARA MUDAR A PÁGINA
 
 
-    /* 
+
+    /*
     querySelectorAll → pega vários elementos
     forEach → percorre cada um
     addEventListener → reage a uma ação
@@ -963,6 +545,8 @@
     card → representa um produto específico por vez
     */
 
+
+    let produtoSelecionado = null; /* Guarda o produto que foi selecionado */
 
     /* 1️⃣ Seleciona TODOS os produtos */
     /* Cria uma lista (NodeList) com todos os produtos da tela: */
@@ -976,7 +560,7 @@
 
 
     cards.forEach(card => {/*<-- Para cada card dentro de cards, faça algo
-card => { ... } Isso é uma arrow function (função anônima). 
+card => { ... } Isso é uma arrow function (função anônima).
 Equivale a "function(card)", card representa um produto específico por vez*/
 
         card.addEventListener('click', () => {/*<--Quando este card específico for clicado, execute este código*/
@@ -987,6 +571,7 @@ Equivale a "function(card)", card representa um produto específico por vez*/
             card.classList.add('ativo'); /* <-- Agora adiciona a classe ativo somente no produto que foi clicado. */
 
             /* 5️⃣ Pega os dados do produto */
+            const id = card.dataset.id;
             const nome = card.dataset.nome;
             const preco = card.dataset.preco;
             const img = card.querySelector('img').src; /* <-- Dentro deste card, procure a tag <img> e pegue o src dela. */
@@ -996,6 +581,95 @@ Equivale a "function(card)", card representa um produto específico por vez*/
             resumoNome.textContent = nome;
             resumoPreco.textContent = "R$ " + preco.replace('.', ',');/* <-- Para deixar no padrão brasileiro */
             resumoImg.src = img;
+
+            produtoSelecionado = {
+                id: id,
+                nome: nome,
+                preco: preco,
+                img: img
+            };
         });
     });
+
+    //INICIO: CÓDIGO PARA ARMAZENAR QUAL PRODUTO O USUÁRIO SELECIONOU
+
+
+    //document → representa toda a página HTML
+
+    //querySelectorAll() → procura elementos na página
+
+    //.produto-card → é a classe CSS dos cards de produto
+
+    const produtos = document.querySelectorAll(".produto-card")//“Pegue todos os elementos da página que tenham a classe .produto-card.”
+
+    produtos.forEach(produto => {//<--Percorre todos os produtos da lista("Para cada produto da lista, execute um código.")
+
+        produto.addEventListener("click", () => {//Escutar/aguardar um evento do usuário. Neste caso, um click.
+            //Quando o usuário clicar neste produto, execute o código abaixo
+            //Pega informações do produto
+            const nome = produto.dataset.nome
+            const preco = produto.dataset.preco
+
+            fetch("/selecionar-produto/", {//é uma função que faz requisições HTTP para o servidor.
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",//Estou enviando dados no formato JSON.
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+
+                body: JSON.stringify({//transforma o objeto em texto JSON:
+                    nome: nome,
+                    preco: preco
+                })
+
+            })
+
+        })
+
+    })
+    //FIM: CÓDIGO PARA ARMAZENAR QUAL PRODUTO O USUÁRIO SELECIONOU
+
+    //INICIO: FUNÇÃO PARA MOSTRAR A DESCRIÇÃO DO PRODUTO PARA O USUÁRIO
+
+    function mostrarDescricao() {
+
+        if (!produtoSelecionado) {
+            alert("Selecione um produto primeiro.");
+            return;
+        }
+
+        fetch(`/produto/${produtoSelecionado.id}/`)
+            .then(response => response.json())
+            .then(data => {
+
+                alert(data.descricao);
+
+            });
+
+    }
+    //FIM: FUNÇÃO PARA MOSTRAR A DESCRIÇÃO DO PRODUTO PARA O USUÁRIO
+
+    //INICIO: FUNÇÃO PARA MOSTRAR AS INFORMAÇÕES TECNICAS DO PRODUTO PARA O USUÁRIO
+
+    function mostrarInfoTecnica() {
+
+        if (!produtoSelecionado) {
+            alert("Selecione um produto primeiro.");
+            return;
+        }
+
+        fetch(`/produto/${produtoSelecionado.id}/`)
+            .then(response => response.json())
+            .then(data => {
+
+                alert(data.info);
+
+            });
+
+    }
+    //FIM: FUNÇÃO PARA MOSTRAR AS INFORMAÇÕES TECNICAS DO PRODUTO PARA O USUÁRIO
+
+
 </script>

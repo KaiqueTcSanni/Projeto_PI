@@ -24,14 +24,11 @@ public class CardProduto extends javax.swing.JPanel {
     private void preencherDados() {
         jLabel2.setText(produto.getNomeProduto());
         jLabel1.setIcon(null);
-        jButton1.setText("Editar");
-        jButton1.setBackground(new java.awt.Color(106, 13, 173));
-        jButton1.setForeground(java.awt.Color.WHITE);
 
         // Lógica para carregar a imagem
         try {
             // 1. Defina apenas a PASTA RAIZ onde os arquivos realmente estão
-            String pastaRaiz = "C:\\Users\\kaiqu\\Downloads\\Imagens PNG\\Imagens PNG\\";
+            String pastaRaiz = "C:/Users/kaiqu/OneDrive/Desktop/Nova pasta/Projeto_PI/WEB/monte_aki/media/";
             String caminhoBanco = produto.getImagem(); // Vem como "produtos/foto.png" ou "foto.png"
 
             if (caminhoBanco == null || caminhoBanco.trim().isEmpty()) {
@@ -68,9 +65,12 @@ public class CardProduto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jCheckBox1.setText("jCheckBox1");
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         setMaximumSize(new java.awt.Dimension(150, 190));
@@ -82,12 +82,11 @@ public class CardProduto extends javax.swing.JPanel {
 
         jLabel2.setText("jLabel2");
 
-        jButton1.setBackground(new java.awt.Color(106, 13, 173));
-        jButton1.setText("jButton1");
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(153, 255, 153));
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -97,15 +96,17 @@ public class CardProduto extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1)))
-                .addGap(10, 10, 10))
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton2)))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,22 +115,22 @@ public class CardProduto extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addGap(78, 78, 78))
+                .addGap(39, 39, 39)
+                .addComponent(jButton2)
+                .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        // Abre a tela de cadastro em modo edição
         TelaCadastroProduto telaEdit = new TelaCadastroProduto(this.produto, this.telaPai);
         telaEdit.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

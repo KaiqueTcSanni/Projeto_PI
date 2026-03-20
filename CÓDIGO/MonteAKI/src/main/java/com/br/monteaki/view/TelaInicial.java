@@ -28,36 +28,10 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jButton25 = new javax.swing.JButton();
-        jLabel50 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
-        jButton30 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
         jLabel56 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
-        jButton36 = new javax.swing.JButton();
-        jButton37 = new javax.swing.JButton();
-        jButton38 = new javax.swing.JButton();
-        jButton41 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -105,15 +79,49 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel45 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jButton36 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
+        jButton38 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jButton25 = new javax.swing.JButton();
+        jButton42 = new javax.swing.JButton();
+        jButton41 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton17 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jLabel46 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1300, 770));
-        setMinimumSize(new java.awt.Dimension(1300, 770));
-        setPreferredSize(new java.awt.Dimension(1300, 770));
+        setMaximumSize(new java.awt.Dimension(1300, 765));
+        setMinimumSize(new java.awt.Dimension(1300, 765));
+        setPreferredSize(new java.awt.Dimension(1300, 765));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -126,7 +134,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Mini_Logo.png"))); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user.png"))); // NOI18N
+        txtBoasVindas.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user_1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -174,171 +185,13 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().add(jLabel27);
         jLabel27.setBounds(1280, 682, 0, 0);
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(320, 170, 80, 23);
-
-        jButton2.setBackground(new java.awt.Color(153, 255, 153));
-        jButton2.setText("Editar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(410, 170, 80, 23);
-
         jLabel30.setText("Monitores");
         getContentPane().add(jLabel30);
-        jLabel30.setBounds(390, 80, 54, 16);
-
-        jButton11.setBackground(new java.awt.Color(0, 255, 255));
-        jButton11.setText("Cadastrar");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton11);
-        jButton11.setBounds(540, 170, 80, 23);
-
-        jButton12.setBackground(new java.awt.Color(153, 255, 153));
-        jButton12.setText("Editar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton12);
-        jButton12.setBounds(630, 170, 80, 23);
-
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/keyboard.png"))); // NOI18N
-        getContentPane().add(jLabel31);
-        jLabel31.setBounds(590, 100, 64, 64);
-
-        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/wifi-router.png"))); // NOI18N
-        jLabel34.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel34MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel34);
-        jLabel34.setBounds(380, 420, 64, 64);
-
-        jLabel35.setText("Teclado");
-        getContentPane().add(jLabel35);
-        jLabel35.setBounds(600, 90, 42, 16);
-
-        jButton3.setBackground(new java.awt.Color(0, 255, 255));
-        jButton3.setText("Cadastrar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(320, 490, 80, 23);
-
-        jButton4.setBackground(new java.awt.Color(153, 255, 153));
-        jButton4.setText("Editar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(410, 490, 80, 23);
-
-        jButton13.setBackground(new java.awt.Color(0, 255, 255));
-        jButton13.setText("Cadastrar");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton13);
-        jButton13.setBounds(540, 320, 80, 23);
-
-        jButton14.setBackground(new java.awt.Color(153, 255, 153));
-        jButton14.setText("Editar");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton14);
-        jButton14.setBounds(630, 320, 80, 20);
-
-        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/graphic-card.png"))); // NOI18N
-        getContentPane().add(jLabel38);
-        jLabel38.setBounds(600, 580, 64, 60);
-
-        jLabel39.setText("Controle");
-        getContentPane().add(jLabel39);
-        jLabel39.setBounds(590, 260, 60, 16);
-
-        jLabel42.setText("GPU");
-        getContentPane().add(jLabel42);
-        jLabel42.setBounds(620, 570, 50, 10);
-
-        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/joystick.png"))); // NOI18N
-        getContentPane().add(jLabel43);
-        jLabel43.setBounds(590, 260, 64, 64);
-
-        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/ram.png"))); // NOI18N
-        jLabel46.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel46MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel46);
-        jLabel46.setBounds(380, 580, 64, 60);
-
-        jButton25.setBackground(new java.awt.Color(153, 255, 153));
-        jButton25.setText("Editar");
-        jButton25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton25ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton25);
-        jButton25.setBounds(630, 490, 80, 23);
-
-        jLabel50.setText("Armazenamento");
-        getContentPane().add(jLabel50);
-        jLabel50.setBounds(600, 400, 88, 16);
+        jLabel30.setBounds(390, 80, 80, 16);
 
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/solid-state-drive.png"))); // NOI18N
         getContentPane().add(jLabel54);
         jLabel54.setBounds(600, 420, 64, 64);
-
-        jButton30.setBackground(new java.awt.Color(0, 255, 255));
-        jButton30.setText("Cadastrar");
-        jButton30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton30ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton30);
-        jButton30.setBounds(540, 490, 80, 23);
-
-        jButton31.setBackground(new java.awt.Color(153, 255, 153));
-        jButton31.setText("Editar");
-        jButton31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton31ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton31);
-        jButton31.setBounds(410, 320, 80, 23);
 
         jLabel56.setText("Cadeira");
         getContentPane().add(jLabel56);
@@ -347,73 +200,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/chair.png"))); // NOI18N
         getContentPane().add(jLabel60);
         jLabel60.setBounds(370, 250, 64, 64);
-
-        jButton36.setBackground(new java.awt.Color(0, 255, 255));
-        jButton36.setText("Cadastrar");
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton36);
-        jButton36.setBounds(320, 320, 80, 23);
-
-        jButton37.setBackground(new java.awt.Color(0, 255, 255));
-        jButton37.setText("Cadastrar");
-        jButton37.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton37ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton37);
-        jButton37.setBounds(320, 640, 80, 23);
-
-        jButton38.setBackground(new java.awt.Color(153, 255, 153));
-        jButton38.setText("Editar");
-        jButton38.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton38ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton38);
-        jButton38.setBounds(410, 640, 80, 23);
-
-        jButton41.setBackground(new java.awt.Color(153, 255, 153));
-        jButton41.setText("Editar");
-        jButton41.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton41ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton41);
-        jButton41.setBounds(630, 640, 80, 23);
-
-        jButton42.setBackground(new java.awt.Color(0, 255, 255));
-        jButton42.setText("Cadastrar");
-        jButton42.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton42ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton42);
-        jButton42.setBounds(540, 640, 80, 23);
-
-        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(510, 70, 2, 640);
 
         jPanel7.setBackground(new java.awt.Color(0, 0, 0));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -437,7 +223,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel29.setText("Computadores");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 9, -1, -1));
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 9, 100, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/computer-tower.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 29, -1, -1));
@@ -449,31 +235,31 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 99, 80, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 100, 30));
 
-        jButton5.setBackground(new java.awt.Color(0, 255, 255));
+        jButton5.setBackground(new java.awt.Color(51, 102, 255));
         jButton5.setText("Cadastrar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 99, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 100, 30));
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/printing.png"))); // NOI18N
         jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 179, -1, -1));
 
         jLabel32.setText("Impressora");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 159, -1, -1));
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 159, 90, -1));
 
-        jButton9.setBackground(new java.awt.Color(0, 255, 255));
+        jButton9.setBackground(new java.awt.Color(51, 102, 255));
         jButton9.setText("Cadastrar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 249, -1, -1));
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 100, 30));
 
         jButton10.setBackground(new java.awt.Color(153, 255, 153));
         jButton10.setText("Editar");
@@ -482,10 +268,10 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 249, 80, -1));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 100, 30));
 
         jLabel57.setText("Resfriamento");
-        jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 339, -1, -1));
+        jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 100, -1));
 
         jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/exhaust-fan.png"))); // NOI18N
         jLabel58.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -503,31 +289,31 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton35ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 419, 80, -1));
+        jPanel1.add(jButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 100, 30));
 
-        jButton34.setBackground(new java.awt.Color(0, 255, 255));
+        jButton34.setBackground(new java.awt.Color(51, 102, 255));
         jButton34.setText("Cadastrar");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 419, -1, -1));
+        jPanel1.add(jButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 100, 30));
 
         jLabel44.setText("Processador");
-        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 479, -1, -1));
+        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 90, -1));
 
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/cpu.png"))); // NOI18N
-        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 499, -1, -1));
+        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, -1, -1));
 
-        jButton43.setBackground(new java.awt.Color(0, 255, 255));
+        jButton43.setBackground(new java.awt.Color(51, 102, 255));
         jButton43.setText("Cadastrar");
         jButton43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton43ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 569, -1, -1));
+        jPanel1.add(jButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, 100, 30));
 
         jButton44.setBackground(new java.awt.Color(153, 255, 153));
         jButton44.setText("Editar");
@@ -536,10 +322,10 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton44ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 569, 80, -1));
+        jPanel1.add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 100, 30));
 
         jLabel40.setText("Energia");
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(1091, 19, -1, -1));
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, -1));
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/extension-cord.png"))); // NOI18N
         jLabel41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -550,14 +336,14 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(1081, 29, -1, -1));
 
-        jButton23.setBackground(new java.awt.Color(0, 255, 255));
+        jButton23.setBackground(new java.awt.Color(51, 102, 255));
         jButton23.setText("Cadastrar");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton23ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 99, -1, -1));
+        jPanel1.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 100, 100, 30));
 
         jButton24.setBackground(new java.awt.Color(153, 255, 153));
         jButton24.setText("Editar");
@@ -566,22 +352,22 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton24ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1111, 99, 80, -1));
+        jPanel1.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 100, 100, 30));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/laptop.png"))); // NOI18N
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1071, 179, -1, -1));
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 180, -1, -1));
 
         jLabel5.setText("Notebooks");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1071, 169, 70, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 160, 70, 20));
 
-        jButton7.setBackground(new java.awt.Color(0, 255, 255));
+        jButton7.setBackground(new java.awt.Color(51, 102, 255));
         jButton7.setText("Cadastrar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 249, -1, -1));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 570, 100, 30));
 
         jButton8.setBackground(new java.awt.Color(153, 255, 153));
         jButton8.setText("Editar");
@@ -590,7 +376,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1111, 249, 80, -1));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 100, 30));
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -608,17 +394,17 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, -1, -1));
 
-        jButton39.setBackground(new java.awt.Color(0, 255, 255));
+        jButton39.setBackground(new java.awt.Color(51, 102, 255));
         jButton39.setText("Cadastrar");
         jButton39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton39ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 570, -1, -1));
+        jPanel1.add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 570, 100, 30));
 
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/power-supply.png"))); // NOI18N
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 510, -1, 60));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 510, -1, 60));
 
         jButton40.setBackground(new java.awt.Color(153, 255, 153));
         jButton40.setText("Editar");
@@ -627,19 +413,19 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton40ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 570, 80, -1));
+        jPanel1.add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 570, 100, 30));
 
         jLabel47.setText("Fonte");
-        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 490, -1, 10));
+        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 490, 50, 20));
 
-        jButton18.setBackground(new java.awt.Color(0, 255, 255));
+        jButton18.setBackground(new java.awt.Color(51, 102, 255));
         jButton18.setText("Cadastrar");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, -1, -1));
+        jPanel1.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, 100, 30));
 
         jButton20.setBackground(new java.awt.Color(153, 255, 153));
         jButton20.setText("Editar");
@@ -648,7 +434,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton20ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, 80, -1));
+        jPanel1.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, 100, 30));
 
         jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/computer-case.png"))); // NOI18N
         jLabel52.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -657,22 +443,22 @@ public class TelaInicial extends javax.swing.JFrame {
                 jLabel52MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 350, -1, -1));
+        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, -1, -1));
 
         jLabel51.setText("Gabinete");
-        jPanel1.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 330, -1, -1));
+        jPanel1.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 320, 80, -1));
 
         jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/headphone.png"))); // NOI18N
-        jPanel1.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, -1, -1));
+        jPanel1.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, -1, -1));
 
-        jButton32.setBackground(new java.awt.Color(0, 255, 255));
+        jButton32.setBackground(new java.awt.Color(51, 102, 255));
         jButton32.setText("Cadastrar");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton32ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, -1, -1));
+        jPanel1.add(jButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, 100, 30));
 
         jButton33.setBackground(new java.awt.Color(153, 255, 153));
         jButton33.setText("Editar");
@@ -681,19 +467,19 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton33ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 250, 80, -1));
+        jPanel1.add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 260, 100, 30));
 
         jLabel59.setText("Fone");
-        jPanel1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 150, -1, -1));
+        jPanel1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 70, -1));
 
-        jButton26.setBackground(new java.awt.Color(0, 255, 255));
+        jButton26.setBackground(new java.awt.Color(51, 102, 255));
         jButton26.setText("Cadastrar");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton26ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, -1, -1));
+        jPanel1.add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 100, 30));
 
         jButton27.setBackground(new java.awt.Color(153, 255, 153));
         jButton27.setText("Editar");
@@ -702,13 +488,13 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButton27ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 100, 80, -1));
+        jPanel1.add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 100, 100, 30));
 
         jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/mouse.png"))); // NOI18N
-        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, -1, -1));
+        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, -1, -1));
 
         jLabel53.setText("Mouse");
-        jPanel1.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 40, -1));
+        jPanel1.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 80, -1));
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -724,7 +510,7 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, -1, 640));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, -1, 640));
 
         jPanel8.setBackground(new java.awt.Color(0, 0, 0));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -743,10 +529,257 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, -1, -1));
 
         jLabel45.setText("Memoria Ram");
-        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 90, 10));
+        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, 90, 10));
 
         jLabel33.setText("Roteador");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 60, -1));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 60, -1));
+
+        jButton36.setBackground(new java.awt.Color(51, 102, 255));
+        jButton36.setText("Cadastrar");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 100, 30));
+
+        jButton31.setBackground(new java.awt.Color(153, 255, 153));
+        jButton31.setText("Editar");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 100, 30));
+
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 640));
+
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 100, 30));
+
+        jButton2.setBackground(new java.awt.Color(153, 255, 153));
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 100, 30));
+
+        jButton3.setBackground(new java.awt.Color(51, 102, 255));
+        jButton3.setText("Cadastrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 100, 30));
+
+        jButton4.setBackground(new java.awt.Color(153, 255, 153));
+        jButton4.setText("Editar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 100, 30));
+
+        jButton37.setBackground(new java.awt.Color(51, 102, 255));
+        jButton37.setText("Cadastrar");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, 100, 30));
+
+        jButton38.setBackground(new java.awt.Color(153, 255, 153));
+        jButton38.setText("Editar");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 100, 30));
+
+        jButton11.setBackground(new java.awt.Color(51, 102, 255));
+        jButton11.setText("Cadastrar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 100, 30));
+
+        jButton12.setBackground(new java.awt.Color(153, 255, 153));
+        jButton12.setText("Editar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 100, 30));
+
+        jButton13.setBackground(new java.awt.Color(51, 102, 255));
+        jButton13.setText("Cadastrar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 100, 30));
+
+        jButton14.setBackground(new java.awt.Color(153, 255, 153));
+        jButton14.setText("Editar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 100, 30));
+
+        jButton30.setBackground(new java.awt.Color(51, 102, 255));
+        jButton30.setText("Cadastrar");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, 100, 30));
+
+        jButton25.setBackground(new java.awt.Color(153, 255, 153));
+        jButton25.setText("Editar");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, 100, 30));
+
+        jButton42.setBackground(new java.awt.Color(51, 102, 255));
+        jButton42.setText("Cadastrar");
+        jButton42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton42ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 570, 100, 30));
+
+        jButton41.setBackground(new java.awt.Color(153, 255, 153));
+        jButton41.setText("Editar");
+        jButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton41ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 570, 100, 30));
+
+        jLabel7.setText("Placa Mãe");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 320, 90, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/motherboard.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 340, -1, -1));
+
+        jButton15.setBackground(new java.awt.Color(51, 102, 255));
+        jButton15.setText("Cadastrar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 250, 100, 30));
+
+        jButton16.setBackground(new java.awt.Color(153, 255, 153));
+        jButton16.setText("Editar");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 250, 100, 30));
+
+        jLabel42.setText("GPU");
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 50, 10));
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/graphic-card.png"))); // NOI18N
+        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, -1, 60));
+
+        jLabel50.setText("Armazenamento");
+        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 120, -1));
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/joystick.png"))); // NOI18N
+        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
+
+        jLabel39.setText("Controle");
+        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 60, -1));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/wifi-router.png"))); // NOI18N
+        jLabel34.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel34MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
+
+        jLabel35.setText("Teclado");
+        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 60, -1));
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/keyboard.png"))); // NOI18N
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/table.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 510, -1, -1));
+
+        jLabel10.setText("Mesa");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 490, 50, -1));
+
+        jButton17.setBackground(new java.awt.Color(51, 102, 255));
+        jButton17.setText("Cadastrar");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 420, 100, 30));
+
+        jButton19.setBackground(new java.awt.Color(153, 255, 153));
+        jButton19.setText("Editar");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 420, 100, 30));
+
+        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/ram.png"))); // NOI18N
+        jLabel46.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel46MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, -1, 60));
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 70, 1260, 640);
@@ -761,25 +794,16 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         TelaCadastroProduto tc = new TelaCadastroProduto("");
-
-        // Preenche o campo de tipo e trava para edição
         tc.getTxtTipo().setText("Monitor");
-        tc.getTxtTipo().setEnabled(false); // Impede que o usuário mude o tipo
-
-        tc.setVisible(false);
+        tc.getTxtTipo().setEnabled(false);
+        tc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        // 1. Instancia a tela de listagem
         TelaListagemProdutos telaLista = new TelaListagemProdutos();
-
-        // 2. Define o filtro para a sessão atual
         telaLista.setSessaoTipo("Monitor");
-
-        // 3. Carrega apenas os monitores na galeria
         telaLista.atualizarGaleria();
-
         telaLista.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -809,7 +833,7 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         TelaCadastroProduto tc = new TelaCadastroProduto("");
         // Preenche o campo de tipo e trava para edição
-        tc.getTxtTipo().setText("Notebook");
+        tc.getTxtTipo().setText("Mesa");
         tc.getTxtTipo().setEnabled(false); // Impede que o usuário mude o tipo
         tc.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -819,7 +843,7 @@ public class TelaInicial extends javax.swing.JFrame {
         // 1. Instancia a tela de listagem
         TelaListagemProdutos telaLista = new TelaListagemProdutos();
         // 2. Define o filtro para a sessão atual
-        telaLista.setSessaoTipo("Notebook");
+        telaLista.setSessaoTipo("Mesa");
         // 3. Carrega apenas os monitores na galeria
         telaLista.atualizarGaleria();
         telaLista.setVisible(true);
@@ -1090,6 +1114,39 @@ public class TelaInicial extends javax.swing.JFrame {
         telaLista.setVisible(true);
     }//GEN-LAST:event_jButton44ActionPerformed
 
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroProduto tc = new TelaCadastroProduto("");
+        tc.getTxtTipo().setText("Notebook");
+        tc.getTxtTipo().setEnabled(false);
+        tc.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        TelaListagemProdutos telaLista = new TelaListagemProdutos();
+        telaLista.setSessaoTipo("Notebook");
+        telaLista.atualizarGaleria();
+        telaLista.setVisible(true);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroProduto tc = new TelaCadastroProduto("");
+        tc.getTxtTipo().setText("Placa Mae");
+        tc.getTxtTipo().setEnabled(false);
+        tc.setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        TelaListagemProdutos telaLista = new TelaListagemProdutos();
+        telaLista.setSessaoTipo("Placa Mae");
+        telaLista.atualizarGaleria();
+        telaLista.setVisible(true);
+
+    }//GEN-LAST:event_jButton19ActionPerformed
+
     private void gerenciarCategoria(String nomeCategoria) {
         // 1. Criamos a tela de listagem
         TelaListagemProdutos tela = new TelaListagemProdutos();
@@ -1146,7 +1203,11 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton23;
@@ -1177,6 +1238,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -1216,6 +1278,9 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -18,7 +18,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private File arquivoSelecionado;
     private String caminhoRelativo;
     private JLabel lblFotoPrevia;
-    private final String PASTA_MEDIA_DJANGO = "C:/Users/kaique.tcsanni/Downloads/MonteAki (1)/MonteAki/MonteAki/WEB/monte_aki/media/";
+    private final String PASTA_MEDIA_DJANGO = "C:/Users/kaiqu/OneDrive/Desktop/Nova pasta/Projeto_PI/WEB/monte_aki/media/";
     private TelaListagemProdutos telaListagem;
     private Produto produtoEmEdicao = null;
 
@@ -106,17 +106,38 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
     private void exibirImagem(String caminhoAbsoluto) {
         ImageIcon icon = new ImageIcon(caminhoAbsoluto);
-        Image img = icon.getImage().getScaledInstance(jPanel1.getWidth(), jPanel1.getHeight(), Image.SCALE_SMOOTH);
+        // Se o painel ainda não foi desenhado, usamos o tamanho padrão do seu design (390x290)
+        int largura = jPanel1.getWidth() > 0 ? jPanel1.getWidth() : 390;
+        int altura = jPanel1.getHeight() > 0 ? jPanel1.getHeight() : 290;
+
+        Image img = icon.getImage().getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
         lblFotoPrevia.setIcon(new ImageIcon(img));
+        lblFotoPrevia.setText(""); // Limpa qualquer texto de erro anterior
     }
 
     private void preencherParaEdicao(Produto p) {
         this.produtoEmEdicao = p;
 
+        if (p.getImagem() != null && !p.getImagem().isEmpty()) {
+            this.caminhoRelativo = p.getImagem();
+
+            // PASTA_MEDIA_DJANGO (termina em media/) + p.getImagem() (começa com resources/)
+            File fotoFisica = new File(PASTA_MEDIA_DJANGO, p.getImagem());
+
+            if (fotoFisica.exists()) {
+                exibirImagem(fotoFisica.getAbsolutePath());
+            } else {
+                lblFotoPrevia.setIcon(null);
+                lblFotoPrevia.setText("Arquivo não encontrado no PC");
+                System.err.println("Tentou ler: " + fotoFisica.getAbsolutePath());
+            }
+        }
+
         // Preenche os campos de texto
         jTextField1.setText(p.getNomeProduto());
         jTextField2.setText(p.getTipo_produto());
-        jTextField3.setText(p.getFornecedor()); // <--- AQUI ESTAVA O SEGREDO
+        jTextField2.setEditable(false);
+        jTextField3.setText(p.getFornecedor());
         jTextArea2.setText(p.getDescProduto());
         jTextField4.setText(String.valueOf(p.getValorProduto()));
 
@@ -333,27 +354,60 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(106, 13, 173));
         jPanel3.setFocusCycleRoot(true);
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MONTEAKI");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 15, 120, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Mini_Logo.png"))); // NOI18N
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 7, 80, 49));
-        jPanel3.add(txtBoasVindas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1091, 22, 254, 25));
+
+        txtBoasVindas.setBackground(new java.awt.Color(255, 255, 255));
+        txtBoasVindas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user.png"))); // NOI18N
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1053, 15, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("HOME");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(753, 753, 753)
+                .addComponent(jLabel1)
+                .addGap(6, 6, 6)
+                .addComponent(txtBoasVindas, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(txtBoasVindas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Salver Produto ");
@@ -362,7 +416,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1351, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,12 +625,12 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
             // 5. TRATAMENTO DA IMAGEM
             if (arquivoSelecionado != null) {
-                File destino = new File(PASTA_MEDIA_DJANGO + "resources/" + arquivoSelecionado.getName());
+                File destino = new File(PASTA_MEDIA_DJANGO + "/" + arquivoSelecionado.getName());
                 if (!destino.getParentFile().exists()) {
                     destino.getParentFile().mkdirs();
                 }
-                Files.copy(arquivoSelecionado.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 p.setImagem("resources/" + arquivoSelecionado.getName());
+                Files.copy(arquivoSelecionado.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
 
             // 6. SETA OS DADOS (O 'tipo' aqui garante a inserção no grupo correto)

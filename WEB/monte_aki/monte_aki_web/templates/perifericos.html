@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hardware</title>
+    <title>Perifericos</title>
 
     <!-- Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,64 +29,22 @@
                 <li><a href="{% url 'perifericos' %}"><button>Perifericos</button></a></li>
             </ul>
         </nav>
-        </nav>
         <div>
             <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
             <a href="{% url 'login' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
         </div>
     </div>
-    <div class="content-overlay">
+
+    <main class="content-overlay">
 
         <section class="montagem-categorias">
-
-            <button onclick="mudarPagina(1)" id="btn_processador" class="categoria ativa">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>Processador</span>
-
-            </button>
-
-            <button onclick="mudarPagina(2)" id="btn_placaMae" class="categoria">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>Placa-Mãe</span>
-
-            </button>
-
-            <button onclick="mudarPagina(3)" id="btn_memoriaRam" class="categoria">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>Memória RAM</span>
-
-            </button>
-
-            <button onclick="mudarPagina(4)" id="btn_placaVideo" class="categoria">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>Placa de Vídeo</span>
-
-            </button>
-
-            <button onclick="mudarPagina(5)" id="btn_ssd" class="categoria">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>HD & SDD</span>
-
-            </button>
-
-            <button onclick="mudarPagina(6)" id="btn_cooler" class="categoria">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>Cooler</span>
-
-            </button>
-
-            <button onclick="mudarPagina(7)" id="btn_fonte" class="categoria">
-
-                <img src="{% static 'resources/' %}" alt="">
-                <span>Fonte</span>
-
-            </button>
+            <div class="categoria ativa" data-categoria="todos">Todos</div>
+            <div class="categoria" data-categoria="processador">Processadores</div>
+            <div class="categoria" data-categoria="gpu">Placas de Vídeo</div>
+            <div class="categoria" data-categoria="memoria">Memórias</div>
+            <div class="categoria" data-categoria="ssd">SSD</div>
+            <div class="categoria" data-categoria="fonte">Fontes</div>
+            <div class="categoria" data-categoria="placa-mae">Placas-Mãe</div>
         </section>
 
         <section class="montagem-container">
@@ -217,134 +175,134 @@
 
         </section>
 
-        </main>
+    </main>
 
-        <footer class="footer">
-            <a href="#">Contato</a>
-            <a href="#">Sobre nós</a>
-            <a href="#">Termos de uso</a>
-            <a href="#">Política de privacidade</a>
-        </footer>
+    <footer class="footer">
+        <a href="#">Contato</a>
+        <a href="#">Sobre nós</a>
+        <a href="#">Termos de uso</a>
+        <a href="#">Política de privacidade</a>
+    </footer>
 
-        <script>
-            const categorias = document.querySelectorAll('.categoria');
-            const produtos = document.querySelectorAll('.produto-card');
+    <script>
+        const categorias = document.querySelectorAll('.categoria');
+        const produtos = document.querySelectorAll('.produto-card');
 
-            const imagemDestaque = document.getElementById('imagem-destaque');
-            const nomeDestaque = document.getElementById('nome-destaque');
-            const precoDestaque = document.getElementById('preco-destaque');
-            const contadorCarrinho = document.getElementById('contador-carrinho');
-            const btnAdicionarCarrinho = document.getElementById('btn-adicionar-carrinho');
-            const btnVerDetalhes = document.getElementById('btn-ver-detalhes');
+        const imagemDestaque = document.getElementById('imagem-destaque');
+        const nomeDestaque = document.getElementById('nome-destaque');
+        const precoDestaque = document.getElementById('preco-destaque');
+        const contadorCarrinho = document.getElementById('contador-carrinho');
+        const btnAdicionarCarrinho = document.getElementById('btn-adicionar-carrinho');
+        const btnVerDetalhes = document.getElementById('btn-ver-detalhes');
 
-            const detalhesBox = document.getElementById('detalhes-box');
-            const abaDescricao = document.getElementById('aba-descricao');
-            const abaEspecificacoes = document.getElementById('aba-especificacoes');
-            const botoesAbas = document.querySelectorAll('.aba-detalhe');
+        const detalhesBox = document.getElementById('detalhes-box');
+        const abaDescricao = document.getElementById('aba-descricao');
+        const abaEspecificacoes = document.getElementById('aba-especificacoes');
+        const botoesAbas = document.querySelectorAll('.aba-detalhe');
 
-            let produtoSelecionado = {
-                nome: "Processador Intel Core i7 14700K 3.4GHz",
-                preco: 2599.90,
-                imagem: "Resources/i7-14700.jpg",
-                descricao: "Processador Intel Core i7 14700K ideal para alto desempenho em jogos, streaming e produtividade.",
-                especificacoes: "• 20 núcleos<br>• Frequência base de 3.4GHz<br>• Alto desempenho em multitarefas<br>• Compatível com plataformas Intel modernas"
-            };
+        let produtoSelecionado = {
+            nome: "Processador Intel Core i7 14700K 3.4GHz",
+            preco: 2599.90,
+            imagem: "Resources/i7-14700.jpg",
+            descricao: "Processador Intel Core i7 14700K ideal para alto desempenho em jogos, streaming e produtividade.",
+            especificacoes: "• 20 núcleos<br>• Frequência base de 3.4GHz<br>• Alto desempenho em multitarefas<br>• Compatível com plataformas Intel modernas"
+        };
 
-            function formatarPreco(valor) {
-                return valor.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                });
-            }
-
-            function atualizarDestaque(produto) {
-                produtoSelecionado = produto;
-                imagemDestaque.src = produto.imagem;
-                imagemDestaque.alt = produto.nome;
-                nomeDestaque.textContent = produto.nome;
-                precoDestaque.textContent = formatarPreco(produto.preco);
-                abaDescricao.innerHTML = produto.descricao;
-                abaEspecificacoes.innerHTML = produto.especificacoes;
-            }
-
-            categorias.forEach(categoria => {
-                categoria.addEventListener('click', () => {
-                    categorias.forEach(item => item.classList.remove('ativa'));
-                    categoria.classList.add('ativa');
-
-                    const categoriaSelecionada = categoria.dataset.categoria;
-
-                    produtos.forEach(produto => {
-                        if (categoriaSelecionada === 'todos' || produto.dataset.categoria === categoriaSelecionada) {
-                            produto.style.display = 'flex';
-                        } else {
-                            produto.style.display = 'none';
-                        }
-                    });
-                });
+        function formatarPreco(valor) {
+            return valor.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
             });
+        }
 
-            produtos.forEach(produto => {
-                produto.addEventListener('click', () => {
-                    produtos.forEach(item => item.classList.remove('selecionado'));
-                    produto.classList.add('selecionado');
+        function atualizarDestaque(produto) {
+            produtoSelecionado = produto;
+            imagemDestaque.src = produto.imagem;
+            imagemDestaque.alt = produto.nome;
+            nomeDestaque.textContent = produto.nome;
+            precoDestaque.textContent = formatarPreco(produto.preco);
+            abaDescricao.innerHTML = produto.descricao;
+            abaEspecificacoes.innerHTML = produto.especificacoes;
+        }
 
-                    const produtoAtual = {
-                        nome: produto.dataset.nome,
-                        preco: Number(produto.dataset.preco),
-                        imagem: produto.dataset.imagem,
-                        descricao: produto.dataset.descricao,
-                        especificacoes: produto.dataset.especificacoes
-                    };
+        categorias.forEach(categoria => {
+            categoria.addEventListener('click', () => {
+                categorias.forEach(item => item.classList.remove('ativa'));
+                categoria.classList.add('ativa');
 
-                    atualizarDestaque(produtoAtual);
-                });
-            });
+                const categoriaSelecionada = categoria.dataset.categoria;
 
-            function obterCarrinho() {
-                return JSON.parse(localStorage.getItem('carrinho')) || [];
-            }
-
-            function salvarCarrinho(carrinho) {
-                localStorage.setItem('carrinho', JSON.stringify(carrinho));
-            }
-
-            function atualizarContadorCarrinho() {
-                const carrinho = obterCarrinho();
-                contadorCarrinho.textContent = carrinho.length;
-            }
-
-            btnAdicionarCarrinho.addEventListener('click', () => {
-                const carrinho = obterCarrinho();
-                carrinho.push(produtoSelecionado);
-                salvarCarrinho(carrinho);
-                atualizarContadorCarrinho();
-                alert(produtoSelecionado.nome + " foi adicionado ao carrinho!");
-            });
-
-            btnVerDetalhes.addEventListener('click', () => {
-                detalhesBox.style.display = 'block';
-            });
-
-            botoesAbas.forEach(botao => {
-                botao.addEventListener('click', () => {
-                    botoesAbas.forEach(b => b.classList.remove('ativa'));
-                    botao.classList.add('ativa');
-
-                    document.querySelectorAll('.conteudo-aba').forEach(conteudo => {
-                        conteudo.classList.remove('ativo');
-                    });
-
-                    if (botao.dataset.aba === 'descricao') {
-                        document.getElementById('aba-descricao').classList.add('ativo');
+                produtos.forEach(produto => {
+                    if (categoriaSelecionada === 'todos' || produto.dataset.categoria === categoriaSelecionada) {
+                        produto.style.display = 'flex';
                     } else {
-                        document.getElementById('aba-especificacoes').classList.add('ativo');
+                        produto.style.display = 'none';
                     }
                 });
             });
+        });
 
+        produtos.forEach(produto => {
+            produto.addEventListener('click', () => {
+                produtos.forEach(item => item.classList.remove('selecionado'));
+                produto.classList.add('selecionado');
+
+                const produtoAtual = {
+                    nome: produto.dataset.nome,
+                    preco: Number(produto.dataset.preco),
+                    imagem: produto.dataset.imagem,
+                    descricao: produto.dataset.descricao,
+                    especificacoes: produto.dataset.especificacoes
+                };
+
+                atualizarDestaque(produtoAtual);
+            });
+        });
+
+        function obterCarrinho() {
+            return JSON.parse(localStorage.getItem('carrinho')) || [];
+        }
+
+        function salvarCarrinho(carrinho) {
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        }
+
+        function atualizarContadorCarrinho() {
+            const carrinho = obterCarrinho();
+            contadorCarrinho.textContent = carrinho.length;
+        }
+
+        btnAdicionarCarrinho.addEventListener('click', () => {
+            const carrinho = obterCarrinho();
+            carrinho.push(produtoSelecionado);
+            salvarCarrinho(carrinho);
             atualizarContadorCarrinho();
-        </script>
+            alert(produtoSelecionado.nome + " foi adicionado ao carrinho!");
+        });
+
+        btnVerDetalhes.addEventListener('click', () => {
+            detalhesBox.style.display = 'block';
+        });
+
+        botoesAbas.forEach(botao => {
+            botao.addEventListener('click', () => {
+                botoesAbas.forEach(b => b.classList.remove('ativa'));
+                botao.classList.add('ativa');
+
+                document.querySelectorAll('.conteudo-aba').forEach(conteudo => {
+                    conteudo.classList.remove('ativo');
+                });
+
+                if (botao.dataset.aba === 'descricao') {
+                    document.getElementById('aba-descricao').classList.add('ativo');
+                } else {
+                    document.getElementById('aba-especificacoes').classList.add('ativo');
+                }
+            });
+        });
+
+        atualizarContadorCarrinho();
+    </script>
 
 </body>
 

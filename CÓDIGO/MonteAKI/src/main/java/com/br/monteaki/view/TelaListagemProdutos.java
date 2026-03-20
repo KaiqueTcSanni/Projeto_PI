@@ -37,8 +37,8 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
 
         // 3. Renderização dos Cards
         for (com.br.monteaki.model.Produto p : lista) {
-            // O card recebe o produto e a referência desta tela para ações de clique
             CardProduto card = new CardProduto(p, this);
+            // O card agora tem tamanho fixo, então o FlowLayout vai apenas colocá-lo na fila
             jPanel1.add(card);
         }
 
@@ -62,7 +62,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
 
         jLabel4.setText("jLabel4");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1350, 850));
         setResizable(false);
 
@@ -108,10 +108,15 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new java.awt.GridLayout(0, 3, 20, 20));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel1.setMaximumSize(new java.awt.Dimension(240, 320));
+        jPanel1.setMinimumSize(new java.awt.Dimension(240, 320));
+        jPanel1.setPreferredSize(new java.awt.Dimension(240, 320));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 25, 25));
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

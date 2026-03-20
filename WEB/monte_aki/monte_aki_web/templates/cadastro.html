@@ -21,17 +21,16 @@
     </div>
     <nav>
       <ul>
-        <li><button>Montagem</button></li>
-        <li><button>PC Gamer</button></li>
-        <li><button>Escritório</button></li>
-        <li><button>Hardware</button></li>
-        <li><button>Periféricos</button></li>
-        <li><button>Frete Grátis</button></li>
+        <li><a href="{% url 'montagem' %}"><button>Montagem</button></a></li>
+        <li><a href="{% url 'pcgamer' %}"><button>PC Gamer</button></a></li>
+        <li><a href="{% url 'escritorio' %}"><button>Escritório</button></a></li>
+        <li><a href="{% url 'hardware' %}"><button>Hardware</button></a></li>
+        <li><a href="{% url 'perifericos' %}"><button>Perifericos</button></a></li>
       </ul>
     </nav>
     <div>
-      <a href="{% url 'login' %}"><img src="{% static 'resources/icone-usuario.png' %}"></a>
-      <a href="{% url 'login' %}"><img src="{% static 'resources/icone-carrinho.png' %}"></a>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
     </div>
   </div>
 
