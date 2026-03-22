@@ -15,6 +15,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect, render
 from .models import Pedido, ItemPedido, Produto
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
 
 def formatar_br(valor_float):
     """Auxiliar para formatar float para String de Real (1.500,00)"""
@@ -319,3 +320,7 @@ def finalizar_compra(request):
     
     messages.success(request, f"Pedido #{novo_pedido.id_pedido} realizado com sucesso!")
     return redirect('meus_pedidos')
+
+def detalhe_produto(request, id_produto):
+    produto = get_object_or_404(Produto, id_produto=id_produto)
+    return render(request, 'detalhe_produto.html', {'produto': produto})

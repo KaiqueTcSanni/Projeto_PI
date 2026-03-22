@@ -19,5 +19,6 @@ urlpatterns = [
     path('salvar-pc-completo/', views.salvar_pc_completo, name='salvar_pc_completo'),
     path('finalizar/', views.finalizar_pedido, name='finalizar_pedido'),
     path('meus-pedidos/', views.meus_pedidos, name='meus_pedidos'),
+    path('produto/<int:id_produto>/', views.detalhe_produto, name='detalhe_produto'),
     
 ]
