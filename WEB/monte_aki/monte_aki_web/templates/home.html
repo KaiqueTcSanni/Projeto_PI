@@ -1,89 +1,87 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monteaki</title>
-
-    <!-- Bootstrap CSS-->
-    <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-    <div class="content-overlay">
-        <div class="container mt-5">
-
-            <h2 class="text-center mb-4">Produtos</h2>
-
-            <div class="row g-4">
-                {% for produto in produtos %}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center position-relative">
-                        <div class="position-absolute top-0 end-0 p-2">
-                            <button class="btn btn-light rounded-circle shadow-sm"
-                                onclick="toggleFavorito(this, '{{ produto.nome_produto }}')">
-                                <i class="bi bi-heart text-danger"></i>
-                            </button>
-                        </div>
-
-                        <img src="{{ produto.foto_produto.url }}" class="card-img-top" alt="{{ produto.nome_produto }}">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ produto.nome_produto }}</h5>
-                            <p class="preco fw-bold" style="color: #6a0dad;">R$ {{ produto.valor }}</p>
-
-                            <button class="btn btn-success mt-auto w-100"
-                                onclick="adicionarAoCarrinho('{{ produto.nome_produto }}', '{{ produto.valor }}', '{{ produto.foto_produto.url }}')">
-                                <i class="bi bi-cart-plus"></i> Comprar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+<div class="container mt-5">
+    {% for nome_categoria, lista_produtos in categorias.items %}
+        {% if lista_produtos %}
+        <div class="row mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="fw-bold">CATEGORIA: {{ nome_categoria|upper }}</h3>
+                <a href="#" class="text-decoration-none text-muted">Ver todos <i class="bi bi-chevron-right"></i></a>
             </div>
 
+            <div id="carousel{{ forloop.counter }}" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-inner">
+                    {% for produto in lista_produtos %}
+                        {% if forloop.counter0|divisibleby:4 %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="row g-3">
+                        {% endif %}
+
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius: 15px;">
+                                <div class="position-absolute top-0 end-0 p-2">
+                                    <button class="btn btn-light rounded-circle shadow-sm btn-favorito" 
+                                            onclick="toggleFavorito(this, '{{ produto.id_produto }}')">
+                                        <i class="bi bi-heart text-danger"></i>
+                                    </button>
+                                </div>
+                                <img src="{{ produto.foto_produto.url }}" class="card-img-top mx-auto mt-2" 
+                                     style="height: 150px; width: auto; object-fit: contain;">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="text-muted small mb-1">{{ produto.nome_produto|truncatechars:40 }}</p>
+                                    <h5 class="fw-bold" style="color: #000;">R$ {{ produto.valor }}</h5>
+                                    <button class="btn btn-primary mt-auto rounded-pill" 
+                                            style="background-color: #6a0dad; border: none;"
+                                            onclick="adicionarAoCarrinho('{{ produto.id_produto }}', '{{ produto.nome_produto }}')">
+                                        Adicionar ao carrinho
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if forloop.counter|divisibleby:4 or forloop.last %}
+                            </div> </div> {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ forloop.counter }}" data-bs-slide="prev" style="width: 5%; filter: invert(1);">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ forloop.counter }}" data-bs-slide="next" style="width: 5%; filter: invert(1);">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
         </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
-    </div>
-    <!-- Bootstrap JS Bundle (Popper + Bootstrap) -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        function adicionarAoCarrinho(nome, preco, foto) {
-            fetch("{% url 'adicionar_ao_carrinho' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": "{{ csrf_token }}"
-                },
-                body: JSON.stringify({
-                    nome: nome,
-                    preco: preco,
-                    foto: foto
-                })
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert(nome + " adicionado ao carrinho!");
-                    }
-                });
+<script>
+function adicionarAoCarrinho(id, nome) {
+    fetch("{% url 'adicionar_ao_carrinho' %}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({ id: id }) // Enviando o ID para o Python buscar no banco
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'sucesso') {
+            alert(data.mensagem);
+            location.reload(); // Recarrega para atualizar o contador se houver um
         }
+    });
+}
 
-        function toggleFavorito(btn, nome) {
-            const icon = btn.querySelector('i');
-            icon.classList.toggle('bi-heart');
-            icon.classList.toggle('bi-heart-fill');
-        }
-    </script>
-
-</body>
-
-</html>
+function toggleFavorito(btn, id) {
+    const icon = btn.querySelector('i');
+    icon.classList.toggle('bi-heart');
+    icon.classList.toggle('bi-heart-fill');
+    // Aqui você pode adicionar um fetch similar ao do carrinho para salvar nos favoritos
+}
+</script>
 {% endblock %}

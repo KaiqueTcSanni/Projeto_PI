@@ -93,8 +93,32 @@ def cadastro(request):
 
 # --- NAVEGAÇÃO ---
 
+#-- HOME --
 def home(request):
-    return render(request, 'home.html', {'produtos': Produto.objects.all()})
+    # Lista exata das categorias que sua tbl_produtos recebe
+    categorias_oficiais = [
+        'Fonte', 'Gabinete', 'Memória RAM', 'Armazenamento', 'Resfriamento',
+        'Impressora', 'Audio', 'Processador', 'Notebook', 'Placa Mae',
+        'Computador', 'Teclado', 'Mouse', 'Energia', 'Controle', 'Monitor', 
+        'Fan', 'Cabo'  # Adicionei 'Cabo' aqui
+    ]
+    
+    # Buscamos todos os produtos uma única vez para otimizar
+    todos_produtos = Produto.objects.all()
+    categorias = {}
+    
+    for cat in categorias_oficiais:
+        # Filtra os produtos para cada categoria (case-insensitive)
+        produtos_filtrados = todos_produtos.filter(tipo_produto__iexact=cat)
+        
+        # Só adiciona ao dicionário se houver produtos cadastrados nessa categoria
+        if produtos_filtrados.exists():
+            categorias[cat] = produtos_filtrados
+            
+    return render(request, 'home.html', {'categorias': categorias})
+
+#-- HOME --
+
 
 def hardware(request):
     return render(request, 'hardware.html', {'produtos': Produto.objects.all()})
