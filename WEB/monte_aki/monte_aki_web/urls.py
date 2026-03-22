@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views  # Importa o arquivo views como um módulo
+from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -13,7 +13,10 @@ urlpatterns = [
     path('escritorio/', views.escritorio, name='escritorio'),
     path('carrinho/', views.carrinho, name='carrinho'),
     path('pc-montado/', views.pc_montado, name='pc_montado'),
-    path('selecionar-produto/', views.selecionar_produto, name='selecionar_produto'),
     path('remover/<int:indice>/', views.remover_do_carrinho, name='remover_do_carrinho'),
     path('reiniciar-build/', views.reiniciar_build, name='reiniciar_build'),
+    path('adicionar-ao-carrinho/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
+    # Verifique se esta linha abaixo existe no seu views.py!
+    path('salvar-pc-completo/', views.salvar_pc_completo, name='salvar_pc_completo'),
+    path('finalizar/', views.finalizar_pedido, name='finalizar_pedido'),
 ]

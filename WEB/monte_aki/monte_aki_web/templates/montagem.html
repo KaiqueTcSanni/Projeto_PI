@@ -177,8 +177,9 @@
                         data-fornecedor="{{ produto.fornecedor }}">
 
                         <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+
                         <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-nome"><strong>{{ produto.nome_produto }}</strong></p>
                             <p class="produto-descricao">{{ produto.descricao }}</p>
                             <span class="produto-preco">R$ {{ produto.valor }}</span>
                         </div>
@@ -436,8 +437,6 @@
 
 <script>
     let etapaAtual = 1;
-    let produtoSelecionado = null;
-
     let escolhasUsuario = {
         1: null, 2: null, 3: null, 4: null, 5: null,
         6: null, 7: null, 8: null, 9: null, 10: null,
@@ -447,25 +446,6 @@
     function sufixoEtapa(n) {
         const nomes = ["um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "quatorze"];
         return nomes[n - 1];
-    }
-
-    // FUNÇÃO AJUSTADA: Agora ela decide se limpa ou se recupera o que já foi salvo
-    function atualizarPreviewEtapa(numero) {
-        const produtoSalvo = escolhasUsuario[numero];
-
-        if (produtoSalvo) {
-            // Se já existe algo salvo para esta etapa, mostra os dados dele
-            document.getElementById('resumo-nome').textContent = produtoSalvo.nome;
-            document.getElementById('resumo-preco').textContent = "R$ " + produtoSalvo.preco.replace('.', ',');
-            document.getElementById('resumo-img').src = produtoSalvo.img;
-            produtoSelecionado = produtoSalvo; // Mantém a referência global atualizada
-        } else {
-            // Se não tem nada salvo, volta para o estado inicial "vazio"
-            document.getElementById('resumo-nome').textContent = "Nenhum produto selecionado";
-            document.getElementById('resumo-preco').textContent = "R$ 0,00";
-            document.getElementById('resumo-img').src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-            produtoSelecionado = null;
-        }
     }
 
     function mostrarEtapa(numero) {
@@ -479,7 +459,8 @@
             atual.style.setProperty('display', 'grid', 'important');
         }
 
-        // Se for uma etapa de produto (1 a 13), verifica se tem memória salva
+        if (numero === 2) aplicarFiltroPlacaMae();
+
         if (numero < 14) {
             atualizarPreviewEtapa(numero);
         } else {
@@ -488,11 +469,39 @@
 
         document.querySelectorAll('.categoria').forEach(btn => btn.classList.remove('ativa'));
         const botoes = document.querySelectorAll('.categoria');
-        if (botoes[numero - 1]) {
-            botoes[numero - 1].classList.add('ativa');
-        }
+        if (botoes[numero - 1]) botoes[numero - 1].classList.add('ativa');
 
         etapaAtual = numero;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function aplicarFiltroPlacaMae() {
+        const procEscolhido = escolhasUsuario[1];
+        if (!procEscolhido) return;
+        const marcaProcessador = procEscolhido.fornecedor.toUpperCase().trim();
+        const placas = document.querySelectorAll('.placa-mae-card');
+        placas.forEach(placa => {
+            const marcaPlaca = placa.dataset.fornecedor.toUpperCase().trim();
+            placa.style.display = (marcaPlaca === marcaProcessador) ? "flex" : "none";
+        });
+    }
+
+    function atualizarPreviewEtapa(numero) {
+        const p = escolhasUsuario[numero];
+        const resNome = document.getElementById('resumo-nome');
+        const resPreco = document.getElementById('resumo-preco');
+        const resImg = document.getElementById('resumo-img');
+
+        if (p) {
+            resNome.textContent = p.nome;
+            resPreco.textContent = "R$ " + parseFloat(p.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+            resImg.src = p.img;
+            resImg.style.display = "block";
+        } else {
+            resNome.textContent = "Nenhum produto selecionado";
+            resPreco.textContent = "R$ 0,00";
+            resImg.style.display = "none";
+        }
     }
 
     function mudarPagina(numeroDestino = null) {
@@ -501,219 +510,104 @@
             return;
         }
 
-        const itensObrigatorios = {
-            1: "Processador", 2: "Placa Mãe", 3: "Memória RAM",
-            5: "HD & SSD", 6: "Resfriamento", 7: "Fonte", 8: "Gabinete"
+        // LISTA ATUALIZADA COM ARMAZENAMENTO (5) E COOLER (6)
+        const obrigatorios = {
+            1: "Processador",
+            2: "Placa Mãe",
+            3: "Memória RAM",
+            5: "Armazenamento (HD/SSD)", // Adicionado
+            6: "Cooler/Resfriamento",     // Adicionado
+            7: "Fonte",
+            8: "Gabinete"
         };
 
-        if (itensObrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
-            alert(`Atenção: A escolha do ${itensObrigatorios[etapaAtual]} é obrigatória!`);
+        if (obrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
+            alert(`Atenção: A escolha do ${obrigatorios[etapaAtual]} é obrigatória!`);
             return;
         }
 
-        mostrarEtapa(etapaAtual + 1);
-
-        // Lógica de compatibilidade (Filtro)
-        if (etapaAtual === 1 && escolhasUsuario[1]) {
-            const marcaEscolhida = escolhasUsuario[1].fornecedor.toUpperCase();
-            const todasAsPlacas = document.querySelectorAll('.placa-mae-card');
-            todasAsPlacas.forEach(placa => {
-                const marcaDaPlaca = placa.dataset.fornecedor.toUpperCase();
-                placa.style.display = (marcaDaPlaca === marcaEscolhida) ? "" : "none";
-            });
-        }
-
-        if (etapaAtual === 14) {
-            window.location.href = "{% url 'carrinho' %}";
-            return;
+        if (etapaAtual < 14) {
+            mostrarEtapa(etapaAtual + 1);
+        } else {
+            finalizarEIrParaCarrinho();
         }
     }
 
     document.addEventListener("DOMContentLoaded", function () {
         const cards = document.querySelectorAll('.produto-card');
-
         cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const container = card.closest('.categoria-container');
-                if (container) {
-                    container.querySelectorAll('.produto-card').forEach(c => c.classList.remove('ativo'));
-                }
-                card.classList.add('ativo');
+            card.addEventListener('click', function () {
+                const container = this.closest('.categoria-container');
+                container.querySelectorAll('.produto-card').forEach(c => c.classList.remove('ativo'));
+                this.classList.add('ativo');
 
-                const id = card.dataset.id;
-                const nome = card.dataset.nome;
-                const preco = card.dataset.preco;
-                const fornecedor = card.dataset.fornecedor;
-                const img = card.querySelector('img').src;
+                escolhasUsuario[etapaAtual] = {
+                    id: this.dataset.id,
+                    nome: this.dataset.nome,
+                    preco: this.dataset.preco,
+                    img: this.querySelector('img').src,
+                    fornecedor: this.dataset.fornecedor
+                };
 
-                // Atualiza o Preview Lateral na hora do clique
-                document.getElementById('resumo-nome').textContent = nome;
-                document.getElementById('resumo-preco').textContent = "R$ " + preco.replace('.', ',');
-                document.getElementById('resumo-img').src = img;
-
-                // Salva definitivamente a escolha desta etapa
-                produtoSelecionado = { id, nome, preco, img, fornecedor };
-                escolhasUsuario[etapaAtual] = produtoSelecionado;
+                atualizarPreviewEtapa(etapaAtual);
+                if (etapaAtual === 1) escolhasUsuario[2] = null;
             });
         });
     });
 
-    function mudarPagina(numeroDestino = null) {
-        if (numeroDestino !== null) {
-            mostrarEtapa(numeroDestino);
-            return;
-        }
-
-        // Se estiver na etapa 14 (PC Montado) e clicar em Prosseguir, vai para o carrinho
-        if (etapaAtual === 14) {
-            window.location.href = "{% url 'carrinho' %}";
-            return;
-        }
-
-        // Validação de itens obrigatórios (Lado do Cliente)
-        const itensObrigatorios = {
-            1: "Processador", 2: "Placa Mãe", 3: "Memória RAM",
-            7: "Fonte", 8: "Gabinete"
-        };
-
-        if (itensObrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
-            alert(`Atenção: A escolha do ${itensObrigatorios[etapaAtual]} é obrigatória!`);
-            return;
-        }
-
-        mostrarEtapa(etapaAtual + 1);
-    }
-
-    // Função para renderizar o resumo final na Etapa 14
     function renderizarResumoFinal() {
         const lista = document.getElementById('lista-final-produtos');
-        const valorTotal = document.getElementById('valor-total-final');
-        lista.innerHTML = "";
-        let total = 0;
-
-        for (let i in escolhasUsuario) {
-            const p = escolhasUsuario[i];
-            if (p) {
-                lista.innerHTML += `<p><strong>${p.nome}</strong> - R$ ${p.preco}</p>`;
-                total += parseFloat(p.preco.replace('.', '').replace(',', '.'));
-            }
-        }
-        valorTotal.textContent = "R$ " + total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-    }
-
-    // Evento de clique nos cards (Importante!)
-    document.querySelectorAll('.produto-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const id = this.dataset.id;
-            const nome = this.dataset.nome;
-            const preco = this.dataset.preco;
-            const img = this.querySelector('img').src;
-            const fornecedor = this.dataset.fornecedor;
-
-            // Salva na memória do JS para o preview
-            const dados = { id, nome, preco, img, fornecedor };
-            escolhasUsuario[etapaAtual] = dados;
-
-            // Atualiza a interface
-            document.getElementById('resumo-nome').textContent = nome;
-            document.getElementById('resumo-preco').textContent = "R$ " + preco.replace('.', ',');
-            document.getElementById('resumo-img').src = img;
-
-            // Envia para o Django salvar na SESSÃO (Back-end)
-            fetch("{% url 'selecionar_produto' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": "{{ csrf_token }}"
-                },
-                body: JSON.stringify({
-                    nome: nome,
-                    preco: preco,
-                    foto: img
-                })
-            });
-        });
-    });
-        const containerLista = document.getElementById('lista-final-produtos');
-        const campoTotal = document.getElementById('valor-total-final');
-        let htmlGerado = "";
-        let somaTotal = 0;
+        const totalFinal = document.getElementById('valor-total-final');
+        let html = "";
+        let soma = 0;
 
         for (let i = 1; i <= 13; i++) {
-            const produto = escolhasUsuario[i];
-            if (produto) {
-                const precoNum = parseFloat(produto.preco.replace(',', '.'));
-                somaTotal += precoNum;
-                htmlGerado += `
-                    <div class="item-resumo-final" style="display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
-                        <span><strong>Etapa ${i}:</strong> ${produto.nome}</span>
-                        <span>R$ ${precoNum.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
-                    </div>
-                `;
+            const p = escolhasUsuario[i];
+            if (p) {
+                let precoNum = parseFloat(p.preco);
+                soma += precoNum;
+                html += `<div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
+                            <span>${p.nome}</span>
+                            <span>R$ ${precoNum.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                         </div>`;
             }
         }
-        containerLista.innerHTML = htmlGerado || "<p>Nenhum produto selecionado.</p>";
-        campoTotal.textContent = `R$ ${somaTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-    
+        lista.innerHTML = html || "<p>Nenhum item selecionado.</p>";
+        totalFinal.textContent = "R$ " + soma.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    }
 
+    // --- NOVA LÓGICA DE ENVIO ---
     async function finalizarEIrParaCarrinho() {
-        // 1. Pega apenas os IDs/Nomes que foram realmente selecionados
-        const produtosParaSalvar = Object.values(escolhasUsuario).filter(p => p !== null);
+        let itensParaEnviar = [];
+        let totalSoma = 0;
 
-        // 2. Envia cada produto para o Django salvar na sessão
-        // Usamos Promise.all para garantir que todos sejam salvos antes de avançar
-        try {
-            // Envia os produtos para a sessão do Django
-            await Promise.all(produtosParaSalvar.map(produto => {
-                return fetch('/selecionar-produto/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': getCookie('csrftoken')
-                    },
-                    body: JSON.stringify({
-                        nome: produto.nome,
-                        preco: produto.preco,
-                        foto: produto.img // Agora enviando a foto para o carrinho!
-                    })
-                });
-            }));
-
-            // 3. Após salvar tudo na sessão, redireciona
-            window.location.href = "{% url 'carrinho' %}";
-        } catch (error) {
-            console.error("Erro:", error);
-            alert("Erro ao salvar sua montagem.");
-        }
-    }
-
-    function verificarPcCompleto() {
-        const obrigatorios = [1, 2, 3, 5, 6, 7, 8];
-        let faltantes = [];
-        // ... sua lógica de faltantes ...
-
-        if (faltantes.length > 0) {
-            alert("Não é possível finalizar! Faltam itens obrigatórios.");
-        } else {
-            finalizarEIrParaCarrinho(); // Chama a nova função assíncrona
-        }
-    }
-
-    // Função auxiliar para pegar o token CSRF do Django
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
+        // Coleta apenas o que foi selecionado
+        for (let i = 1; i <= 13; i++) {
+            if (escolhasUsuario[i]) {
+                itensParaEnviar.push(escolhasUsuario[i]);
+                totalSoma += parseFloat(escolhasUsuario[i].preco);
             }
         }
-        return cookieValue;
+
+        // Envia para a nova rota do Django
+        const response = await fetch("{% url 'salvar_pc_completo' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({
+                itens: itensParaEnviar,
+                total: totalSoma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === "sucesso") {
+            window.location.href = data.redirect;
+        } else {
+            alert("Erro ao salvar: " + data.message);
+        }
     }
-
-
 </script>
