@@ -5,13 +5,10 @@ body {
     "header"
     "main"
     "footer";
-  /* Mudamos de main/footer para um bloco único de conteúdo */
   grid-template-columns: 100vw;
   grid-template-rows: 6vh 89vh 5vh;
   grid-template-rows: auto 1fr auto;
-  /* O meio (main) cresce para ocupar o que sobrar */
   min-height: 100vh;
-  /* Garante que o corpo tenha no mínimo a altura da tela */
   background-color: #F5F5F7;
   font-family: "Varela Round", sans-serif;
   font-weight: 400;
@@ -39,20 +36,26 @@ body {
 }
 
 .top-bar {
-  background: #fff;
-  padding: 15px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; 
+  z-index: 9999; 
+  background-color: #ffffff;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 0 30px;
   border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .top-bar .logo {
   display: flex;
   align-items: center;
-  /* Alinha verticalmente no meio */
   justify-content: center;
-  /* Alinha horizontalmente no meio (se houver espaço) */
   font-size: 1.4rem;
   font-weight: bold;
 }
@@ -165,20 +168,13 @@ h1 {
   text-decoration: none;
 }
 
-/* Container que receberá o efeito */
 .content-wrapper {
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-/* A MÁGICA ACONTECE AQUI:
-  Se o body possui (.has) uma .top-bar que está com o mouse em cima (:hover),
-  então aplique o blur na .content-wrapper
-*/
 body:has(.top-bar nav ul:hover) .content-overlay {
   filter: blur(5px);
-  /* Intensidade do blur */
   pointer-events: none;
-  /* Opcional: impede cliques no conteúdo enquanto está borrado */
   user-select: none;
 }
 
@@ -186,19 +182,15 @@ body:has(.top-bar nav ul:hover) .content-overlay {
   list-style: none;
   display: flex;
   gap: 0;
-  /* Remove o espaço vazio entre os itens da lista */
   margin: 0;
   padding: 0;
 }
 
-/* Estilo extra para os botões da nav não terem fundo padrão, 
-   para ficar mais parecido com a Apple */
 .top-bar nav button {
   background: transparent;
   color: #333;
   border: none;
   padding: 10px 15px;
-  /* O preenchimento interno garante que o mouse sempre esteja "em cima" de algo */
   font-size: 0.9rem;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -206,13 +198,11 @@ body:has(.top-bar nav ul:hover) .content-overlay {
 
 .top-bar nav ul:hover button:not(:hover) {
   opacity: 0.5;
-  /* Efeito extra: diminui opacidade dos outros botões ao focar em um */
 }
 
 .top-bar {
   grid-area: header;
   z-index: 10;
-  /* Garante que a barra fique sempre por cima */
   position: relative;
 }
 
@@ -221,63 +211,47 @@ body:has(.top-bar nav ul:hover) .content-overlay {
   display: flex;
   flex-direction: column;
   transition: filter 0.4s ease, transform 0.4s ease;
-  /* Transição suave */
 }
 
-/* Este container organiza os dois blocos lado a lado */
 .login-container {
   display: flex;
   flex-direction: row;
-  /* Alinhamento horizontal */
   justify-content: center;
-  /* Centraliza o grupo no meio da tela */
   align-items: center;
-  /* Alinha a logo e o card verticalmente */
   gap: 100px;
-  /* Espaço generoso entre a logo e o login */
   width: 100%;
   height: 100%;
-  /* Ocupa a altura total disponível */
   padding: 20px;
 }
 
-/* Ajuste da Logo Grande */
 .logo_grande {
   flex: 0 1 auto;
-  /* Não deixa a logo esticar demais */
 }
 
 .logo_grande img {
   max-width: 500px;
-  /* Ajuste esse tamanho conforme sua necessidade */
   height: auto;
   display: block;
 }
 
-/* Ajuste do Card de Login */
 .main-login {
   flex: 0 1 400px;
-  /* Define uma largura base de 400px para o card */
   background: #fff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  /* Sombra para dar profundidade */
   margin: 0;
-  /* Remove margens que podem desalinhá-lo */
 }
 
 @media (max-width: 992px) {
   .login-container {
     flex-direction: column;
-    /* Volta para empilhado em telas menores */
     gap: 30px;
     padding-top: 50px;
   }
 
   .logo_grande img {
     max-width: 300px;
-    /* Diminui a logo no mobile */
   }
 }
 
@@ -291,53 +265,38 @@ body:has(.top-bar nav ul:hover) .content-overlay {
   transition: opacity 0.2s;
 }
 
-/* O container que segura o link */
 .logo {
   display: flex;
   align-items: center;
 }
 
-/* O link em si - este é o principal para o alinhamento */
 .logo-link {
   display: flex;
-  /* Transforma o link em flexbox */
   align-items: center;
-  /* Alinha a imagem e o texto verticalmente no meio */
   text-decoration: none;
-  /* Remove o sublinhado do link */
   color: #333;
-  /* Cor do seu texto */
 }
 
-/* Ajuste da Imagem */
 .logo-link img {
   height: 40px;
-  /* Defina uma altura fixa para controlar a barra */
   width: auto;
-  /* Mantém a proporção */
   display: block;
-  /* Remove espaços fantasmas abaixo da imagem */
   margin: 0;
-  /* Garante que não haja margens externas */
 }
 
-/* Ajuste do Texto */
 .logo-text {
   font-size: 1.4rem;
   line-height: 1;
-  /* Remove altura de linha excessiva que desalinha */
+
   display: flex;
   align-items: center;
 }
 
 div a img {
   margin-right: 10px;
-  /* espaço entre as imagens */
+
 }
 
-/*
-==============  MONTAGEM PC =================
-*/
 
 .montagem-categorias {
   display: flex;
@@ -368,7 +327,6 @@ div a img {
 .categoria.ativa {
   border-color: #6a0dad;
   background-color: #f9f5ff;
-  /* Fundo suave para destacar */
   font-weight: bold;
   color: #6a0dad;
 }
@@ -377,7 +335,6 @@ div a img {
   color: #6a0dad;
 }
 
-/* Opcional: Um pequeno indicador visual extra (ex: uma bolinha ou brilho) */
 .categoria.ativa::after {
   content: '';
   width: 6px;
@@ -386,49 +343,6 @@ div a img {
   border-radius: 50%;
   margin-left: 5px;
 }
-
-/*
-.montagem-container {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 24px;
-  padding: 20px;
-  align-items: start;
-}
-
-.produtos {
-    width: 100%;
-    height: 100%;
-    background-color: red;
-}
-
-.produto {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 20px;
-  width: 33%;
-  height: 33%;
-}
-
-.produto img {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    
-}
-
-
-
-.btn-prosseguir {
-    background: #6a0dad;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-*/
 
 .montagem-container {
   display: grid;
@@ -453,25 +367,18 @@ html {
 
 .produto-selecionado {
   width: 700px;
-  /* Largura um pouco maior para os botões respirarem */
   height: 100%;
-  /* Faz ele ocupar a altura total do elemento pai */
   min-height: 800px;
-  /* Garante que ele seja alto como no seu desenho */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* Alinha o conteúdo começando do topo */
   background-color: #fff;
   border-radius: 15px;
   padding: 30px 20px;
-  /* Mais espaço interno */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
-  /* Impede que o padding aumente o tamanho total */
   position: sticky;
-  /* Faz ele acompanhar o scroll se necessário */
   top: 20px;
 }
 
@@ -479,7 +386,6 @@ html {
 .empty-message {
   width: 100%;
   height: 360px;
-  /* Aumentamos a área da imagem para preencher melhor */
   object-fit: contain;
   margin-bottom: 25px;
   display: flex;
@@ -491,9 +397,7 @@ html {
 .btn-prosseguir,
 .btn-info {
   width: 100%;
-  /* Ocupa 100% da largura do card (que é 400px) */
   max-width: 360px;
-  /* Limite para segurança */
   padding: 15px;
   margin-bottom: 12px;
   border-radius: 10px;
@@ -503,16 +407,12 @@ html {
   font-family: 'Varela Round', sans-serif;
 }
 
-/* Texto de "Nenhum produto" ocupando o mesmo lugar da imagem */
 .empty-message {
   width: 100%;
   height: 300px;
-  /* Mesma altura da imagem */
   display: flex;
   align-items: center;
-  /* Centraliza o texto verticalmente */
   justify-content: center;
-  /* Centraliza o texto horizontalmente */
   text-align: center;
   color: #666;
   font-size: 1.1rem;
@@ -521,16 +421,12 @@ html {
 .empty-message {
   font-weight: bold;
   margin-bottom: 20px;
-  /* Garante que o texto use o espaço da imagem quando ela sumir */
 }
 
 .card-produto-selecionado {
   border: 2px solid #6A1B9A;
-  /* O roxo da sua identidade */
   box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
-  /* Sombra suave roxa */
   transform: scale(1.02);
-  /* Leve aumento para dar profundidade */
   transition: all 0.3s ease;
 }
 
@@ -539,7 +435,6 @@ html {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   max-height: calc(100vh - 150px);
-  /* Ajusta o scroll dinamicamente com a tela */
   overflow-y: auto;
   padding: 10px;
 }
@@ -552,21 +447,21 @@ html {
 }
 
 .produto-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 15px; /* Aumentei um pouco o padding interno */
-    min-height: 120px; /* Use min-height em vez de height fixa */
-    height: auto;      /* Permite que o card se ajuste ao conteúdo */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+  min-height: 120px;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .produto-card:hover {
@@ -574,34 +469,32 @@ html {
   border-color: #6a0dad;
 }
 
-/* A CORREÇÃO DA IMAGEM: Tamanho fixo e proporção preservada */
 .produto-card img {
-  width: 80px; /* Largura fixa */
-  height: 80px; /* Altura fixa */
-  object-fit: contain; /* Não distorce */
-  flex-shrink: 0; /* NÃO deixa a imagem crescer ou diminuir */
-  margin-bottom: 0; /* Remove margem que desalinha no modo horizontal */
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-bottom: 0;
 }
 
 .produto-nome {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 0 0 5px 0; /* Margem inferior para separar do preço */
-    color: #333;
-    line-height: 1.2;
-    /* Mantém o texto em até 2 linhas e coloca "..." se for maior */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #333;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .produto-preco {
-    color: #6a0dad;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 0;
-    display: block; /* Garante que ocupe sua própria linha */
+  color: #6a0dad;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+  display: block;
 }
 
 
@@ -641,7 +534,6 @@ html {
   .produtos-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Força 2 colunas iguais */
     gap: 16px;
     padding: 10px;
   }
@@ -658,24 +550,22 @@ html {
 }
 
 .produto-card div {
-    flex: 1;
-    display: flex;
-    flex-direction: column; /* Garante que nome e preço fiquem empilhados */
-    justify-content: center;
-    min-width: 0;
-    padding-left: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding-left: 15px;
 }
 
-/* Efeito de seleção: Borda roxa sem mover o card */
 .produto-card.ativo {
-  border: 2px solid #6a0dad !important; /* Borda mais grossa */
+  border: 2px solid #6a0dad !important;
   background-color: #f9f5ff;
   box-shadow: 0 4px 12px rgba(106, 13, 173, 0.15);
-  transform: scale(1.02); /* Leve aumento sem cobrir o topo */
-  z-index: 1; /* Garante que o card selecionado fique por cima da sombra do vizinho */
+  transform: scale(1.02);
+  z-index: 1;
 }
 
-/* Hover simples */
 .produto-card:hover:not(.ativo) {
   border-color: #d1b3ff;
   transform: translateY(-2px);
@@ -693,12 +583,10 @@ html {
 
 .categoria:hover span {
   color: #6a0dad;
-  /* Garante que o texto fique roxo e visível */
 }
 
 .categoria:hover img {
   filter: brightness(0.8);
-  /* Opcional: dá um leve destaque na imagem também */
 }
 
 .detalhes-box {
@@ -740,7 +628,6 @@ html {
   display: block;
 }
 
-/* Aplica para todos os containers de categoria */
 .categoria-container,
 .dv_tres,
 .dv_quatro,
@@ -755,13 +642,11 @@ html {
 .dv_treze {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
-  /* Força 2 colunas */
   gap: 20px;
   padding: 20px;
   width: 100%;
 }
 
-/* Garante que o que está oculto não apareça de jeito nenhum */
 [style*="display: none"] {
   display: none !important;
 }
@@ -774,136 +659,228 @@ img:not([src]) {
 .product-selection-container {
   display: flex;
   align-items: stretch;
-  /* ISSO faz com que o card da direita estique até o chão */
   gap: 20px;
   padding: 20px;
   min-height: 850px;
-  /* Ajuste conforme necessário */
 }
 
-/* Adicione isso ao seu style.css */
 .produto-info {
-    flex: 1; /* Faz a div ocupar todo o espaço restante do card */
-    display: flex;
-    flex-direction: column; /* Empilha Nome, Descrição e Preço */
-    justify-content: center;
-    padding-left: 10px;
-    min-width: 0; /* Evita que o texto empurre o card para fora */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+  min-width: 0;
 }
 
 .produto-descricao {
-    font-size: 12px;
-    color: #777;
-    margin: 5px 0;
-    /* Corta o texto em 2 linhas se for muito grande */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  font-size: 12px;
+  color: #777;
+  margin: 5px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* Container que agrupa o dropdown e o carrinho */
 .user-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
 }
 
-/* Container do Dropdown */
 .user-dropdown {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px; /* Cria uma "ponte invisível" para o mouse passar */
-    margin-bottom: -10px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
 }
 
-/* Alinhamento do ícone com o texto "Olá, Kaique" */
 .user-trigger {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    color: #333; /* Ajuste para a cor do seu menu */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #333;
 }
 
 .user-info-text {
-    display: flex;
-    flex-direction: column;
-    color: #333; /* Cor escura para contrastar com o fundo branco da sua top-bar */
-    font-size: 13px;
-    line-height: 1.2;
-    margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.2;
+  margin-left: 5px;
 }
 
 .user-info-text strong {
-    color: #6a0dad; /* Nome do usuário no roxo da sua marca */
+  color: #6a0dad;
 }
 
-/* O Menu escondido por padrão */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%; /* Começa exatamente onde termina o padding do container */
-    background-color: white;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
-    border-radius: 8px;
-    z-index: 1000;
-    padding: 10px 0;
-    border: 1px solid #eee;
-    /* Impede que o menu feche se o mouse oscilar um pouco */
-    pointer-events: auto; 
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  z-index: 1000;
+  padding: 10px 0;
+  border: 1px solid #eee;
+  pointer-events: auto;
 }
 
-/* Triângulo indicador no topo do menu */
 .dropdown-content::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    right: 15px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid white;
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 15px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
 }
 
-/* Faz o menu aparecer quando passa o mouse */
 .user-dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
-/* Estilo dos links dentro do menu */
 .dropdown-content a {
-    color: #333;
-    padding: 10px 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    transition: background 0.2s;
+  color: #333;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  transition: background 0.2s;
 }
 
 .dropdown-content a:hover {
-    background-color: #f9f5ff; /* Fundo roxo clarinho no hover */
-    color: #6a0dad;
+  background-color: #f9f5ff;
+  color: #6a0dad;
 }
 
 .dropdown-header {
-    padding: 5px 15px;
-    font-size: 11px;
-    color: #888;
-    text-transform: uppercase;
-    font-weight: bold;
+  padding: 5px 15px;
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .dropdown-divider {
-    height: 1px;
-    background-color: #eee;
-    margin: 5px 0;
+  height: 1px;
+  background-color: #eee;
+  margin: 5px 0;
 }
 
 .logout-link {
-    color: #dc3545 !important;
+  color: #dc3545 !important;
+}
+
+
+
+
+
+
+.infinite-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.infinite-carousel-viewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 15px;
+}
+
+.carousel-card-item {
+  flex: 0 0 calc(20% - 15px);
+  min-width: 230px;
+  height: 380px;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #6a0dad;
+  transition: all 0.2s;
+}
+
+.content-overlay button {
+  background-color: #6a0dad;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.nav-btn:hover {
+  background: #6a0dad;
+  color: white;
+}
+
+.nav-btn.prev {
+  left: -30px;
+}
+
+.nav-btn.next {
+  right: -30px;
+}
+
+
+@media (max-width: 768px) {
+  .carousel-card-item {
+    flex: 0 0 calc(50% - 15px);
+  }
+
+  .nav-btn {
+    display: none;
+  }
+
+  .infinite-carousel-viewport {
+    overflow-x: auto;
+  }
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 70%;
+  padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
 }

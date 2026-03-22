@@ -16,8 +16,8 @@ urlpatterns = [
     path('remover/<int:indice>/', views.remover_do_carrinho, name='remover_do_carrinho'),
     path('reiniciar-build/', views.reiniciar_build, name='reiniciar_build'),
     path('adicionar-ao-carrinho/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
-    # Verifique se esta linha abaixo existe no seu views.py!
     path('salvar-pc-completo/', views.salvar_pc_completo, name='salvar_pc_completo'),
     path('finalizar/', views.finalizar_pedido, name='finalizar_pedido'),
     path('meus-pedidos/', views.meus_pedidos, name='meus_pedidos'),
+    
 ]
