@@ -51,6 +51,8 @@ public class CardProduto extends javax.swing.JPanel {
                 jLabel1.setIcon(new ImageIcon(dimg));
                 jLabel1.setText("");
             } else {
+                System.out.println("O Java tentou ler este caminho exato: " + file.getAbsolutePath());
+                System.out.println("Este arquivo existe fisicamente? " + file.exists());
                 jLabel1.setText("Não encontrada");
                 // Isso ajudará você a ver no console o caminho exato que o Java está tentando ler
                 System.err.println("Caminho tentado: " + file.getAbsolutePath());

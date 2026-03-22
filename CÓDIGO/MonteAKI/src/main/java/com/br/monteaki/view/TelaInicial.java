@@ -119,9 +119,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1300, 765));
         setMinimumSize(new java.awt.Dimension(1300, 765));
-        setPreferredSize(new java.awt.Dimension(1300, 765));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -273,7 +271,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel57.setText("Resfriamento");
         jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 100, -1));
 
-        jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/exhaust-fan.png"))); // NOI18N
+        jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/water-cooler.png"))); // NOI18N
         jLabel58.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jLabel58.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -748,10 +746,10 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/keyboard.png"))); // NOI18N
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/table.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/exhaust-fan.png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 510, -1, -1));
 
-        jLabel10.setText("Mesa");
+        jLabel10.setText("Fans");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 490, 50, -1));
 
         jButton17.setBackground(new java.awt.Color(51, 102, 255));
@@ -833,7 +831,7 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         TelaCadastroProduto tc = new TelaCadastroProduto("");
         // Preenche o campo de tipo e trava para edição
-        tc.getTxtTipo().setText("Mesa");
+        tc.getTxtTipo().setText("Fan");
         tc.getTxtTipo().setEnabled(false); // Impede que o usuário mude o tipo
         tc.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -843,7 +841,7 @@ public class TelaInicial extends javax.swing.JFrame {
         // 1. Instancia a tela de listagem
         TelaListagemProdutos telaLista = new TelaListagemProdutos();
         // 2. Define o filtro para a sessão atual
-        telaLista.setSessaoTipo("Mesa");
+        telaLista.setSessaoTipo("Fan");
         // 3. Carrega apenas os monitores na galeria
         telaLista.atualizarGaleria();
         telaLista.setVisible(true);

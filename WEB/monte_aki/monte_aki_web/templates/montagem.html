@@ -8,6 +8,7 @@
     <title>Montagem</title>
 
     <!-- Bootstrap CSS-->
+    <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -31,13 +32,12 @@
         </nav>
         <div>
             <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
-            <a href="{% url 'login' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
+            <a href="{% url 'carrinho' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
         </div>
     </div>
 
     <div class="content-overlay">
     </div>
-    </header>
     <div class="content-overlay">
 
         <!-- INICIO: CATEGORIAS DE PERIFERICOS -->
@@ -45,98 +45,98 @@
 
             <button onclick="mudarPagina(1)" id="btn_processador" class="categoria ativa">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/cpu.png' %}" alt="">
                 <span>Processador</span>
 
             </button>
 
             <button onclick="mudarPagina(2)" id="btn_placaMae" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/motherboard.png' %}" alt="">
                 <span>Placa-Mãe</span>
 
             </button>
 
             <button onclick="mudarPagina(3)" id="btn_memoriaRam" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/memoria-ram.png' %}" alt="">
                 <span>Memória RAM</span>
 
             </button>
 
             <button onclick="mudarPagina(4)" id="btn_placaVideo" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/graphic-card.png' %}" alt="">
                 <span>Placa de Vídeo</span>
 
             </button>
 
             <button onclick="mudarPagina(5)" id="btn_ssd" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/ssd.png' %}" alt="">
                 <span>HD & SDD</span>
 
             </button>
 
             <button onclick="mudarPagina(6)" id="btn_cooler" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/water-cooler.png' %}" alt="">
                 <span>Cooler</span>
 
             </button>
 
             <button onclick="mudarPagina(7)" id="btn_fonte" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="">
+                <img src="{% static 'resources/power-supply.png' %}" alt="">
                 <span>Fonte</span>
 
             </button>
 
             <button onclick="mudarPagina(8)" id="btn_gabinete" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Gabinete">
+                <img src="{% static 'resources/gabinete-de-computador.png' %}" alt="Gabinete">
                 <span>Gabinete</span>
 
             </button>
 
             <button onclick="mudarPagina(9)" id="btn_fans" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Fans">
+                <img src="{% static 'resources/cooling-system.png' %}" alt="Fans">
                 <span>Fans</span>
 
             </button>
 
             <button onclick="mudarPagina(10)" id="btn_monitor" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Monitor">
+                <img src="{% static 'resources/monitor.png' %}" alt="Monitor">
                 <span>Monitor</span>
 
             </button>
 
             <button onclick="mudarPagina(11)" id="btn_perifericos" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Perifericos">
+                <img src="{% static 'resources/perifericos.png' %}" alt="Perifericos">
                 <span>Periféricos</span>
 
             </button>
 
             <button onclick="mudarPagina(12)" id="btn_energia" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Energia">
+                <img src="{% static 'resources/energia.png' %}" alt="Energia">
                 <span>Energia</span>
 
             </button>
 
             <button onclick="mudarPagina(13)" id="btn_sistema" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Sistema Operacional">
+                <img src="{% static 'resources/windows.png' %}" alt="Sistema Operacional">
                 <span>Sistema Operacional</span>
 
             </button>
 
             <button onclick="mudarPagina(14)" id="btn_montado" class="categoria">
 
-                <img src="{% static 'resources/' %}" alt="Sistema Operacional">
+                <img src="{% static 'resources/computer.png' %}" alt="Sistema Operacional">
                 <span>PC Montado</span>
 
             </button>
@@ -146,282 +146,265 @@
 
         <!-- INICIO: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
         <main class="montagem-container">
-
-
             <section class="produtos-grid">
-
-                <div id="dv_um" class="dv_um"><!--PROCESSADOR-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Processador" %}
-
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-
-                        <img src="{{ produto.foto_produto.url }}">
-                        <p>{{ produto.nome_produto }}</p>
-                        <span>R$ {{ produto.valor }}</span>
-
-                    </div>
-
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
                 <!--INICIO BLOCO DE CONTEÚDO-->
-                <div id="dv_dois" class="dv_dois"><!--PLACA-MÃE-->
-
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "placa_mae" %}
-
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-
-                        <img src="{{ produto.foto_produto.url }}">
-                        <p>{{ produto.nome_produto }}</p>
-                        <span>R$ {{ produto.valor }}</span>
-
-                    </div>
-
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
-                <div id="dv_tres" class="dv_tres"> <!--MEMORIA RAM-->
-
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Memoria Ram" %}
-
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-
-                        <img src="{{ produto.foto_produto.url }}">
-                        <p>{{ produto.nome_produto }}</p>
-                        <span>R$ {{ produto.valor }}</span>
-
-                    </div>
-
-                    {% endif %}
-                    {% endfor %}
-
-                </div>
-
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
-                <div id="dv_quatro" class="dv_quatro"><!--PLACA DE VIDEO-->
-
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "GPU" %}
-
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-
-                        <img src="{{ produto.foto_produto.url }}">
-                        <p>{{ produto.nome_produto }}</p>
-                        <span>R$ {{ produto.valor }}</span>
-
-                    </div>
-
-                    {% endif %}
-                    {% endfor %}
-
-                    <!--FIM BLOCO DE CONTEÚDO-->
-
-                    <!--INICIO BLOCO DE CONTEÚDO-->
-                    <div id="dv_cinco" class="dv_cinco"><!--HD & SSD-->
-
+                <div class="produtos-grid-wrapper">
+                    <div id="dv_um" class="categoria-container"><!--PROCESSADOR-->
                         {% for produto in produtos %}
-                        {% if produto.tipo_produto == "placa_mae" %}
-
+                        {% if produto.tipo_produto == "Processador" %}
                         <div class="produto-card" data-id="{{ produto.id_produto }}"
-                            data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
-
-                            <img src="{{ produto.foto_produto.url }}">
-                            <p>{{ produto.nome_produto }}</p>
-                            <span>R$ {{ produto.valor }}</span>
-
+                            data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
+                            data-fornecedor="{{ produto.fornecedor }}">
+                            <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                            <div class="produto-info">
+                                <p class="produto-nome">{{ produto.nome_produto }}</p>
+                                <p class="produto-descricao">{{ produto.descricao }}</p>
+                                <span class="produto-preco">R$ {{ produto.valor }}</span>
+                            </div>
                         </div>
-
                         {% endif %}
                         {% endfor %}
+                    </div>
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                        <!--FIM BLOCO DE CONTEÚDO-->
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_dois" class="categoria-container" style="display: none;">
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Placa Mae" %}
+                    <div class="produto-card placa-mae-card" data-id="{{ produto.id_produto }}"
+                        data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
+                        data-fornecedor="{{ produto.fornecedor }}">
 
-                        <!--INICIO BLOCO DE CONTEÚDO-->
-                        <div id="dv_seis" class="dv_seis"><!--COOLER-->
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-                            {% for produto in produtos %}
-                            {% if produto.tipo_produto == "placa_mae" %}
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                            <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_tres" class="categoria-container" style="display: none;"><!--MEMORIA RAM-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Memória RAM" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-                                <img src="{{ produto.foto_produto.url }}">
-                                <p>{{ produto.nome_produto }}</p>
-                                <span>R$ {{ produto.valor }}</span>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                            </div>
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_quatro" class="categoria-container" style="display: none;"><!--PLACA DE VIDEO-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "GPU" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                            {% endif %}
-                            {% endfor %}
-                            <!--FIM BLOCO DE CONTEÚDO-->
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_cinco" class="categoria-container" style="display: none;"><!--HD & SSD-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Armazenamento" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-                            <!--INICIO BLOCO DE CONTEÚDO-->
-                            <div id="dv_sete" class="dv_sete"><!--FONTE-->
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                {% for produto in produtos %}
-                                {% if produto.tipo_produto == "placa_mae" %}
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_seis" class="categoria-container" style="display: none;"><!--COOLER-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Resfriamento" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                    data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_sete" class="categoria-container" style="display: none;"><!--FONTE-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Fonte" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-                                    <img src="{{ produto.foto_produto.url }}">
-                                    <p>{{ produto.nome_produto }}</p>
-                                    <span>R$ {{ produto.valor }}</span>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                </div>
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_oito" class="categoria-container" style="display: none;"><!--GABINETE-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Gabinete" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                {% endif %}
-                                {% endfor %}
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_nove" class="categoria-container" style="display: none;"><!--FANS-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Fan" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-                                <!--FIM BLOCO DE CONTEÚDO-->
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                <!--INICIO BLOCO DE CONTEÚDO-->
-                                <div id="dv_oito" class="dv_oito"><!--GABINETE-->
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_dez" class="categoria-container" style="display: none;"><!--MONITOR-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Monitor" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                    {% for produto in produtos %}
-                                    {% if produto.tipo_produto == "placa_mae" %}
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_onze" class="categoria-container" style="display: none;"><!--PERIFERICOS-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Perifericos" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                    <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                        data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_doze" class="categoria-container" style="display: none;"><!--ENERGIA-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Energia" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-                                        <img src="{{ produto.foto_produto.url }}">
-                                        <p>{{ produto.nome_produto }}</p>
-                                        <span>R$ {{ produto.valor }}</span>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                    </div>
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_treze" class="categoria-container" style="display: none;"><!--SISTEMA OPERACIONAL-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Sistema Operacional" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}">
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!--FIM BLOCO DE CONTEÚDO-->
 
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!--FIM BLOCO DE CONTEÚDO-->
+                <!--INICIO BLOCO DE CONTEÚDO-->
+                <div id="dv_quatorze" class="categoria-container" style="display: none;"><!--PC MONTADO-->
 
-                                    <!--INICIO BLOCO DE CONTEÚDO-->
-                                    <div id="dv_nove" class="dv_nove"><!--FANS-->
-
-                                        {% for produto in produtos %}
-                                        {% if produto.tipo_produto == "placa_mae" %}
-
-                                        <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                            data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
-
-                                            <img src="{{ produto.foto_produto.url }}">
-                                            <p>{{ produto.nome_produto }}</p>
-                                            <span>R$ {{ produto.valor }}</span>
-
-                                        </div>
-
-                                        {% endif %}
-                                        {% endfor %}
-
-                                        <!--FIM BLOCO DE CONTEÚDO-->
-
-                                        <!--INICIO BLOCO DE CONTEÚDO-->
-                                        <div id="dv_dez" class="dv_dez"><!--MONITOR-->
-
-                                            {% for produto in produtos %}
-                                            {% if produto.tipo_produto == "placa_mae" %}
-
-                                            <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                                data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}">
-
-                                                <img src="{{ produto.foto_produto.url }}">
-                                                <p>{{ produto.nome_produto }}</p>
-                                                <span>R$ {{ produto.valor }}</span>
-
-                                            </div>
-
-                                            {% endif %}
-                                            {% endfor %}
-                                            <!--FIM BLOCO DE CONTEÚDO-->
-
-                                            <!--INICIO BLOCO DE CONTEÚDO-->
-                                            <div id="dv_onze" class="dv_onze"><!--PERIFERICOS-->
-
-                                                {% for produto in produtos %}
-                                                {% if produto.tipo_produto == "placa_mae" %}
-
-                                                <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                                    data-nome="{{ produto.nome_produto }}"
-                                                    data-preco="{{ produto.valor }}">
-
-                                                    <img src="{{ produto.foto_produto.url }}">
-                                                    <p>{{ produto.nome_produto }}</p>
-                                                    <span>R$ {{ produto.valor }}</span>
-
-                                                </div>
-
-                                                {% endif %}
-                                                {% endfor %}
-                                                <!--FIM BLOCO DE CONTEÚDO-->
-
-                                                <!--INICIO BLOCO DE CONTEÚDO-->
-                                                <div id="dv_doze" class="dv_doze"><!--ENERGIA-->
-
-                                                    {% for produto in produtos %}
-                                                    {% if produto.tipo_produto == "placa_mae" %}
-
-                                                    <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                                        data-nome="{{ produto.nome_produto }}"
-                                                        data-preco="{{ produto.valor }}">
-
-                                                        <img src="{{ produto.foto_produto.url }}">
-                                                        <p>{{ produto.nome_produto }}</p>
-                                                        <span>R$ {{ produto.valor }}</span>
-
-                                                    </div>
-
-                                                    {% endif %}
-                                                    {% endfor %}
-
-                                                    <!--FIM BLOCO DE CONTEÚDO-->
-
-                                                    <!--INICIO BLOCO DE CONTEÚDO-->
-                                                    <div id="dv_treze" class="dv_treze"><!--SISTEMA OPERACIONAL-->
-
-                                                        {% for produto in produtos %}
-                                                        {% if produto.tipo_produto == "placa_mae" %}
-
-                                                        <div class="produto-card" data-id="{{ produto.id_produto }}"
-                                                            data-nome="{{ produto.nome_produto }}"
-                                                            data-preco="{{ produto.valor }}">
-
-                                                            <img src="{{ produto.foto_produto.url }}">
-                                                            <p>{{ produto.nome_produto }}</p>
-                                                            <span>R$ {{ produto.valor }}</span>
-
-                                                        </div>
-
-                                                        {% endif %}
-                                                        {% endfor %}
-
-                                                        <!--FIM BLOCO DE CONTEÚDO-->
-
-                                                        <!--INICIO BLOCO DE CONTEÚDO-->
-                                                        <div id="dv_quatorze" class="dv_quatorze"><!--PC MONTADO-->
-
-                                                            <h2>Seu PC</h2>
-
-                                                            {% for item in pc %}
-
-                                                            <p>{{item.nome_produto}} - R$ {{ item.valor }}</p>
-
-                                                            {% endfor %}
-
-                                                            <h3>Total: R$ {{ total }}</h3>
-                                                            <!--FIM BLOCO DE CONTEÚDO-->
+                    <div class="resumo-final-box">
+                        <h2>Configuração Escolhida</h2>
+                        <div id="lista-final-produtos">
+                        </div>
+                        <hr>
+                        <div class="total-final-container">
+                            <h3>Total do Setup: <span id="valor-total-final">R$ 0,00</span></h3>
+                        </div>
+                        <button onclick="window.print()" class="btn-info">Imprimir Orçamento</button>
+                    </div>
 
             </section>
 
@@ -431,7 +414,7 @@
 
                     <img src="{% static 'resources/' %}" id="resumo-img">
 
-                    <p id="resumo-nome">
+                    <p class="empty-message" id="resumo-nome">
                         Nenhum produto selecionado
                     </p>
 
@@ -451,225 +434,286 @@
 
 </html>
 
-
-
 <script>
+    let etapaAtual = 1;
+    let produtoSelecionado = null;
 
-    let etapaAtual = 1; //variavel que armazena a página atual(primeira página sempre a do processador)
+    let escolhasUsuario = {
+        1: null, 2: null, 3: null, 4: null, 5: null,
+        6: null, 7: null, 8: null, 9: null, 10: null,
+        11: null, 12: null, 13: null
+    };
 
-    //INICIO: FUNÇÃO PARA MOSTRAR AS ETAPAS DA MONTAGEM
-    function mostrarEtapa(numero) {
-        // Esconde todas as etapas
-        for (let i = 1; i <= 14; i++) {
-
-            //Essa linha transforma o número da página atual em string
-            const div = document.getElementById(`dv_${nomeEtapa(i)}`);//para que seja possível o js ler a informação. Ex: nomeEtapa(1) = "cinco".
-            //Essa função transforma em "dv_cinco", que é o nome da div com as informações
-            if (div) div.style.display = "none";//Esconde cada div
-        }
-
-        // Mostra apenas a etapa escolhida
-        const atual = document.getElementById(`dv_${nomeEtapa(numero)}`);
-        if (atual) atual.style.display = "block";//deixa a div atual vísivel
-
-        // Atualiza botões de categoria(Remove destaque dos botões)
-        document.querySelectorAll('.categoria').forEach(btn => {
-            btn.classList.remove('ativa');//Remove a classe "ativa" da categoria
-        });
-
-        document.querySelectorAll('.categoria')[numero - 1].classList.add('ativa');
-
-        etapaAtual = numero;//armazena a etapa atual
-    }
-    //FIM: FUNÇÃO PARA MOSTRAR AS ETAPAS DA MONTAGEM
-
-    //INICIO: função que converter números em texto. EX: nomeEtapa(1)="um"
-    function nomeEtapa(n) {
-        const nomes = [
-            "um",
-            "dois",
-            "tres",
-            "quatro",
-            "cinco",
-            "seis",
-            "sete",
-            "oito",
-            "nove",
-            "dez",
-            "onze",
-            "doze",
-            "treze",
-            "quatorze"
-        ];
+    function sufixoEtapa(n) {
+        const nomes = ["um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "quatorze"];
         return nomes[n - 1];
     }
-    //FIM: função que converter números em texto
 
+    // FUNÇÃO AJUSTADA: Agora ela decide se limpa ou se recupera o que já foi salvo
+    function atualizarPreviewEtapa(numero) {
+        const produtoSalvo = escolhasUsuario[numero];
 
-    //INICIO: FUNÇÃO PARA MUDAR A PÁGINA
-
-    function mudarPagina(numero = null) {
-
-        // se clicou nas categorias
-        if (numero !== null) {
-            mostrarEtapa(numero);
-            return;
-        }
-
-        // 🚨 verifica se selecionou produto
-        if (!produtoSelecionado) {
-            alert("Selecione um produto antes de prosseguir.");
-            return;
-        }
-
-        // continua normalmente
-        if (etapaAtual < 14) {
-            mostrarEtapa(etapaAtual + 1);
-
-            // limpa seleção da próxima etapa
-            produtoSelecionado = null;
-
+        if (produtoSalvo) {
+            // Se já existe algo salvo para esta etapa, mostra os dados dele
+            document.getElementById('resumo-nome').textContent = produtoSalvo.nome;
+            document.getElementById('resumo-preco').textContent = "R$ " + produtoSalvo.preco.replace('.', ',');
+            document.getElementById('resumo-img').src = produtoSalvo.img;
+            produtoSelecionado = produtoSalvo; // Mantém a referência global atualizada
         } else {
-            alert("Montagem finalizada!");
+            // Se não tem nada salvo, volta para o estado inicial "vazio"
+            document.getElementById('resumo-nome').textContent = "Nenhum produto selecionado";
+            document.getElementById('resumo-preco').textContent = "R$ 0,00";
+            document.getElementById('resumo-img').src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+            produtoSelecionado = null;
         }
     }
-    //FIM: FUNÇÃO PARA MUDAR A PÁGINA
 
+    function mostrarEtapa(numero) {
+        for (let i = 1; i <= 14; i++) {
+            const div = document.getElementById(`dv_${sufixoEtapa(i)}`);
+            if (div) div.style.display = "none";
+        }
 
+        const atual = document.getElementById(`dv_${sufixoEtapa(numero)}`);
+        if (atual) {
+            atual.style.setProperty('display', 'grid', 'important');
+        }
 
-    /*
-    querySelectorAll → pega vários elementos
-    forEach → percorre cada um
-    addEventListener → reage a uma ação
-    click → ação do usuário
-    card → representa um produto específico por vez
-    */
+        // Se for uma etapa de produto (1 a 13), verifica se tem memória salva
+        if (numero < 14) {
+            atualizarPreviewEtapa(numero);
+        } else {
+            renderizarResumoFinal();
+        }
 
+        document.querySelectorAll('.categoria').forEach(btn => btn.classList.remove('ativa'));
+        const botoes = document.querySelectorAll('.categoria');
+        if (botoes[numero - 1]) {
+            botoes[numero - 1].classList.add('ativa');
+        }
 
-    let produtoSelecionado = null; /* Guarda o produto que foi selecionado */
+        etapaAtual = numero;
+    }
 
-    /* 1️⃣ Seleciona TODOS os produtos */
-    /* Cria uma lista (NodeList) com todos os produtos da tela: */
-    const cards = document.querySelectorAll('.produto-card');
+    function mudarPagina(numeroDestino = null) {
+        if (numeroDestino !== null) {
+            mostrarEtapa(numeroDestino);
+            return;
+        }
 
+        const itensObrigatorios = {
+            1: "Processador", 2: "Placa Mãe", 3: "Memória RAM",
+            5: "HD & SSD", 6: "Resfriamento", 7: "Fonte", 8: "Gabinete"
+        };
 
-    /* 2️⃣ Seleciona os elementos do resumo */
-    const resumoNome = document.getElementById('resumo-nome');
-    const resumoPreco = document.getElementById('resumo-preco');
-    const resumoImg = document.getElementById('resumo-img');
+        if (itensObrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
+            alert(`Atenção: A escolha do ${itensObrigatorios[etapaAtual]} é obrigatória!`);
+            return;
+        }
 
+        mostrarEtapa(etapaAtual + 1);
 
-    cards.forEach(card => {/*<-- Para cada card dentro de cards, faça algo
-card => { ... } Isso é uma arrow function (função anônima).
-Equivale a "function(card)", card representa um produto específico por vez*/
+        // Lógica de compatibilidade (Filtro)
+        if (etapaAtual === 1 && escolhasUsuario[1]) {
+            const marcaEscolhida = escolhasUsuario[1].fornecedor.toUpperCase();
+            const todasAsPlacas = document.querySelectorAll('.placa-mae-card');
+            todasAsPlacas.forEach(placa => {
+                const marcaDaPlaca = placa.dataset.fornecedor.toUpperCase();
+                placa.style.display = (marcaDaPlaca === marcaEscolhida) ? "" : "none";
+            });
+        }
 
-        card.addEventListener('click', () => {/*<--Quando este card específico for clicado, execute este código*/
+        if (etapaAtual === 14) {
+            window.location.href = "{% url 'carrinho' %}";
+            return;
+        }
+    }
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll('.produto-card');
 
-            /* 4️⃣ Remove seleção visual dos outros */
-            cards.forEach(c => c.classList.remove('ativo')); /* <-- Percorra todos os produtos e tire a classe ativo deles. */
-            card.classList.add('ativo'); /* <-- Agora adiciona a classe ativo somente no produto que foi clicado. */
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const container = card.closest('.categoria-container');
+                if (container) {
+                    container.querySelectorAll('.produto-card').forEach(c => c.classList.remove('ativo'));
+                }
+                card.classList.add('ativo');
 
-            /* 5️⃣ Pega os dados do produto */
-            const id = card.dataset.id;
-            const nome = card.dataset.nome;
-            const preco = card.dataset.preco;
-            const img = card.querySelector('img').src; /* <-- Dentro deste card, procure a tag <img> e pegue o src dela. */
+                const id = card.dataset.id;
+                const nome = card.dataset.nome;
+                const preco = card.dataset.preco;
+                const fornecedor = card.dataset.fornecedor;
+                const img = card.querySelector('img').src;
 
+                // Atualiza o Preview Lateral na hora do clique
+                document.getElementById('resumo-nome').textContent = nome;
+                document.getElementById('resumo-preco').textContent = "R$ " + preco.replace('.', ',');
+                document.getElementById('resumo-img').src = img;
 
-            /* 6️⃣ Atualiza o resumo da direita */
-            resumoNome.textContent = nome;
-            resumoPreco.textContent = "R$ " + preco.replace('.', ',');/* <-- Para deixar no padrão brasileiro */
-            resumoImg.src = img;
-
-            produtoSelecionado = {
-                id: id,
-                nome: nome,
-                preco: preco,
-                img: img
-            };
+                // Salva definitivamente a escolha desta etapa
+                produtoSelecionado = { id, nome, preco, img, fornecedor };
+                escolhasUsuario[etapaAtual] = produtoSelecionado;
+            });
         });
     });
 
-    //INICIO: CÓDIGO PARA ARMAZENAR QUAL PRODUTO O USUÁRIO SELECIONOU
+    function mudarPagina(numeroDestino = null) {
+        if (numeroDestino !== null) {
+            mostrarEtapa(numeroDestino);
+            return;
+        }
 
+        // Se estiver na etapa 14 (PC Montado) e clicar em Prosseguir, vai para o carrinho
+        if (etapaAtual === 14) {
+            window.location.href = "{% url 'carrinho' %}";
+            return;
+        }
 
-    //document → representa toda a página HTML
+        // Validação de itens obrigatórios (Lado do Cliente)
+        const itensObrigatorios = {
+            1: "Processador", 2: "Placa Mãe", 3: "Memória RAM",
+            7: "Fonte", 8: "Gabinete"
+        };
 
-    //querySelectorAll() → procura elementos na página
+        if (itensObrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
+            alert(`Atenção: A escolha do ${itensObrigatorios[etapaAtual]} é obrigatória!`);
+            return;
+        }
 
-    //.produto-card → é a classe CSS dos cards de produto
+        mostrarEtapa(etapaAtual + 1);
+    }
 
-    const produtos = document.querySelectorAll(".produto-card")//“Pegue todos os elementos da página que tenham a classe .produto-card.”
+    // Função para renderizar o resumo final na Etapa 14
+    function renderizarResumoFinal() {
+        const lista = document.getElementById('lista-final-produtos');
+        const valorTotal = document.getElementById('valor-total-final');
+        lista.innerHTML = "";
+        let total = 0;
 
-    produtos.forEach(produto => {//<--Percorre todos os produtos da lista("Para cada produto da lista, execute um código.")
+        for (let i in escolhasUsuario) {
+            const p = escolhasUsuario[i];
+            if (p) {
+                lista.innerHTML += `<p><strong>${p.nome}</strong> - R$ ${p.preco}</p>`;
+                total += parseFloat(p.preco.replace('.', '').replace(',', '.'));
+            }
+        }
+        valorTotal.textContent = "R$ " + total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    }
 
-        produto.addEventListener("click", () => {//Escutar/aguardar um evento do usuário. Neste caso, um click.
-            //Quando o usuário clicar neste produto, execute o código abaixo
-            //Pega informações do produto
-            const nome = produto.dataset.nome
-            const preco = produto.dataset.preco
+    // Evento de clique nos cards (Importante!)
+    document.querySelectorAll('.produto-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const id = this.dataset.id;
+            const nome = this.dataset.nome;
+            const preco = this.dataset.preco;
+            const img = this.querySelector('img').src;
+            const fornecedor = this.dataset.fornecedor;
 
-            fetch("/selecionar-produto/", {//é uma função que faz requisições HTTP para o servidor.
+            // Salva na memória do JS para o preview
+            const dados = { id, nome, preco, img, fornecedor };
+            escolhasUsuario[etapaAtual] = dados;
 
+            // Atualiza a interface
+            document.getElementById('resumo-nome').textContent = nome;
+            document.getElementById('resumo-preco').textContent = "R$ " + preco.replace('.', ',');
+            document.getElementById('resumo-img').src = img;
+
+            // Envia para o Django salvar na SESSÃO (Back-end)
+            fetch("{% url 'selecionar_produto' %}", {
                 method: "POST",
-
                 headers: {
-                    "Content-Type": "application/json",//Estou enviando dados no formato JSON.
-                    "X-CSRFToken": getCookie("csrftoken")
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
                 },
-
-                body: JSON.stringify({//transforma o objeto em texto JSON:
+                body: JSON.stringify({
                     nome: nome,
-                    preco: preco
+                    preco: preco,
+                    foto: img
                 })
-
-            })
-
-        })
-
-    })
-    //FIM: CÓDIGO PARA ARMAZENAR QUAL PRODUTO O USUÁRIO SELECIONOU
-
-    //INICIO: FUNÇÃO PARA MOSTRAR A DESCRIÇÃO DO PRODUTO PARA O USUÁRIO
-
-    function mostrarDescricao() {
-
-        if (!produtoSelecionado) {
-            alert("Selecione um produto primeiro.");
-            return;
-        }
-
-        fetch(`/produto/${produtoSelecionado.id}/`)
-            .then(response => response.json())
-            .then(data => {
-
-                alert(data.descricao);
-
             });
+        });
+    });
+        const containerLista = document.getElementById('lista-final-produtos');
+        const campoTotal = document.getElementById('valor-total-final');
+        let htmlGerado = "";
+        let somaTotal = 0;
 
-    }
-    //FIM: FUNÇÃO PARA MOSTRAR A DESCRIÇÃO DO PRODUTO PARA O USUÁRIO
-
-    //INICIO: FUNÇÃO PARA MOSTRAR AS INFORMAÇÕES TECNICAS DO PRODUTO PARA O USUÁRIO
-
-    function mostrarInfoTecnica() {
-
-        if (!produtoSelecionado) {
-            alert("Selecione um produto primeiro.");
-            return;
+        for (let i = 1; i <= 13; i++) {
+            const produto = escolhasUsuario[i];
+            if (produto) {
+                const precoNum = parseFloat(produto.preco.replace(',', '.'));
+                somaTotal += precoNum;
+                htmlGerado += `
+                    <div class="item-resumo-final" style="display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+                        <span><strong>Etapa ${i}:</strong> ${produto.nome}</span>
+                        <span>R$ ${precoNum.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                    </div>
+                `;
+            }
         }
+        containerLista.innerHTML = htmlGerado || "<p>Nenhum produto selecionado.</p>";
+        campoTotal.textContent = `R$ ${somaTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    
 
-        fetch(`/produto/${produtoSelecionado.id}/`)
-            .then(response => response.json())
-            .then(data => {
+    async function finalizarEIrParaCarrinho() {
+        // 1. Pega apenas os IDs/Nomes que foram realmente selecionados
+        const produtosParaSalvar = Object.values(escolhasUsuario).filter(p => p !== null);
 
-                alert(data.info);
+        // 2. Envia cada produto para o Django salvar na sessão
+        // Usamos Promise.all para garantir que todos sejam salvos antes de avançar
+        try {
+            // Envia os produtos para a sessão do Django
+            await Promise.all(produtosParaSalvar.map(produto => {
+                return fetch('/selecionar-produto/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({
+                        nome: produto.nome,
+                        preco: produto.preco,
+                        foto: produto.img // Agora enviando a foto para o carrinho!
+                    })
+                });
+            }));
 
-            });
-
+            // 3. Após salvar tudo na sessão, redireciona
+            window.location.href = "{% url 'carrinho' %}";
+        } catch (error) {
+            console.error("Erro:", error);
+            alert("Erro ao salvar sua montagem.");
+        }
     }
-    //FIM: FUNÇÃO PARA MOSTRAR AS INFORMAÇÕES TECNICAS DO PRODUTO PARA O USUÁRIO
+
+    function verificarPcCompleto() {
+        const obrigatorios = [1, 2, 3, 5, 6, 7, 8];
+        let faltantes = [];
+        // ... sua lógica de faltantes ...
+
+        if (faltantes.length > 0) {
+            alert("Não é possível finalizar! Faltam itens obrigatórios.");
+        } else {
+            finalizarEIrParaCarrinho(); // Chama a nova função assíncrona
+        }
+    }
+
+    // Função auxiliar para pegar o token CSRF do Django
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
 
 </script>

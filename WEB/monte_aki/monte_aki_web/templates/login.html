@@ -6,15 +6,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monteaki - Acesse Sua Conta</title>
-  <link rel="icon" href="{% static 'resources/Mini_Logo.png' %}" type="image/x-icon">
+
+  <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
+
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* Ajuste para evitar que as mensagens quebrem o layout flex */
+    .main-login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .alert-message {
+      width: 100%;
+      max-width: 300px;
+      /* Ajuste conforme a largura do seu formulário */
+      background-color: #fff5f5;
+      color: #ff4d4d;
+      border: 1px solid #ffcccc;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
 </head>
 
 <body>
   <div class="top-bar">
     <div class="logo">
       <a href="{% url 'home' %}" class="logo-link">
-        <img src="{% static 'resources/Mini_Logo.png' %}">
+        <img src="{% static 'resources/Mini_Logo.png' %}" alt="Logo">
         <span class="logo-text">MONTE <strong>AKI</strong></span>
       </a>
     </div>
@@ -28,25 +57,29 @@
       </ul>
     </nav>
     <div>
-      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
-      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
+      <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}" alt="Usuário"></a>
+      <a href="{% url 'carrinho' %}"><img src="{% static 'resources/icone_carrinho.png' %}" alt="Carrinho"></a>
     </div>
   </div>
+
+  <div class="container mt-3">
+    {% if messages %}
+    <div class="messages-container" style="width: 100%; margin-bottom: 15px;">
+      {% for message in messages %}
+      <div class="alert-box"
+        style="background: #fff5f5; border-left: 4px solid #ff4d4d; color: #ff4d4d; padding: 12px; margin-bottom: 8px; border-radius: 4px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <span>{{ message }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
   <div class="content-overlay">
-
     <div class="login-container">
-
       <div class="main-login">
         <h1>ACESSE SUA CONTA</h1>
-
-        {% if messages %}
-
-        {% for message in messages %}
-        <p style="color: red;">{{ message }}</p>
-        {% endfor %}
-
-        {% endif %}
-
         <form method="post">
           {% csrf_token %}
 
