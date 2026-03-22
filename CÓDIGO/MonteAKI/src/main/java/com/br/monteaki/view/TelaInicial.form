@@ -475,7 +475,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel40">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Energia"/>
+            <Property name="text" type="java.lang.String" value="Cabo"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -773,7 +773,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel59">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fone"/>
+            <Property name="text" type="java.lang.String" value="Audio"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

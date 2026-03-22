@@ -19,4 +19,5 @@ urlpatterns = [
     # Verifique se esta linha abaixo existe no seu views.py!
     path('salvar-pc-completo/', views.salvar_pc_completo, name='salvar_pc_completo'),
     path('finalizar/', views.finalizar_pedido, name='finalizar_pedido'),
+    path('meus-pedidos/', views.meus_pedidos, name='meus_pedidos'),
 ]

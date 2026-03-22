@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Monte Aki{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="logo">
+            <a href="{% url 'home' %}" class="logo-link">
+                <img src="{% static 'resources/Mini_Logo.png' %}">
+                <span class="logo-text">MONTE <strong>AKI</strong></span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'montagem' %}"><button>Montagem</button></a></li>
+                <li><a href="{% url 'pcgamer' %}"><button>PC Gamer</button></a></li>
+                <li><a href="{% url 'escritorio' %}"><button>Escritório</button></a></li>
+                <li><a href="{% url 'hardware' %}"><button>Hardware</button></a></li>
+                <li><a href="{% url 'perifericos' %}"><button>Perifericos</button></a></li>
+            </ul>
+        </nav>
+
+        <div class="user-area">
+            {% if user.is_authenticated %}
+            <div class="user-dropdown">
+                <div class="user-trigger">
+                    <img src="{% static 'resources/icone_usuario.png' %}">
+                    <div class="user-info-text">
+                        <span>Olá, <strong>{{ user.username }}</strong></span>
+                        <i class="bi bi-chevron-down" style="font-size: 10px;"></i>
+                    </div>
+                </div>
+                <div class="dropdown-content">
+                    <div class="dropdown-header">Minha Conta</div>
+                    <a href="{% url 'meus_pedidos' %}">
+                        <i class="bi bi-box-seam"></i> Meus pedidos
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'logout' %}" class="logout-link">Sair</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}">
+                <img src="{% static 'resources/icone_usuario.png' %}">
+            </a>
+            {% endif %}
+
+            <a href="{% url 'carrinho' %}">
+                <img src="{% static 'resources/icone_carrinho.png' %}">
+            </a>
+        </div>
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Monte Aki - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -322,7 +322,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jPanel1.add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 100, 30));
 
-        jLabel40.setText("Energia");
+        jLabel40.setText("Cabo");
         jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, -1));
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens_1/extension-cord.png"))); // NOI18N
@@ -467,7 +467,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jPanel1.add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 260, 100, 30));
 
-        jLabel59.setText("Fone");
+        jLabel59.setText("Audio");
         jPanel1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 70, -1));
 
         jButton26.setBackground(new java.awt.Color(51, 102, 255));
@@ -944,7 +944,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         // TODO add your handling code here:
         TelaCadastroProduto tc = new TelaCadastroProduto("");
-        tc.getTxtTipo().setText("Energia");
+        tc.getTxtTipo().setText("Cabo");
         tc.getTxtTipo().setEnabled(false);
         tc.setVisible(true);
     }//GEN-LAST:event_jButton23ActionPerformed
@@ -952,7 +952,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
         TelaListagemProdutos telaLista = new TelaListagemProdutos();
-        telaLista.setSessaoTipo("Energia");
+        telaLista.setSessaoTipo("Cabo");
         telaLista.atualizarGaleria();
         telaLista.setVisible(true);
     }//GEN-LAST:event_jButton24ActionPerformed
@@ -1005,7 +1005,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
         TelaCadastroProduto tc = new TelaCadastroProduto("");
-        tc.getTxtTipo().setText("Fone");
+        tc.getTxtTipo().setText("Audio");
         tc.getTxtTipo().setEnabled(false);
         tc.setVisible(true);
     }//GEN-LAST:event_jButton32ActionPerformed
@@ -1013,7 +1013,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
         // TODO add your handling code here:
         TelaListagemProdutos telaLista = new TelaListagemProdutos();
-        telaLista.setSessaoTipo("Fone");
+        telaLista.setSessaoTipo("Audio");
         telaLista.atualizarGaleria();
         telaLista.setVisible(true);
     }//GEN-LAST:event_jButton33ActionPerformed

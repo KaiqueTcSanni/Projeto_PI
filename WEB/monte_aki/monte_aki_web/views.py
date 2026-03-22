@@ -9,6 +9,9 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from decimal import Decimal, InvalidOperation
 from decimal import Decimal
+from .models import Pedido, ItemPedido
+from .models import Pedido
+from django.shortcuts import render
 # --- AUXILIARES ---
 
 def formatar_br(valor_float):
@@ -234,7 +237,45 @@ def produto_detalhes(request, id):
     except:
         return JsonResponse({"error": "Produto não encontrado"}, status=404)
 
+@login_required(login_url='login')
 def finalizar_pedido(request):
-    # Por enquanto, apenas redireciona para a página de sucesso ou pc_montado
-    # Você pode implementar a lógica de salvar no banco de dados aqui depois
-    return render(request, 'sucesso.html') # Ou a tela que você deseja exibir
+    pc = request.session.get('pc', [])
+    
+    if not pc:
+        messages.warning(request, "Seu carrinho está vazio.")
+        return redirect('carrinho')
+
+    # 1. Primeiro calculamos o total usando sua função auxiliar limpar_preco
+    total_acumulado = 0.0
+    for item in pc:
+        total_acumulado += limpar_preco(item.get('preco', '0'))
+
+    # 2. Criamos o Pedido já passando o valor_total para evitar erro de NULL no banco
+    novo_pedido = Pedido.objects.create(
+        usuario=request.user,
+        valor_total=total_acumulado,
+        status='Pendente'
+    )
+
+    # 3. Criamos os itens do pedido
+    for item in pc:
+        preco_item = limpar_preco(item.get('preco', '0'))
+        ItemPedido.objects.create(
+            pedido=novo_pedido,
+            nome_produto_selecionado=item.get('nome'), # Ajustado para o nome da sua model
+            preco_unitario=preco_item,
+            foto_url=item.get('foto')
+        )
+
+    # 4. Limpa o carrinho após salvar no banco com sucesso
+    request.session['pc'] = []
+    request.session.modified = True
+    
+    # Renderiza a tela de sucesso passando o objeto do pedido
+    return render(request, 'pedido_sucesso.html', {'pedido': novo_pedido})
+
+@login_required(login_url='login')
+def meus_pedidos(request):
+    # Busca todos os pedidos do usuário logado, do mais novo para o mais antigo
+    pedidos = Pedido.objects.filter(usuario=request.user).order_by('-data_pedido')
+    return render(request, 'meus_pedidos.html', {'pedidos': pedidos})

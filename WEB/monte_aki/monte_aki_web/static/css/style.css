@@ -801,3 +801,109 @@ img:not([src]) {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* Container que agrupa o dropdown e o carrinho */
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+/* Container do Dropdown */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px; /* Cria uma "ponte invisível" para o mouse passar */
+    margin-bottom: -10px;
+}
+
+/* Alinhamento do ícone com o texto "Olá, Kaique" */
+.user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #333; /* Ajuste para a cor do seu menu */
+}
+
+.user-info-text {
+    display: flex;
+    flex-direction: column;
+    color: #333; /* Cor escura para contrastar com o fundo branco da sua top-bar */
+    font-size: 13px;
+    line-height: 1.2;
+    margin-left: 5px;
+}
+
+.user-info-text strong {
+    color: #6a0dad; /* Nome do usuário no roxo da sua marca */
+}
+
+/* O Menu escondido por padrão */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%; /* Começa exatamente onde termina o padding do container */
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 10px 0;
+    border: 1px solid #eee;
+    /* Impede que o menu feche se o mouse oscilar um pouco */
+    pointer-events: auto; 
+}
+
+/* Triângulo indicador no topo do menu */
+.dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+
+/* Faz o menu aparecer quando passa o mouse */
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Estilo dos links dentro do menu */
+.dropdown-content a {
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f9f5ff; /* Fundo roxo clarinho no hover */
+    color: #6a0dad;
+}
+
+.dropdown-header {
+    padding: 5px 15px;
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0;
+}
+
+.logout-link {
+    color: #dc3545 !important;
+}

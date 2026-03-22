@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,29 +17,6 @@
 </head>
 
 <body>
-    <div class="top-bar">
-        <div class="logo">
-            <a href="{% url 'home' %}" class="logo-link">
-                <img src="{% static 'resources/Mini_Logo.png' %}">
-                <span class="logo-text">MONTE <strong>AKI</strong></span>
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'montagem' %}"><button>Montagem</button></a></li>
-                <li><a href="{% url 'pcgamer' %}"><button>PC Gamer</button></a></li>
-                <li><a href="{% url 'escritorio' %}"><button>Escritório</button></a></li>
-                <li><a href="{% url 'hardware' %}"><button>Hardware</button></a></li>
-                <li><a href="{% url 'perifericos' %}"><button>Perifericos</button></a></li>
-            </ul>
-        </nav>
-        <div>
-            <a href="{% url 'login' %}"><img src="{% static 'resources/icone_usuario.png' %}"></a>
-            <a href="{% url 'carrinho' %}"><img src="{% static 'resources/icone_carrinho.png' %}"></a>
-        </div>
-    </div>
-
-
     <div class="content-overlay">
         <div class="container mt-5">
 
@@ -107,3 +86,4 @@
 </body>
 
 </html>
+{% endblock %}

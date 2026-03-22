@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Pedido Confirmado - Monte Aki{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-5 border-0">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+                <h2 class="mt-4">Pedido Realizado!</h2>
+                <p class="lead text-muted">Parabéns, <strong>{{ user.username }}</strong>! Seu PC está sendo processado.</p>
+                <div class="alert alert-info my-4">
+                    <h4 class="m-0">Pedido #{{ pedido.id_pedido }}</h4>
+                </div>
+                <div class="text-start mb-4">
+                    <p class="mb-1"><strong>Status:</strong> <span class="badge bg-warning text-dark">{{ pedido.status }}</span></p>
+                    <p><strong>Total:</strong> R$ {{ pedido.valor_total }}</p>
+                </div>
+                <div class="d-grid">
+                    <a href="{% url 'home' %}" class="btn btn-primary">Voltar para a Loja</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
