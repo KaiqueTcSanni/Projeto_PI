@@ -16,15 +16,26 @@ from django.shortcuts import redirect, render
 from .models import Pedido, ItemPedido, Produto
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
-
-def formatar_br(valor_float):
-    """Auxiliar para formatar float para String de Real (1.500,00)"""
-    return f"{valor_float:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+from django.contrib.auth.signals import user_logged_in, user_logged_out
+from django.dispatch import receiver
+from .models import CarrinhoSalvo
+from django.urls import reverse
 
 def limpar_preco(preco_str):
-    """Auxiliar para converter 'R$ 1.500,00' ou '1500.00' em float"""
-    if not preco_str: return 0.0
-    limpo = str(preco_str).replace('R$', '').replace('.', '').replace(',', '.').replace(' ', '').strip()
+    """Converte 'R$ 1.500,00' ou '650.00' corretamente para float"""
+    if not preco_str:
+        return 0.0
+    
+    # Se já for um número (int ou float), apenas retorna
+    if isinstance(preco_str, (int, float)):
+        return float(preco_str)
+
+    # 1. Remove R$, espaços e pontos de milhar
+    limpo = str(preco_str).replace('R$', '').replace(' ', '').replace('.', '')
+    
+    # 2. Troca a vírgula decimal por ponto (ex: "650,00" -> "650.00")
+    limpo = limpo.replace(',', '.')
+    
     try:
         return float(limpo)
     except ValueError:
@@ -119,20 +130,33 @@ def montagem(request):
 
 def salvar_pc_completo(request):
     if request.method == "POST":
-        data = json.loads(request.body)
-        itens = data.get('itens', [])
-        carrinho_sessao = []
-        for item in itens:
-            carrinho_sessao.append({
-                'nome': item.get('nome'),
-                'preco': item.get('preco'),
-                'foto': item.get('img'),
-            })
-        
-        request.session['pc'] = carrinho_sessao
-        request.session.modified = True
-        
-        return JsonResponse({"status": "sucesso", "redirect": "/carrinho/"})
+        try:
+            data = json.loads(request.body)
+            itens_montados = data.get("itens", [])
+            
+            # Inicializa ou recupera o carrinho como DICIONÁRIO
+            carrinho = request.session.get('carrinho', {})
+
+            for item in itens_montados:
+                id_str = str(item.get('id'))
+                
+                # Tratamento preventivo: remove espaços e garante formato float
+                preco_final = str(item.get('preco')).replace(',', '.')
+                
+                carrinho[id_str] = {
+                    'id': item.get('id'),
+                    'nome': item.get('nome'),
+                    'preco': float(preco_final), # Salva como número real
+                    'foto': item.get('img'),
+                    'quantidade': 1
+                }
+
+            request.session['carrinho'] = carrinho
+            request.session.modified = True
+            
+            return JsonResponse({'status': 'sucesso', 'redirect': '/carrinho/'})
+        except Exception as e:
+            return JsonResponse({'status': 'erro', 'message': str(e)}, status=400)
 
 def adicionar_ao_carrinho(request):
     if request.method == "POST":
@@ -140,17 +164,22 @@ def adicionar_ao_carrinho(request):
             data = json.loads(request.body)
             p = Produto.objects.get(id_produto=data.get("id"))
             
-            novo_item = {
-                'id': p.id_produto,
-                'nome': p.nome_produto,
-                'preco': formatar_br(p.valor),
-                'foto': p.foto_produto.url if p.foto_produto else "/static/resources/sem-foto.png", 
-                'tipo': p.tipo_produto
-            }
+            # Usaremos a chave 'carrinho' como um DIZIONÁRIO para facilitar a busca pelo ID
+            carrinho = request.session.get('carrinho', {})
+            id_str = str(p.id_produto)
+
+            if id_str in carrinho:
+                carrinho[id_str]['quantidade'] += 1
+            else:
+                carrinho[id_str] = {
+                    'id': p.id_produto,
+                    'nome': p.nome_produto,
+                    'preco': float(p.valor), # Guardamos como número para facilitar cálculos
+                    'foto': p.foto_produto.url if p.foto_produto else "/static/resources/sem-foto.png", 
+                    'quantidade': 1
+                }
             
-            carrinho = request.session.get('pc', [])
-            carrinho.append(novo_item)
-            request.session['pc'] = carrinho
+            request.session['carrinho'] = carrinho
             request.session.modified = True
             return JsonResponse({'status': 'sucesso'})
         except Exception as e:
@@ -159,41 +188,52 @@ def adicionar_ao_carrinho(request):
 
 
 def carrinho(request):
-    pc = request.session.get('pc', [])
-    total_acumulado = 0.0
+    # 1. Recupera o carrinho como DICIONÁRIO (como salvo nas outras views)
+    carrinho_dict = request.session.get('carrinho', {})
+    lista_produtos = []
+    total_geral = 0.0
 
-    for item in pc:
-        preco_bruto = item.get('preco', '0')
-        
-        if isinstance(preco_bruto, str):
-            limpo = preco_bruto.replace('R$', '').strip()
-            if ',' in limpo and '.' in limpo:
-                limpo = limpo.replace('.', '').replace(',', '.')
-            elif ',' in limpo:
-                limpo = limpo.replace(',', '.')
+    # 2. Transforma o dicionário em lista para o template e calcula totais
+    for item_id, dados in carrinho_dict.items():
+        try:
+            # Limpeza do preço (vinda do banco ou da sessão)
+            preco_un = limpar_preco(dados.get('preco', 0))
+            qtd = int(dados.get('quantidade', 1))
             
-            try:
-                total_acumulado += float(limpo)
-            except ValueError:
-                pass
-        else:
-            total_acumulado += float(preco_bruto)
+            subtotal = preco_un * qtd
+            total_geral += subtotal
+            
+            # Monta o objeto para o template
+            lista_produtos.append({
+                'id': item_id,
+                'nome': dados.get('nome'),
+                'foto': dados.get('foto'),
+                'quantidade': qtd,
+                'preco_unitario': preco_un,
+                'preco_total': subtotal,
+            })
+        except (ValueError, TypeError):
+            continue
 
     return render(request, 'carrinho.html', {
-        'pc': pc,
-        'total': "{:,.2f}".format(total_acumulado).replace(",", "v").replace(".", ",").replace("v", ".")
+        'pc': lista_produtos, # O template espera 'pc'
+        'total': total_geral
     })
 
 def formatar_br(valor):
     return "{:,.2f}".format(valor).replace(",", "v").replace(".", ",").replace("v", ".")
 
 @login_required(login_url='login')
-def remover_do_carrinho(request, indice):
-    pc = request.session.get("pc", [])
-    if 0 <= int(indice) < len(pc):
-        pc.pop(int(indice))
-        request.session["pc"] = pc
+def remover_do_carrinho(request, produto_id):
+    carrinho = request.session.get('carrinho', {})
+    id_str = str(produto_id)
+
+    if id_str in carrinho:
+        carrinho.pop(id_str)
+        request.session['carrinho'] = carrinho
         request.session.modified = True
+        messages.success(request, "Item removido!")
+    
     return redirect('carrinho')
 
 def reiniciar_build(request):
@@ -233,31 +273,46 @@ def produto_detalhes(request, id):
 
 @login_required(login_url='login')
 def finalizar_pedido(request):
-    pc = request.session.get('pc', [])
+    # AJUSTE: O seu sistema usa a chave 'carrinho', não 'pc'
+    carrinho_sessao = request.session.get('carrinho', {})
     
-    if not pc:
+    if not carrinho_sessao:
         messages.warning(request, "Seu carrinho está vazio.")
         return redirect('carrinho')
-    total_acumulado = 0.0
-    for item in pc:
-        total_acumulado += limpar_preco(item.get('preco', '0'))
 
+    total_acumulado = 0.0
+    itens_para_salvar = []
+
+    for item_id, dados in carrinho_sessao.items():
+        preco_un = limpar_preco(dados.get('preco', 0))
+        qtd = int(dados.get('quantidade', 1))
+        total_acumulado += (preco_un * qtd)
+        
+        itens_para_salvar.append({
+            'nome': dados.get('nome'),
+            'preco': preco_un,
+            'foto': dados.get('foto'),
+            'quantidade': qtd
+        })
+
+    # Criar o Pedido
     novo_pedido = Pedido.objects.create(
         usuario=request.user,
         valor_total=total_acumulado,
         status='Pendente'
     )
 
-    for item in pc:
-        preco_item = limpar_preco(item.get('preco', '0'))
+    # Criar os Itens do Pedido
+    for item in itens_para_salvar:
         ItemPedido.objects.create(
             pedido=novo_pedido,
-            nome_produto_selecionado=item.get('nome'), 
-            preco_unitario=preco_item,
-            foto_url=item.get('foto')
+            nome_produto_selecionado=item['nome'], 
+            preco_unitario=item['preco'],
+            foto_url=item['foto']
         )
 
-    request.session['pc'] = []
+    # Limpar carrinho após sucesso
+    request.session['carrinho'] = {}
     request.session.modified = True
     
     return render(request, 'pedido_sucesso.html', {'pedido': novo_pedido})
@@ -324,3 +379,43 @@ def finalizar_compra(request):
 def detalhe_produto(request, id_produto):
     produto = get_object_or_404(Produto, id_produto=id_produto)
     return render(request, 'detalhe_produto.html', {'produto': produto})
+
+@receiver(user_logged_out)
+def salvar_carrinho_no_logout(sender, request, user, **kwargs):
+    carrinho = request.session.get('carrinho', {})
+    if carrinho:
+        obj, created = CarrinhoSalvo.objects.update_or_create(
+            usuario=user,
+            defaults={'dados_json': carrinho}
+        )
+
+@receiver(user_logged_in)
+def recuperar_carrinho_no_login(sender, request, user, **kwargs):
+    try:
+        carrinho_salvo = CarrinhoSalvo.objects.get(usuario=user)
+        request.session['carrinho'] = carrinho_salvo.dados_json
+    except CarrinhoSalvo.DoesNotExist:
+        pass
+
+def atualizar_carrinho(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            produto_id = str(data.get('produto_id'))
+            acao = data.get('acao')
+            
+            carrinho = request.session.get('carrinho', {})
+
+            if produto_id in carrinho:
+                if acao == 'aumentar':
+                    carrinho[produto_id]['quantidade'] += 1
+                elif acao == 'diminuir':
+                    if carrinho[produto_id]['quantidade'] > 1:
+                        carrinho[produto_id]['quantidade'] -= 1
+                request.session['carrinho'] = carrinho
+                request.session.modified = True
+                return JsonResponse({'status': 'sucesso'})
+        except Exception as e:
+            return JsonResponse({'status': 'erro', 'message': str(e)}, status=400)
+            
+    return JsonResponse({'status': 'erro'}, status=400)

@@ -100,6 +100,33 @@
             })
             .catch(error => console.error('Erro:', error));
     }
+
+    function alterarQuantidade(produtoId, delta) {
+        const elementoQtd = document.getElementById(`qtd-${produtoId}`);
+        let qtdAtual = parseInt(elementoQtd.innerText);
+        let novaQtd = qtdAtual + delta;
+
+        if (novaQtd < 1) return;
+        fetch("{% url 'atualizar_carrinho' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({
+                id: produtoId,
+                quantidade: novaQtd
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'sucesso') {
+                    elementoQtd.innerText = novaQtd;
+                    location.reload();
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+    }
 </script>
 
 </html>

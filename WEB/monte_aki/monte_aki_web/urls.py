@@ -13,12 +13,13 @@ urlpatterns = [
     path('escritorio/', views.escritorio, name='escritorio'),
     path('carrinho/', views.carrinho, name='carrinho'),
     path('pc-montado/', views.pc_montado, name='pc_montado'),
-    path('remover/<int:indice>/', views.remover_do_carrinho, name='remover_do_carrinho'),
     path('reiniciar-build/', views.reiniciar_build, name='reiniciar_build'),
     path('adicionar-ao-carrinho/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
     path('salvar-pc-completo/', views.salvar_pc_completo, name='salvar_pc_completo'),
     path('finalizar/', views.finalizar_pedido, name='finalizar_pedido'),
     path('meus-pedidos/', views.meus_pedidos, name='meus_pedidos'),
     path('produto/<int:id_produto>/', views.detalhe_produto, name='detalhe_produto'),
+    path('carrinho/atualizar/', views.atualizar_carrinho, name='atualizar_carrinho'),
+    path('remover/<int:produto_id>/', views.remover_do_carrinho, name='remover_do_carrinho'),
     
 ]

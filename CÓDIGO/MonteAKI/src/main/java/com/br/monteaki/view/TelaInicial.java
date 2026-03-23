@@ -1049,7 +1049,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
         // TODO add your handling code here:
         TelaCadastroProduto tc = new TelaCadastroProduto("");
-        tc.getTxtTipo().setText("Memoria Ram");
+        tc.getTxtTipo().setText("Memória RAM");
         tc.getTxtTipo().setEnabled(false);
         tc.setVisible(true);
     }//GEN-LAST:event_jButton37ActionPerformed
@@ -1057,7 +1057,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
         // TODO add your handling code here:
         TelaListagemProdutos telaLista = new TelaListagemProdutos();
-        telaLista.setSessaoTipo("Memoria Ram");
+        telaLista.setSessaoTipo("Memória RAM");
         telaLista.atualizarGaleria();
         telaLista.setVisible(true);
     }//GEN-LAST:event_jButton38ActionPerformed

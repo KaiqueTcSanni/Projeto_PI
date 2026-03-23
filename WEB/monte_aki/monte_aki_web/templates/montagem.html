@@ -146,9 +146,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_dois" class="categoria-container" style="display: none;">
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Placa Mae" %}
@@ -168,9 +166,6 @@
                     {% endfor %}
                 </div>
 
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_tres" class="categoria-container" style="display: none;"><!--MEMORIA RAM-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Memória RAM" %}
@@ -187,9 +182,6 @@
                     {% endfor %}
                 </div>
 
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_quatro" class="categoria-container" style="display: none;"><!--PLACA DE VIDEO-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "GPU" %}
@@ -205,9 +197,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_cinco" class="categoria-container" style="display: none;"><!--HD & SSD-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Armazenamento" %}
@@ -224,9 +214,6 @@
                     {% endfor %}
                 </div>
 
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_seis" class="categoria-container" style="display: none;"><!--COOLER-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Resfriamento" %}
@@ -242,9 +229,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_sete" class="categoria-container" style="display: none;"><!--FONTE-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Fonte" %}
@@ -261,9 +246,6 @@
                     {% endfor %}
                 </div>
 
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_oito" class="categoria-container" style="display: none;"><!--GABINETE-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Gabinete" %}
@@ -279,9 +261,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_nove" class="categoria-container" style="display: none;"><!--FANS-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Fan" %}
@@ -298,9 +278,6 @@
                     {% endfor %}
                 </div>
 
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_dez" class="categoria-container" style="display: none;"><!--MONITOR-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Monitor" %}
@@ -316,9 +293,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_onze" class="categoria-container" style="display: none;"><!--PERIFERICOS-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Perifericos" %}
@@ -334,9 +309,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_doze" class="categoria-container" style="display: none;"><!--ENERGIA-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Energia" %}
@@ -353,9 +326,6 @@
                     {% endfor %}
                 </div>
 
-                <!--FIM BLOCO DE CONTEÚDO-->
-
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_treze" class="categoria-container" style="display: none;"><!--SISTEMA OPERACIONAL-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Sistema Operacional" %}
@@ -371,9 +341,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <!--FIM BLOCO DE CONTEÚDO-->
 
-                <!--INICIO BLOCO DE CONTEÚDO-->
                 <div id="dv_quatorze" class="categoria-container" style="display: none;"><!--PC MONTADO-->
 
                     <div class="resumo-final-box">
@@ -390,7 +358,6 @@
             </section>
 
             <div>
-                <!-- DIREITA: PRODUTO SELECIONADO -->
                 <aside class="produto-selecionado">
 
                     <img src="{% static 'resources/' %}" id="resumo-img">
@@ -409,7 +376,6 @@
                 </aside>
             </div>
         </main>
-        <!-- FIM: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
 
 </body>
 
@@ -457,12 +423,32 @@
 
     function aplicarFiltroPlacaMae() {
         const procEscolhido = escolhasUsuario[1];
-        if (!procEscolhido) return;
-        const marcaProcessador = procEscolhido.fornecedor.toUpperCase().trim();
+
+        // Se não escolheu processador ainda, não filtra (mostra todas)
+        if (!procEscolhido || !procEscolhido.fornecedor) {
+            console.warn("Nenhum processador selecionado para filtrar as placas.");
+            document.querySelectorAll('.placa-mae-card').forEach(p => p.style.display = "flex");
+            return;
+        }
+
+        // Normaliza a marca do processador: remove espaços e coloca em Maiúsculo
+        const marcaProcessador = String(procEscolhido.fornecedor).toUpperCase().trim();
         const placas = document.querySelectorAll('.placa-mae-card');
+
+        console.log("Filtrando placas para a marca:", marcaProcessador);
+
         placas.forEach(placa => {
-            const marcaPlaca = placa.dataset.fornecedor.toUpperCase().trim();
-            placa.style.display = (marcaPlaca === marcaProcessador) ? "flex" : "none";
+            // Pega o fornecedor do data-attribute da placa
+            const marcaPlaca = (placa.dataset.fornecedor || "").toUpperCase().trim();
+
+            console.log(`Comparando: Placa(${marcaPlaca}) com Processador(${marcaProcessador})`);
+
+            if (marcaPlaca === marcaProcessador) {
+                // Usamos !important para garantir que o 'display: none' do container não vença
+                placa.style.setProperty('display', 'flex', 'important');
+            } else {
+                placa.style.setProperty('display', 'none', 'important');
+            }
         });
     }
 
@@ -490,13 +476,12 @@
             return;
         }
 
-        // LISTA ATUALIZADA COM ARMAZENAMENTO (5) E COOLER (6)
         const obrigatorios = {
             1: "Processador",
             2: "Placa Mae",
             3: "Memória RAM",
-            5: "Armazenamento (HD/SSD)", // Adicionado
-            6: "Cooler/Resfriamento",     // Adicionado
+            5: "Armazenamento (HD/SSD)",
+            6: "Cooler/Resfriamento",
             7: "Fonte",
             8: "Gabinete"
         };
@@ -556,20 +541,26 @@
         totalFinal.textContent = "R$ " + soma.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
     }
 
-    // --- NOVA LÓGICA DE ENVIO ---
     async function finalizarEIrParaCarrinho() {
         let itensParaEnviar = [];
         let totalSoma = 0;
 
-        // Coleta apenas o que foi selecionado
         for (let i = 1; i <= 13; i++) {
             if (escolhasUsuario[i]) {
-                itensParaEnviar.push(escolhasUsuario[i]);
-                totalSoma += parseFloat(escolhasUsuario[i].preco);
+                // Criamos uma cópia do item para não estragar a exibição na tela
+                let itemLimpo = { ...escolhasUsuario[i] };
+
+                // Se o preço vier como string "1.500,00", removemos o ponto de milhar 
+                // e trocamos a vírgula decimal por ponto.
+                if (typeof itemLimpo.preco === 'string') {
+                    itemLimpo.preco = itemLimpo.preco.replace(/\./g, '').replace(',', '.');
+                }
+
+                itensParaEnviar.push(itemLimpo);
+                totalSoma += parseFloat(itemLimpo.preco);
             }
         }
 
-        // Envia para a nova rota do Django
         const response = await fetch("{% url 'salvar_pc_completo' %}", {
             method: "POST",
             headers: {
@@ -578,7 +569,7 @@
             },
             body: JSON.stringify({
                 itens: itensParaEnviar,
-                total: totalSoma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+                total: totalSoma.toFixed(2) // Envia o total como número puro
             })
         });
 

@@ -52,3 +52,11 @@ class ItemPedido(models.Model):
 
     def __str__(self):
         return f"{self.nome_produto_selecionado} (Pedido {self.pedido.id_pedido})"
+
+class CarrinhoSalvo(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='carrinho_salvo')
+    dados_json = models.JSONField(default=dict)
+
+    def __str__(self):
+        return f"Carrinho de {self.usuario.username}"
+
