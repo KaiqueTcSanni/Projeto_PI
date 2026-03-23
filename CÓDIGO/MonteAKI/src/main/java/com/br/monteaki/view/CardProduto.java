@@ -44,8 +44,8 @@ public class CardProduto extends javax.swing.JPanel {
                 java.awt.image.BufferedImage imgFull = javax.imageio.ImageIO.read(file);
 
                 // AJUSTE DE DIMENSÃO: Se o JLabel for 0 (antes de renderizar), use um tamanho padrão
-                int largura = jLabel1.getWidth() > 0 ? jLabel1.getWidth() : jLabel1.getPreferredSize().width;
-                int altura = jLabel1.getHeight() > 0 ? jLabel1.getHeight() : jLabel1.getPreferredSize().height;
+                int largura = (jLabel1.getWidth() > 0) ? jLabel1.getWidth() : 207;
+                int altura = (jLabel1.getHeight() > 0) ? jLabel1.getHeight() : 161;
 
                 Image dimg = imgFull.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
 

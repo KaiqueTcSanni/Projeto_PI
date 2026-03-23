@@ -1,70 +1,90 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
-<div class="cart-page-wrapper" style="background-color: #f8f9fa; min-height: 100vh; padding-top: 20px;">
+{% block content %}
+<div class="cart-page-wrapper">
     <div class="container">
         <h2 class="mb-4 fw-bold"><i class="bi bi-cart3"></i> MEU CARRINHO</h2>
-
+        
         <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
             
             <div style="flex: 2; min-width: 300px;">
                 <div class="grid-carrinho">
                     {% for produto in pc %}
-                    <div class="card-produto" style="display: flex; align-items: center; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); margin-bottom: 10px;">
-                        <div class="img-container" style="width: 100px; height: 100px; margin-right: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background-color: #fcfcfc; border-radius: 8px;">
-                            <img src="{{ produto.foto }}" alt="{{ produto.nome }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    <div class="card-produto">
+                        <div class="img-container">
+                            <img src="{{ produto.foto }}" alt="{{ produto.nome }}">
                         </div>
 
-                        <div class="info-produto" style="flex-grow: 1;">
-                            <div class="status-entrega" style="color: #28a745; font-weight: bold; font-size: 0.75rem; margin-bottom: 5px;"><i class="bi bi-truck"></i> FRETE GRÁTIS*</div>
-                            <div class="nome-produto" style="font-weight: 600; color: #333; margin-bottom: 5px;">{{ produto.nome }}</div>
+                        <div class="info-produto">
+                            <div class="status-entrega">
+                                <i class="bi bi-truck"></i> FRETE GRÁTIS*
+                            </div>
+                            <div class="nome-produto">{{ produto.nome }}</div>
 
                             <div class="d-flex align-items-center my-2 bg-light rounded" style="width: fit-content; border: 1px solid #eee;">
-                                <button class="btn btn-sm fw-bold text-secondary px-3"
-                                    style="font-size: 1.2rem; border: none; {% if produto.quantidade <= 1 %} opacity: 0.5; cursor: not-allowed; {% endif %}"
-                                    {% if produto.quantidade <= 1 %} disabled {% endif %}
-                                    onclick="atualizarQtd('{{ produto.id }}', -1)">-</button>
-
+                                <button class="btn btn-sm fw-bold text-secondary px-3" 
+                                        style="font-size: 1.2rem; border: none; {% if produto.quantidade <= 1 %} opacity: 0.5; cursor: not-allowed; {% endif %}" 
+                                        {% if produto.quantidade <= 1 %} disabled {% endif %} 
+                                        onclick="atualizarQtd('{{ produto.id }}', -1)">-</button>
+                                
                                 <span id="qtd-{{ produto.id }}" class="fw-bold px-2" style="min-width: 30px; text-align: center;">
                                     {{ produto.quantidade|default:1 }}
                                 </span>
 
-                                <button class="btn btn-sm fw-bold text-secondary px-3"
-                                    style="font-size: 1.2rem; border: none;"
-                                    onclick="atualizarQtd('{{ produto.id }}', 1)">+</button>
+                                <button class="btn btn-sm fw-bold text-secondary px-3" 
+                                        style="font-size: 1.2rem; border: none;" 
+                                        onclick="atualizarQtd('{{ produto.id }}', 1)">+</button>
                             </div>
 
-                            <a href="{% url 'remover_do_carrinho' produto.id %}" class="btn-remover text-decoration-none mt-1 d-inline-block" style="color: #dc3545; font-size: 0.85rem;">
+                            <a href="{% url 'remover_do_carrinho' produto.id %}" class="btn-remover text-decoration-none mt-1 d-inline-block">
                                 <i class="bi bi-trash"></i> Remover item
                             </a>
                         </div>
 
-                        <div class="preco-container" style="text-align: right; min-width: 150px;">
-                            <div class="preco-pix" style="font-size: 1.25rem; color: #4b0082; font-weight: 800;">R$ {{ produto.preco_unitario|floatformat:2 }}</div>
+                        <div class="preco-container">
+                            <div class="preco-pix">R$ {{ produto.preco_unitario|floatformat:2 }}</div>
                             <div class="label-pix text-muted small">Subtotal: R$ {{ produto.preco_total|floatformat:2 }}</div>
                         </div>
                     </div>
+                    {% empty %}
+                    <div class="alert alert-info">Seu carrinho está vazio.</div>
                     {% endfor %}
                 </div>
             </div>
 
-            <div style="flex: 1; min-width: 300px; position: sticky; top: 20px;">
-                <div class="cart-summary-card" style="background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
-                    <div class="summary-title" style="font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px;"><i class="bi bi-file-earmark-text"></i> RESUMO</div>
+            <div style="flex: 1; min-width: 300px;">
+                <div class="cart-summary-card">
+                    <div class="summary-title">
+                        <i class="bi bi-file-earmark-text"></i> RESUMO
+                    </div>
+
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">Valor dos Produtos:</span>
                         <span class="fw-bold">R$ {{ total|floatformat:2 }}</span>
                     </div>
+
                     <div class="d-flex justify-content-between mb-2 text-success">
                         <span>Frete:</span>
                         <span class="fw-bold">GRÁTIS</span>
                     </div>
-                    <div class="total-row" style="border-top: 2px dashed #eee; padding-top: 15px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+
+                    <div class="total-row d-flex justify-content-between align-items: center;">
                         <span class="h5 fw-bold m-0">VALOR TOTAL</span>
                         <span class="h4 fw-bold m-0" style="color: #4b0082;">R$ {{ total|floatformat:2 }}</span>
                     </div>
-                    <a href="{% url 'finalizar_pedido' %}" class="btn-checkout" style="background-color: #4b0082; color: white; border-radius: 50px; padding: 12px; width: 100%; font-weight: 700; display: block; text-align: center; text-decoration: none; margin-top: 20px;">IR PARA PAGAMENTO</a>
+
+                    {% if pc %}
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'finalizar_pedido' %}" class="btn-checkout">IR PARA PAGAMENTO</a>
+                        {% else %}
+                            <a href="{% url 'login' %}?next={% url 'carrinho' %}" class="btn-checkout">ENTRAR PARA FINALIZAR</a>
+                        {% endif %}
+                    {% else %}
+                        <button class="btn-checkout" disabled style="background-color: #ccc; color: #666; cursor: not-allowed; border: none;">
+                            CARRINHO VAZIO
+                        </button>
+                    {% endif %}
                 </div>
             </div>
 
@@ -73,7 +93,6 @@
 </div>
 
 <script>
-    // Se o botão não funcionar, o problema pode estar no ID do produto que o Django está passando
     function atualizarQtd(produtoId, delta) {
         fetch("{% url 'atualizar_carrinho' %}", {
             method: 'POST',
@@ -89,126 +108,28 @@
         .then(response => response.json())
         .then(data => {
             if (data.status === 'sucesso') {
-                location.reload(); 
+                location.reload();
             }
         });
     }
 </script>
 
 <style>
-    .cart-page-wrapper {
-        background-color: #f8f9fa;
-        min-height: 100vh;
-        padding-top: 20px;
-    }
-
-    .grid-carrinho {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .card-produto {
-        display: flex;
-        align-items: center;
-        background: #fff;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        margin-bottom: 10px;
-    }
-
-    .img-container {
-        width: 100px;
-        height: 100px;
-        margin-right: 20px;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fcfcfc;
-        border-radius: 8px;
-    }
-
-    .img-container img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .info-produto {
-        flex-grow: 1;
-    }
-
-    .status-entrega {
-        color: #28a745;
-        font-weight: bold;
-        font-size: 0.75rem;
-        margin-bottom: 5px;
-    }
-
-    .nome-produto {
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 5px;
-    }
-
-    .btn-remover {
-        color: #dc3545;
-        font-size: 0.85rem;
-    }
-
-    .preco-container {
-        text-align: right;
-        min-width: 150px;
-    }
-
-    .preco-pix {
-        font-size: 1.25rem;
-        color: #4b0082;
-        font-weight: 800;
-    }
-
-    .cart-summary-card {
-        background: #fff;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 20px;
-    }
-
-    .summary-title {
-        font-weight: 800;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 15px;
-        margin-bottom: 20px;
-    }
-
-    .total-row {
-        border-top: 2px dashed #eee;
-        padding-top: 15px;
-        margin-top: 15px;
-    }
-
-    .btn-checkout {
-        background-color: #4b0082;
-        color: white;
-        border-radius: 50px;
-        padding: 12px;
-        width: 100%;
-        font-weight: 700;
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        margin-top: 20px;
-        transition: 0.3s;
-    }
-
-    .btn-checkout:hover {
-        background-color: #3a0066;
-        color: white;
-    }
+    .cart-page-wrapper { background-color: #f8f9fa; min-height: 100vh; padding-top: 20px; }
+    .grid-carrinho { display: flex; flex-direction: column; gap: 15px; }
+    .card-produto { display: flex; align-items: center; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+    .img-container { width: 100px; height: 100px; margin-right: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background-color: #fcfcfc; border-radius: 8px; }
+    .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .info-produto { flex-grow: 1; }
+    .status-entrega { color: #28a745; font-weight: bold; font-size: 0.75rem; margin-bottom: 5px; }
+    .nome-produto { font-weight: 600; color: #333; margin-bottom: 5px; }
+    .btn-remover { color: #dc3545; font-size: 0.85rem; }
+    .preco-container { text-align: right; min-width: 150px; }
+    .preco-pix { font-size: 1.25rem; color: #4b0082; font-weight: 800; }
+    .cart-summary-card { background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); position: sticky; top: 20px; }
+    .summary-title { font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+    .total-row { border-top: 2px dashed #eee; padding-top: 15px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .btn-checkout { background-color: #4b0082; color: white; border-radius: 50px; padding: 12px; width: 100%; font-weight: 700; display: block; text-align: center; text-decoration: none; margin-top: 20px; transition: 0.3s; }
+    .btn-checkout:hover { background-color: #3a0066; color: white; }
 </style>
-
 {% endblock %}

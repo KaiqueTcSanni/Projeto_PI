@@ -118,8 +118,12 @@
                 <div id="dv_um" class="categoria-container"><!--PROCESSADOR-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Processador" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}" data-fornecedor="{{ produto.fornecedor }}">
+                    <div class="produto-card" 
+                         data-id="{{ produto.id_produto }}" 
+                         data-nome="{{ produto.nome_produto }}"
+                         data-preco="{{ produto.valor }}" 
+                         data-fornecedor="{{ produto.fornecedor }}"
+                         data-descricao="{{ produto.descricao }}">
 
                         <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                         <div class="produto-info">
@@ -138,7 +142,7 @@
                 {% if produto.tipo_produto == "Placa Mae" %}
                 <div class="produto-card placa-mae-card" data-id="{{ produto.id_produto }}"
                     data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
-                    data-fornecedor="{{ produto.fornecedor }}">
+                    data-fornecedor="{{ produto.fornecedor }}" data-descricao="{{ produto.descricao }}">
 
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
@@ -155,7 +159,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Memória RAM" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
 
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
@@ -172,7 +176,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "GPU" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -188,7 +192,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Armazenamento" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -204,7 +208,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Resfriamento" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -220,7 +224,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Fonte" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -236,7 +240,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Gabinete" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -252,7 +256,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Fan" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -268,7 +272,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Monitor" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -284,7 +288,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Perifericos" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -300,7 +304,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Cabo" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -316,7 +320,7 @@
                 {% for produto in produtos %}
                 {% if produto.tipo_produto == "Sistema Operacional" %}
                 <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                    data-preco="{{ produto.valor }}">
+                    data-preco="{{ produto.valor }}" data-descricao="{{ produto.descricao }}">
                     <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                     <div class="produto-info">
                         <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -345,20 +349,21 @@
 
         <div>
             <aside class="produto-selecionado">
-
                 <img src="{% static 'resources/' %}" id="resumo-img">
 
                 <p class="empty-message" id="resumo-nome">
                     Nenhum produto selecionado
                 </p>
 
+                <div id="container-descricao" style="display: none; background: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 10px; font-size: 0.9em; color: #333; border: 1px solid #ddd;">
+                    <strong>Descrição:</strong>
+                    <p id="resumo-descricao-texto" style="margin-top: 5px;"></p>
+                </div>
                 <button onclick="mudarPagina()" class="btn-prosseguir">PROSSEGUIR</button>
-
                 <p class="resumo-preco" id="resumo-preco">R$ 0,00</p>
 
                 <button onclick="mostrarDescricao()" class="btn-info">DESCRIÇÃO DO PRODUTO</button>
-                <button onclick="mostrarInfoTecnica()" class="btn-info">INFORMAÇÕES TÉCNICAS</button>
-
+                
             </aside>
         </div>
     </main>
@@ -521,9 +526,11 @@
                         nome: this.dataset.nome,
                         preco: this.dataset.preco,
                         img: this.querySelector('img').src,
-                        fornecedor: this.dataset.fornecedor
+                        fornecedor: this.dataset.fornecedor,
+                        descricao: this.dataset.descricao
                     };
 
+                    document.getElementById('container-descricao').style.display = 'none';
                     atualizarPreviewEtapa(etapaAtual);
                     if (etapaAtual === 1) escolhasUsuario[2] = null;
                 });
@@ -598,7 +605,7 @@
                 },
                 body: JSON.stringify({
                     itens: itensParaEnviar,
-                    total: totalSoma.toFixed(2) // Envia o total como número puro
+                    total: totalSoma.toFixed(2)
                 })
             });
 
@@ -610,5 +617,23 @@
                 alert("Erro ao salvar: " + data.message);
             }
         }
+
+    function mostrarDescricao() {
+        const p = escolhasUsuario[etapaAtual];
+        const container = document.getElementById('container-descricao');
+        const texto = document.getElementById('resumo-descricao-texto');
+
+        if (!p) {
+            alert("Selecione um produto primeiro!");
+            return;
+        }
+
+        if (container.style.display === "none") {
+            texto.textContent = p.descricao || "Nenhuma descrição disponível para este produto.";
+            container.style.display = "block";
+        } else {
+            container.style.display = "none";
+        }
+    }
     </script>
     {% endblock %}

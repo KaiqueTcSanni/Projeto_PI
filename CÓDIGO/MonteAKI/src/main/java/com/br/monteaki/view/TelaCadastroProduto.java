@@ -26,8 +26,16 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         return jTextField2; // Certifique-se de que o campo de 'Tipo' é o jTextField2
     }
 
+    // Sobrecarga para facilitar chamadas de novo produto
+    public TelaCadastroProduto(String nomeUsuario) {
+        this(nomeUsuario, null);
+        this.getContentPane().setBackground(java.awt.Color.WHITE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    }
+
     public TelaCadastroProduto(Produto p, TelaListagemProdutos lista) {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.getContentPane().setBackground(java.awt.Color.WHITE);
         configurarEstiloTela();
         configurarExibicaoFoto();
@@ -74,6 +82,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         initComponents();
         configurarEstiloTela();
         configurarExibicaoFoto();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         if (nomeUsuario != null) {
             jLabel3.setText(nomeUsuario); // Nome do usuário no topo
@@ -82,11 +91,6 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         if (p != null) {
             preencherParaEdicao(p);
         }
-    }
-
-    // Sobrecarga para facilitar chamadas de novo produto
-    public TelaCadastroProduto(String nomeUsuario) {
-        this(nomeUsuario, null);
     }
 
     private void configurarEstiloTela() {
@@ -116,6 +120,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }
 
     private void preencherParaEdicao(Produto p) {
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.produtoEmEdicao = p;
 
         if (p.getImagem() != null && !p.getImagem().isEmpty()) {
@@ -190,9 +195,8 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtBoasVindas = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
@@ -204,7 +208,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1350, 850));
         setResizable(false);
 
-        TelaImg.setBackground(new java.awt.Color(245, 245, 245));
+        TelaImg.setBackground(new java.awt.Color(248, 248, 255));
         TelaImg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         TelaImg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -246,7 +250,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Nome do Produto");
 
-        jTextField1.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField1.setBackground(new java.awt.Color(248, 248, 255));
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,7 +266,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Tipo do Produto ");
 
-        jTextField2.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField2.setBackground(new java.awt.Color(248, 248, 255));
         jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,7 +282,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Fornecedor ");
 
-        jTextField3.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField3.setBackground(new java.awt.Color(248, 248, 255));
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,7 +298,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setText("Descrição do Produto ");
 
-        jTextArea2.setBackground(new java.awt.Color(245, 245, 245));
+        jTextArea2.setBackground(new java.awt.Color(248, 248, 255));
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
@@ -313,7 +317,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setText("Valor");
 
-        jTextField4.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField4.setBackground(new java.awt.Color(248, 248, 255));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -361,17 +365,19 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Mini_Logo.png"))); // NOI18N
 
-        txtBoasVindas.setBackground(new java.awt.Color(255, 255, 255));
-        txtBoasVindas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user.png"))); // NOI18N
-
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("TELA INICIAL");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setText("Adicionar ao Estoque");
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
             }
         });
 
@@ -386,27 +392,24 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(660, 660, 660)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addComponent(txtBoasVindas, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(179, 179, 179)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(538, 538, 538))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(txtBoasVindas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -490,7 +493,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(TelaImg, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTextField1.getAccessibleContext().setAccessibleName("");
@@ -718,6 +721,10 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel14MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -751,11 +758,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JPanel TelaImg;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -779,6 +786,5 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblPreviewNome;
     private javax.swing.JLabel lblPreviewTipo;
     private javax.swing.JLabel lblPreviewValor;
-    private javax.swing.JLabel txtBoasVindas;
     // End of variables declaration//GEN-END:variables
 }

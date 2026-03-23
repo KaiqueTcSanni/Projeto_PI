@@ -243,7 +243,6 @@ def carrinho(request):
 def formatar_br(valor):
     return "{:,.2f}".format(valor).replace(",", "v").replace(".", ",").replace("v", ".")
 
-@login_required(login_url='login')
 def remover_do_carrinho(request, produto_id):
     carrinho = request.session.get('carrinho', {})
     id_str = str(produto_id)
