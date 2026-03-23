@@ -103,7 +103,7 @@
             <button onclick="mudarPagina(12)" id="btn_energia" class="categoria">
 
                 <img src="{% static 'resources/energia.png' %}" alt="Energia">
-                <span>Energia</span>
+                <span>Cabo</span>
 
             </button>
 
@@ -135,6 +135,7 @@
                         <div class="produto-card" data-id="{{ produto.id_produto }}"
                             data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
                             data-fornecedor="{{ produto.fornecedor }}">
+
                             <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                             <div class="produto-info">
                                 <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -147,7 +148,7 @@
                     </div>
                 </div>
 
-                <div id="dv_dois" class="categoria-container" style="display: none;">
+                <div id="dv_dois" class="categoria-container" style="display: none;"><!--PlACA MAE-->
                     {% for produto in produtos %}
                     {% if produto.tipo_produto == "Placa Mae" %}
                     <div class="produto-card placa-mae-card" data-id="{{ produto.id_produto }}"
@@ -155,9 +156,8 @@
                         data-fornecedor="{{ produto.fornecedor }}">
 
                         <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-
                         <div class="produto-info">
-                            <p class="produto-nome"><strong>{{ produto.nome_produto }}</strong></p>
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
                             <p class="produto-descricao">{{ produto.descricao }}</p>
                             <span class="produto-preco">R$ {{ produto.valor }}</span>
                         </div>
@@ -171,6 +171,7 @@
                     {% if produto.tipo_produto == "Memória RAM" %}
                     <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
                         data-preco="{{ produto.valor }}">
+
                         <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
                         <div class="produto-info">
                             <p class="produto-nome">{{ produto.nome_produto }}</p>
@@ -312,7 +313,7 @@
 
                 <div id="dv_doze" class="categoria-container" style="display: none;"><!--ENERGIA-->
                     {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Energia" %}
+                    {% if produto.tipo_produto == "Cabo" %}
                     <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
                         data-preco="{{ produto.valor }}">
                         <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
@@ -458,12 +459,36 @@
         const resPreco = document.getElementById('resumo-preco');
         const resImg = document.getElementById('resumo-img');
 
-        if (p) {
-            resNome.textContent = p.nome;
-            resPreco.textContent = "R$ " + parseFloat(p.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-            resImg.src = p.img;
-            resImg.style.display = "block";
+        if (p && p.preco !== undefined) {
+            // 1. Garantimos que o preço seja tratado como string e limpamos resquícios de formatação
+            let precoLimpo = String(p.preco).replace('R$', '').replace(/\s/g, '');
+
+            // 2. Se o banco enviou 1.200,00 (BR), transformamos em 1200.00 (US) para o parseFloat
+            if (precoLimpo.includes('.') && precoLimpo.includes(',')) {
+                precoLimpo = precoLimpo.replace(/\./g, '').replace(',', '.');
+            } else {
+                precoLimpo = precoLimpo.replace(',', '.');
+            }
+
+            const valorNumerico = parseFloat(precoLimpo);
+
+            // 3. Verificamos se a conversão foi bem sucedida
+            if (!isNaN(valorNumerico)) {
+                resNome.textContent = p.nome;
+                resPreco.textContent = valorNumerico.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+                resImg.src = p.img;
+                resImg.style.display = "block";
+            } else {
+                exibirVazio();
+            }
         } else {
+            exibirVazio();
+        }
+
+        function exibirVazio() {
             resNome.textContent = "Nenhum produto selecionado";
             resPreco.textContent = "R$ 0,00";
             resImg.style.display = "none";
@@ -521,24 +546,43 @@
     });
 
     function renderizarResumoFinal() {
-        const lista = document.getElementById('lista-final-produtos');
+        const listaFinal = document.getElementById('lista-final-produtos');
         const totalFinal = document.getElementById('valor-total-final');
-        let html = "";
-        let soma = 0;
+        let somaTotal = 0;
+
+        listaFinal.innerHTML = '';
 
         for (let i = 1; i <= 13; i++) {
             const p = escolhasUsuario[i];
-            if (p) {
-                let precoNum = parseFloat(p.preco);
-                soma += precoNum;
-                html += `<div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
-                            <span>${p.nome}</span>
-                            <span>R$ ${precoNum.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
-                         </div>`;
+
+            if (p && p.nome) {
+                // 1. Forçamos a conversão para String e limpamos qualquer formatação de milhar BR
+                // Isso garante que "2.200,00" vire "2200.00" e "2200.00" continue "2200.00"
+                let precoTexto = String(p.preco).replace(/\./g, '').replace(',', '.');
+
+                // 2. Convertemos para número decimal
+                let valor = parseFloat(precoTexto);
+
+                // Se o resultado for inválido (NaN), definimos como 0
+                if (isNaN(valor)) valor = 0;
+
+                somaTotal += valor;
+
+                const itemHtml = `
+                <div class="item-resumo-final" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>${p.nome}</span>
+                    <strong>${valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
+                </div>
+            `;
+                listaFinal.insertAdjacentHTML('beforeend', itemHtml);
             }
         }
-        lista.innerHTML = html || "<p>Nenhum item selecionado.</p>";
-        totalFinal.textContent = "R$ " + soma.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+        // 3. Exibição do Total Geral
+        totalFinal.textContent = somaTotal.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
     }
 
     async function finalizarEIrParaCarrinho() {

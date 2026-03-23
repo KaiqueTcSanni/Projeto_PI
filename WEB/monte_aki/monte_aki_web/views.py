@@ -51,7 +51,10 @@ def validar_montagem(pc_lista):
         'Fonte', 
         'Gabinete',
         'Armazenamento', 
-        'Resfriamento'   
+        'Resfriamento',
+        'Notebook',
+        'Computador',
+        ''
     ]
     
     ids_selecionados = [item.get('id') for item in pc_lista if item.get('id')]
@@ -123,10 +126,27 @@ def perifericos(request):
     return render(request, 'perifericos.html', {'produtos': Produto.objects.all()})
 
 def escritorio(request):
-    return render(request, 'escritorio.html', {'produtos': Produto.objects.all()})
+    # Busca todos os produtos para que o HTML possa filtrar
+    produtos = Produto.objects.all() 
+    return render(request, 'escritorio.html', {'produtos': produtos})
 
 def montagem(request):
-    return render(request, 'montagem.html', {'produtos': Produto.objects.all()})
+    produtos = Produto.objects.all()
+    for produto in produtos:
+        # 1. Pegamos o valor e garantimos que seja uma string
+        # Usamos replace para garantir que se vier uma vírgula perdida, ela vire ponto
+        valor_cru = str(produto.valor).replace(',', '.').strip()
+        
+        try:
+            # 2. Convertemos diretamente para float
+            # Como seus valores são 1689.90 ou 12000.00, o float() funciona nativo
+            valor_numerico = float(valor_cru)
+            produto.valor_numerico = valor_numerico
+        except (ValueError, TypeError):
+            # Caso o campo esteja vazio ou inválido
+            produto.valor_numerico = 0.0
+            
+    return render(request, 'montagem.html', {'produtos': produtos})
 
 def salvar_pc_completo(request):
     if request.method == "POST":
@@ -419,3 +439,12 @@ def atualizar_carrinho(request):
             return JsonResponse({'status': 'erro', 'message': str(e)}, status=400)
             
     return JsonResponse({'status': 'erro'}, status=400)
+
+def pc_gamer(request):
+    # O filtro deve ser idêntico ao que está na sua tabela (coluna tipo_produto)
+    produtos = Produto.objects.filter(tipo_produto='Computador')
+    
+    return render(request, 'pcgamer.html', {
+        'produtos': produtos, 
+        'titulo_pagina': 'PC Gamer'
+    })

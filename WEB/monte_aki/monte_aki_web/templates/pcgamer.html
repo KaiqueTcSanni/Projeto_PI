@@ -1,291 +1,340 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="pt-br">
+<style>
+    .content-overlay {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        width: 100%;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Gamer</title>
+    /* BARRA DE FILTROS (Estilo pílula) */
+    .filtros-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
 
-    <!-- Bootstrap CSS-->
-    <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+    .filtro-btn {
+        background: #f0f0f0;
+        border: 1px solid #ddd;
+        padding: 8px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: bold;
+        transition: 0.3s;
+        white-space: nowrap;
+    }
 
-<body>
-    <main class="content-overlay">
+    .filtro-btn:hover {
+        background: #e0e0e0;
+    }
 
-        <section class="montagem-categorias">
-            <div class="categoria ativa" data-categoria="todos">Todos</div>
-            <div class="categoria" data-categoria="processador">Processadores</div>
-            <div class="categoria" data-categoria="gpu">Placas de Vídeo</div>
-            <div class="categoria" data-categoria="memoria">Memórias</div>
-            <div class="categoria" data-categoria="ssd">SSD</div>
-            <div class="categoria" data-categoria="fonte">Fontes</div>
-            <div class="categoria" data-categoria="placa-mae">Placas-Mãe</div>
-        </section>
+    .filtro-btn.active {
+        background: #6200ea;
+        color: white;
+        border-color: #6200ea;
+    }
 
-        <section class="montagem-container">
+    .montagem-container {
+        display: grid !important;
+        grid-template-columns: 1fr 130px !important;
+        /* Corrigido de 0px para 400px */
+        gap: 25px !important;
+        align-items: start;
+    }
 
-            <div class="produtos-grid" id="lista-produtos">
+    .categoria-container {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+    }
 
-                <div class="produto-card selecionado" data-categoria="processador"
-                    data-nome="Processador Intel Core i7 14700K 3.4GHz" data-preco="2599.90"
-                    data-imagem="Resources/i7-14700.jpg"
-                    data-descricao="Processador Intel Core i7 14700K ideal para alto desempenho em jogos, streaming e produtividade."
-                    data-especificacoes="• 20 núcleos<br>• Frequência base de 3.4GHz<br>• Alto desempenho em multitarefas<br>• Compatível com plataformas Intel modernas">
-                    <img src="Resources/i7-14700.jpg" alt="Intel Core i7 14700K">
-                    <div>
-                        <p class="produto-nome">Processador Intel Core i7 14700K 3.4GHz</p>
-                        <span class="produto-preco">R$ 2.599,90</span>
-                    </div>
+    .produto-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+        height: 110px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Esconder produtos que não batem com o filtro */
+    .produto-card.hidden {
+        display: none !important;
+    }
+
+    .produto-card:hover {
+        border-color: #a45cfc;
+        transform: translateY(-2px);
+    }
+
+    .produto-card.ativo {
+        border: 2px solid #a45cfc !important;
+        background: rgba(164, 92, 252, 0.03);
+    }
+
+    .produto-card img {
+        width: 70px !important;
+        height: 70px !important;
+        object-fit: contain;
+        margin-right: 15px;
+    }
+
+    .produto-info {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .produto-nome {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .produto-descricao {
+        font-size: 0.75rem;
+        color: #777;
+        margin: 4px 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .produto-preco {
+        font-weight: bold;
+        color: #a45cfc;
+        font-size: 1rem;
+    }
+
+    .produto-selecionado {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 25px;
+        position: sticky;
+        top: 20px;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    #resumo-img {
+        max-width: 250px;
+        height: 250px;
+        object-fit: contain;
+        margin-bottom: 20px;
+    }
+
+    .btn-prosseguir {
+        background: #6200ea;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 25px;
+        font-weight: bold;
+        width: 100%;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .btn-info {
+        background: transparent;
+        color: #6200ea;
+        border: 2px solid #6200ea;
+        padding: 8px;
+        border-radius: 25px;
+        font-weight: bold;
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 0.8rem;
+    }
+</style>
+
+<main class="content-overlay">
+    <div class="filtros-container">
+        <button class="filtro-btn" onclick="filtrarProdutos('Computador')">Computadores</button>
+    </div>
+
+    <section class="montagem-container">
+        <div class="categoria-container" id="lista-produtos">
+            {% for produto in produtos %}
+            {% if produto.tipo_produto == "Computador" %}
+            <div class="produto-card" data-id="{{ produto.id_produto }}" data-tipo="{{ produto.tipo_produto }}"
+                data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
+                data-img="{{ produto.foto_produto.url }}" data-descricao="{{ produto.descricao }}">
+
+                <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+
+                <div class="produto-info">
+                    <p class="produto-nome">{{ produto.nome_produto }}</p>
+                    <p class="produto-descricao">{{ produto.descricao }}</p>
+                    <span class="produto-preco">R$ {{ produto.valor }}</span>
                 </div>
-
-                <div class="produto-card" data-categoria="processador" data-nome="Processador AMD Ryzen 7 7800X3D"
-                    data-preco="2799.90" data-imagem="Resources/ryzen-7-7800x3d.jpg"
-                    data-descricao="AMD Ryzen 7 7800X3D focado em jogos de alto desempenho com tecnologia 3D V-Cache."
-                    data-especificacoes="• 8 núcleos / 16 threads<br>• Tecnologia 3D V-Cache<br>• Excelente para games<br>• Plataforma AM5">
-                    <img src="Resources/ryzen-7-7800x3d.jpg" alt="Ryzen 7 7800X3D">
-                    <div>
-                        <p class="produto-nome">Processador AMD Ryzen 7 7800X3D</p>
-                        <span class="produto-preco">R$ 2.799,90</span>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-categoria="gpu" data-nome="Placa de Vídeo RTX 4070 Super 12GB"
-                    data-preco="3999.90" data-imagem="Resources/rtx-4070-super.jpg"
-                    data-descricao="RTX 4070 Super 12GB com ótimo desempenho para jogos em 1440p e tecnologias avançadas."
-                    data-especificacoes="• 12GB de VRAM<br>• Ray Tracing<br>• DLSS<br>• Excelente para 1440p">
-                    <img src="Resources/rtx-4070-super.jpg" alt="RTX 4070 Super">
-                    <div>
-                        <p class="produto-nome">Placa de Vídeo RTX 4070 Super 12GB</p>
-                        <span class="produto-preco">R$ 3.999,90</span>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-categoria="gpu" data-nome="Placa de Vídeo RX 7800 XT 16GB"
-                    data-preco="3499.90" data-imagem="Resources/rx-7800xt.jpg"
-                    data-descricao="RX 7800 XT 16GB com excelente desempenho em jogos modernos e alta resolução."
-                    data-especificacoes="• 16GB de VRAM<br>• Ideal para 1440p e 4K leve<br>• Arquitetura AMD moderna<br>• Ótimo custo-benefício">
-                    <img src="Resources/rx-7800xt.jpg" alt="RX 7800 XT">
-                    <div>
-                        <p class="produto-nome">Placa de Vídeo RX 7800 XT 16GB</p>
-                        <span class="produto-preco">R$ 3.499,90</span>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-categoria="memoria" data-nome="Memória DDR5 32GB 5600MHz"
-                    data-preco="899.90" data-imagem="Resources/ddr5-32gb.jpg"
-                    data-descricao="Kit de memória DDR5 32GB voltado para alto desempenho e multitarefa."
-                    data-especificacoes="• 32GB total<br>• Frequência de 5600MHz<br>• DDR5<br>• Ideal para PCs modernos">
-                    <img src="Resources/ddr5-32gb.jpg" alt="Memória DDR5 32GB">
-                    <div>
-                        <p class="produto-nome">Memória DDR5 32GB 5600MHz</p>
-                        <span class="produto-preco">R$ 899,90</span>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-categoria="ssd" data-nome="SSD NVMe 1TB PCIe 4.0" data-preco="449.90"
-                    data-imagem="Resources/ssd-1tb.jpg"
-                    data-descricao="SSD NVMe 1TB PCIe 4.0 com altas velocidades para sistema e jogos."
-                    data-especificacoes="• 1TB de armazenamento<br>• Interface PCIe 4.0<br>• Alta velocidade de leitura<br>• Inicialização rápida">
-                    <img src="Resources/ssd-1tb.jpg" alt="SSD NVMe 1TB">
-                    <div>
-                        <p class="produto-nome">SSD NVMe 1TB PCIe 4.0</p>
-                        <span class="produto-preco">R$ 449,90</span>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-categoria="fonte" data-nome="Fonte 750W 80 Plus Gold Modular"
-                    data-preco="579.90" data-imagem="Resources/fonte-750w.jpg"
-                    data-descricao="Fonte 750W modular com alta eficiência energética e ótima estabilidade."
-                    data-especificacoes="• 750W<br>• Certificação 80 Plus Gold<br>• Cabeamento modular<br>• Alta eficiência">
-                    <img src="Resources/fonte-750w.jpg" alt="Fonte 750W">
-                    <div>
-                        <p class="produto-nome">Fonte 750W 80 Plus Gold Modular</p>
-                        <span class="produto-preco">R$ 579,90</span>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-categoria="placa-mae" data-nome="Placa-Mãe B650M DDR5 AM5"
-                    data-preco="1099.90" data-imagem="Resources/b650m.jpg"
-                    data-descricao="Placa-mãe B650M para processadores AMD AM5 com suporte a DDR5."
-                    data-especificacoes="• Socket AM5<br>• Suporte DDR5<br>• Formato micro-ATX<br>• Recursos modernos">
-                    <img src="Resources/b650m.jpg" alt="Placa-Mãe B650M">
-                    <div>
-                        <p class="produto-nome">Placa-Mãe B650M DDR5 AM5</p>
-                        <span class="produto-preco">R$ 1.099,90</span>
-                    </div>
-                </div>
-
             </div>
+            {% endif %}
+            {% empty %}
+            <p>Nenhum produto disponível.</p>
+            {% endfor %}
+        </div>
+        <aside class="produto-selecionado">
+            <img src="" id="resumo-img" style="display: none;">
+            <div id="placeholder-mensagem" style="color: #999; margin-top: 100px;">Nenhum produto selecionado</div>
+            <p id="resumo-nome" style="font-weight: bold; color: #333; margin-bottom: 10px; display: none;"></p>
+            <p id="resumo-preco"
+                style="font-size: 1.5rem; color: #333; font-weight: bold; margin-bottom: 20px; display: none;">R$ 0,00
+            </p>
+            <div id="botoes-acao" style="display: none; width: 100%;">
+                <button id="btn-add-carrinho" class="btn-prosseguir">ADICIONAR AO CARRINHO</button>
+                <button onclick="mostrarDescricao()" class="btn-info">DESCRIÇÃO DO PRODUTO</button>
+            </div>
+            <div id="info-extra" class="mt-3 p-2"
+                style="display:none; text-align: left; background: #f9f9f9; border-radius: 8px; font-size: 1.5rem;">
+                <div id="info-conteudo"></div>
+            </div>
+        </aside>
+    </section>
+</main>
 
-            <aside class="produto-selecionado">
-                <img id="imagem-destaque" src="Resources/i7-14700.jpg" alt="Produto selecionado">
-                <h2>Produto Selecionado</h2>
-                <p class="produto-nome" id="nome-destaque">Processador Intel Core i7 14700K 3.4GHz</p>
-                <p class="resumo-preco" id="preco-destaque">R$ 2.599,90</p>
+<script>
+    // FUNÇÃO DE FILTRAGEM (Mantida fora para ser global)
+    function filtrarProdutos(tipo) {
+        const cards = document.querySelectorAll('.produto-card');
+        const botoes = document.querySelectorAll('.filtro-btn');
 
-                <button class="btn-prosseguir" id="btn-adicionar-carrinho">Adicionar ao Carrinho</button>
-                <button class="btn-info" id="btn-ver-detalhes">Ver Detalhes</button>
-
-                <div class="detalhes-box" id="detalhes-box" style="display: none;">
-                    <div class="detalhes-abas">
-                        <button class="aba-detalhe ativa" data-aba="descricao">Descrição</button>
-                        <button class="aba-detalhe" data-aba="especificacoes">Especificações</button>
-                    </div>
-
-                    <div class="detalhes-conteudo">
-                        <div class="conteudo-aba ativo" id="aba-descricao">
-                            Processador Intel Core i7 14700K ideal para alto desempenho em jogos, streaming e
-                            produtividade.
-                        </div>
-
-                        <div class="conteudo-aba" id="aba-especificacoes">
-                            • 20 núcleos<br>
-                            • Frequência base de 3.4GHz<br>
-                            • Alto desempenho em multitarefas<br>
-                            • Compatível com plataformas Intel modernas
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <a href="#">Contato</a>
-        <a href="#">Sobre nós</a>
-        <a href="#">Termos de uso</a>
-        <a href="#">Política de privacidade</a>
-    </footer>
-
-    <script>
-        const categorias = document.querySelectorAll('.categoria');
-        const produtos = document.querySelectorAll('.produto-card');
-
-        const imagemDestaque = document.getElementById('imagem-destaque');
-        const nomeDestaque = document.getElementById('nome-destaque');
-        const precoDestaque = document.getElementById('preco-destaque');
-        const contadorCarrinho = document.getElementById('contador-carrinho');
-        const btnAdicionarCarrinho = document.getElementById('btn-adicionar-carrinho');
-        const btnVerDetalhes = document.getElementById('btn-ver-detalhes');
-
-        const detalhesBox = document.getElementById('detalhes-box');
-        const abaDescricao = document.getElementById('aba-descricao');
-        const abaEspecificacoes = document.getElementById('aba-especificacoes');
-        const botoesAbas = document.querySelectorAll('.aba-detalhe');
-
-        let produtoSelecionado = {
-            nome: "Processador Intel Core i7 14700K 3.4GHz",
-            preco: 2599.90,
-            imagem: "Resources/i7-14700.jpg",
-            descricao: "Processador Intel Core i7 14700K ideal para alto desempenho em jogos, streaming e produtividade.",
-            especificacoes: "• 20 núcleos<br>• Frequência base de 3.4GHz<br>• Alto desempenho em multitarefas<br>• Compatível com plataformas Intel modernas"
-        };
-
-        function formatarPreco(valor) {
-            return valor.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            });
-        }
-
-        function atualizarDestaque(produto) {
-            produtoSelecionado = produto;
-            imagemDestaque.src = produto.imagem;
-            imagemDestaque.alt = produto.nome;
-            nomeDestaque.textContent = produto.nome;
-            precoDestaque.textContent = formatarPreco(produto.preco);
-            abaDescricao.innerHTML = produto.descricao;
-            abaEspecificacoes.innerHTML = produto.especificacoes;
-        }
-
-        categorias.forEach(categoria => {
-            categoria.addEventListener('click', () => {
-                categorias.forEach(item => item.classList.remove('ativa'));
-                categoria.classList.add('ativa');
-
-                const categoriaSelecionada = categoria.dataset.categoria;
-
-                produtos.forEach(produto => {
-                    if (categoriaSelecionada === 'todos' || produto.dataset.categoria === categoriaSelecionada) {
-                        produto.style.display = 'flex';
-                    } else {
-                        produto.style.display = 'none';
-                    }
-                });
-            });
+        botoes.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.innerText.includes(tipo) || (tipo === 'todos' && btn.innerText === 'Todos')) {
+                btn.classList.add('active');
+            }
         });
 
-        produtos.forEach(produto => {
-            produto.addEventListener('click', () => {
-                produtos.forEach(item => item.classList.remove('selecionado'));
-                produto.classList.add('selecionado');
+        cards.forEach(card => {
+            const tipoProduto = card.getAttribute('data-tipo');
+            if (tipo === 'todos' || tipoProduto === tipo) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
 
-                const produtoAtual = {
-                    nome: produto.dataset.nome,
-                    preco: Number(produto.dataset.preco),
-                    imagem: produto.dataset.imagem,
-                    descricao: produto.dataset.descricao,
-                    especificacoes: produto.dataset.especificacoes
+    document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll('.produto-card');
+        const resNome = document.getElementById('resumo-nome');
+        const resPreco = document.getElementById('resumo-preco');
+        const resImg = document.getElementById('resumo-img');
+        const placeholder = document.getElementById('placeholder-mensagem');
+        const botoesAcao = document.getElementById('botoes-acao');
+        const infoExtra = document.getElementById('info-extra');
+        const infoConteudo = document.getElementById('info-conteudo');
+        const btnCarrinho = document.querySelector('.btn-prosseguir');
+
+        let produtoSelecionado = null;
+
+        cards.forEach(card => {
+            card.addEventListener('click', function () {
+                cards.forEach(c => c.classList.remove('ativo'));
+                this.classList.add('ativo');
+
+                produtoSelecionado = {
+                    id: this.dataset.id,
+                    nome: this.dataset.nome,
+                    preco: this.dataset.preco,
+                    img: this.dataset.img,
+                    desc: this.dataset.descricao,
+                    spec: this.dataset.especificacoes || "Sem informações técnicas disponíveis."
                 };
 
-                atualizarDestaque(produtoAtual);
+                placeholder.style.display = "none";
+                resNome.style.display = "block";
+                resPreco.style.display = "block";
+                botoesAcao.style.display = "block";
+
+                resNome.textContent = produtoSelecionado.nome;
+                resPreco.textContent = "R$ " + produtoSelecionado.preco;
+                resImg.src = produtoSelecionado.img;
+                resImg.style.display = "block";
+                infoExtra.style.display = "none";
             });
         });
 
-        function obterCarrinho() {
-            return JSON.parse(localStorage.getItem('carrinho')) || [];
-        }
-
-        function salvarCarrinho(carrinho) {
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-        }
-
-        function atualizarContadorCarrinho() {
-            const carrinho = obterCarrinho();
-            contadorCarrinho.textContent = carrinho.length;
-        }
-
-        btnAdicionarCarrinho.addEventListener('click', () => {
-            const carrinho = obterCarrinho();
-            carrinho.push(produtoSelecionado);
-            salvarCarrinho(carrinho);
-            atualizarContadorCarrinho();
-            alert(produtoSelecionado.nome + " foi adicionado ao carrinho!");
-        });
-
-        btnVerDetalhes.addEventListener('click', () => {
-            detalhesBox.style.display = 'block';
-        });
-
-        botoesAbas.forEach(botao => {
-            botao.addEventListener('click', () => {
-                botoesAbas.forEach(b => b.classList.remove('ativa'));
-                botao.classList.add('ativa');
-
-                document.querySelectorAll('.conteudo-aba').forEach(conteudo => {
-                    conteudo.classList.remove('ativo');
-                });
-
-                if (botao.dataset.aba === 'descricao') {
-                    document.getElementById('aba-descricao').classList.add('ativo');
+        if (btnCarrinho) {
+            btnCarrinho.addEventListener('click', function () {
+                if (produtoSelecionado && produtoSelecionado.id) {
+                    fetch('/adicionar-ao-carrinho/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({
+                            'id': produtoSelecionado.id
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'sucesso') {
+                                alert("Produto adicionado com sucesso!");
+                                window.location.href = '/carrinho/';
+                            } else {
+                                alert("Erro ao adicionar: " + data.message);
+                            }
+                        });
                 } else {
-                    document.getElementById('aba-especificacoes').classList.add('ativo');
+                    alert("Por favor, selecione um computador primeiro!");
                 }
             });
-        });
+        }
 
-        atualizarContadorCarrinho();
-    </script>
+        // --- FUNÇÕES AUXILIARES MOVIDAS PARA FORA DO EVENTO OU DEFINIDAS NO WINDOW ---
 
-</body>
+        window.getCookie = function (name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        };
 
-</html>
+        window.mostrarDescricao = function () {
+            if (produtoSelecionado) {
+                infoConteudo.innerHTML = "<strong>Descrição:</strong><br>" + produtoSelecionado.desc;
+                infoExtra.style.display = "block";
+            }
+        };
+
+        window.mostrarInfoTecnica = function () {
+            if (produtoSelecionado) {
+                infoConteudo.innerHTML = "<strong>Informações Técnicas:</strong><br>" + produtoSelecionado.spec;
+                infoExtra.style.display = "block";
+            }
+        };
+    }); // FECHAMENTO DO DOMCONTENTLOADED
+</script>
 {% endblock %}
