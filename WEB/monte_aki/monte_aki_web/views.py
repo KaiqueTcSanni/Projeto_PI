@@ -100,7 +100,7 @@ def cadastro(request):
 
 def home(request):
     categorias_oficiais = [
-        'Fonte', 'Gabinete', 'Memória RAM', 'Armazenamento', 'Resfriamento',
+        'GPU','Fonte', 'Gabinete', 'Memória RAM', 'Armazenamento', 'Resfriamento',
         'Impressora', 'Audio', 'Processador', 'Notebook', 'Placa Mae',
         'Computador', 'Teclado', 'Mouse', 'Energia', 'Controle', 'Monitor', 
         'Fan', 'Cabo'  # Adicionei 'Cabo' aqui

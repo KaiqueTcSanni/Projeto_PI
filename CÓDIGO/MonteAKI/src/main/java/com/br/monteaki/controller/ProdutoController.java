@@ -68,11 +68,15 @@ public class ProdutoController {
         }
     }
 
-    public void excluir(Long id) throws SQLException {
+    public boolean excluir(Long id) throws SQLException {
         String sql = "DELETE FROM tbl_produtos WHERE id_produto = ?";
         try (Connection con = Conexao.getConexao(); PreparedStatement stmt = con.prepareStatement(sql)) {
+
             stmt.setLong(1, id);
-            stmt.executeUpdate();
+            int linhasAfetadas = stmt.executeUpdate();
+
+            // Retorna true se pelo menos uma linha foi deletada
+            return linhasAfetadas > 0;
         }
     }
 

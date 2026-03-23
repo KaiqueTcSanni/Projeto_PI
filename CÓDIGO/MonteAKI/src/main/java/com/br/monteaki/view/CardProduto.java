@@ -4,6 +4,7 @@
  */
 package com.br.monteaki.view;
 
+import com.br.monteaki.controller.ProdutoController;
 import com.br.monteaki.model.Produto;
 import java.awt.Image;
 import java.io.File;
@@ -144,7 +145,33 @@ public class CardProduto extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // 1. Confirmar a exclusão com o usuário
+        int confirmar = javax.swing.JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja excluir o produto: " + produto.getNomeProduto() + "?",
+                "Confirmar Exclusão",
+                javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (confirmar == javax.swing.JOptionPane.YES_OPTION) {
+            try {
+                // 2. Instanciar o controller (importação necessária: com.br.monteaki.controller.ProdutoController)
+                com.br.monteaki.controller.ProdutoController controller = new com.br.monteaki.controller.ProdutoController();
+
+                // 3. Chamar o método excluir usando o ID do produto deste card
+                // Nota: certifique-se que o método getId() ou getIdProduto() existe na sua classe Produto
+                controller.excluir(produto.getId());
+
+                // 4. Feedback de sucesso
+                javax.swing.JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
+
+                // 5. Atualizar a tela pai para o card sumir
+                if (telaPai != null) {
+                    telaPai.carregarProdutos(); // Substitua pelo nome do seu método que atualiza a lista
+                }
+
+            } catch (java.sql.SQLException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao excluir do banco: " + ex.getMessage());
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

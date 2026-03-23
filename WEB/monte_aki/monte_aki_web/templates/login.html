@@ -1,44 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="pt-br">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monteaki - Acesse Sua Conta</title>
+<style>
+  /* Reutilizando a mesma estrutura de espaçamento do Cadastro */
+  .content-overlay {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 83vh;
+  }
 
-  <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
+  .login-container {
+    max-width: 450px;
+    /* Login costuma ser mais estreito que o cadastro */
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
 
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  .main-login h1 {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: #333;
+  }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  /* Estilização dos alertas de erro */
+  .messages-container {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 15px;
+  }
 
-  <style>
-    /* Ajuste para evitar que as mensagens quebrem o layout flex */
-    .main-login {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .alert-message {
-      width: 100%;
-      max-width: 300px;
-      /* Ajuste conforme a largura do seu formulário */
-      background-color: #fff5f5;
-      color: #ff4d4d;
-      border: 1px solid #ffcccc;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-  </style>
+  .alert-box {
+    background: #fff5f5;
+    border-left: 4px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+</style>
 </head>
 
 <body>

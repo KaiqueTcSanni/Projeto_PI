@@ -1,629 +1,614 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Montagem</title>
+<div class="content-overlay">
+</div>
+<div class="content-overlay">
 
-    <!-- Bootstrap CSS-->
-    <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+    <!-- INICIO: CATEGORIAS DE PERIFERICOS -->
+    <section class="montagem-categorias">
 
-<body>
-    <div class="content-overlay">
-    </div>
-    <div class="content-overlay">
+        <button onclick="mudarPagina(1)" id="btn_processador" class="categoria ativa">
 
-        <!-- INICIO: CATEGORIAS DE PERIFERICOS -->
-        <section class="montagem-categorias">
+            <img src="{% static 'resources/cpu.png' %}" alt="">
+            <span>Processador</span>
 
-            <button onclick="mudarPagina(1)" id="btn_processador" class="categoria ativa">
+        </button>
 
-                <img src="{% static 'resources/cpu.png' %}" alt="">
-                <span>Processador</span>
+        <button onclick="mudarPagina(2)" id="btn_placaMae" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/motherboard.png' %}" alt="">
+            <span>Placa-Mãe</span>
 
-            <button onclick="mudarPagina(2)" id="btn_placaMae" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/motherboard.png' %}" alt="">
-                <span>Placa-Mãe</span>
+        <button onclick="mudarPagina(3)" id="btn_memoriaRam" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/memoria-ram.png' %}" alt="">
+            <span>Memória RAM</span>
 
-            <button onclick="mudarPagina(3)" id="btn_memoriaRam" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/memoria-ram.png' %}" alt="">
-                <span>Memória RAM</span>
+        <button onclick="mudarPagina(4)" id="btn_placaVideo" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/graphic-card.png' %}" alt="">
+            <span>Placa de Vídeo</span>
 
-            <button onclick="mudarPagina(4)" id="btn_placaVideo" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/graphic-card.png' %}" alt="">
-                <span>Placa de Vídeo</span>
+        <button onclick="mudarPagina(5)" id="btn_ssd" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/ssd.png' %}" alt="">
+            <span>HD & SDD</span>
 
-            <button onclick="mudarPagina(5)" id="btn_ssd" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/ssd.png' %}" alt="">
-                <span>HD & SDD</span>
+        <button onclick="mudarPagina(6)" id="btn_cooler" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/water-cooler.png' %}" alt="">
+            <span>Cooler</span>
 
-            <button onclick="mudarPagina(6)" id="btn_cooler" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/water-cooler.png' %}" alt="">
-                <span>Cooler</span>
+        <button onclick="mudarPagina(7)" id="btn_fonte" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/power-supply.png' %}" alt="">
+            <span>Fonte</span>
 
-            <button onclick="mudarPagina(7)" id="btn_fonte" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/power-supply.png' %}" alt="">
-                <span>Fonte</span>
+        <button onclick="mudarPagina(8)" id="btn_gabinete" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/gabinete-de-computador.png' %}" alt="Gabinete">
+            <span>Gabinete</span>
 
-            <button onclick="mudarPagina(8)" id="btn_gabinete" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/gabinete-de-computador.png' %}" alt="Gabinete">
-                <span>Gabinete</span>
+        <button onclick="mudarPagina(9)" id="btn_fans" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/cooling-system.png' %}" alt="Fans">
+            <span>Fans</span>
 
-            <button onclick="mudarPagina(9)" id="btn_fans" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/cooling-system.png' %}" alt="Fans">
-                <span>Fans</span>
+        <button onclick="mudarPagina(10)" id="btn_monitor" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/monitor.png' %}" alt="Monitor">
+            <span>Monitor</span>
 
-            <button onclick="mudarPagina(10)" id="btn_monitor" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/monitor.png' %}" alt="Monitor">
-                <span>Monitor</span>
+        <button onclick="mudarPagina(11)" id="btn_perifericos" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/perifericos.png' %}" alt="Perifericos">
+            <span>Periféricos</span>
 
-            <button onclick="mudarPagina(11)" id="btn_perifericos" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/perifericos.png' %}" alt="Perifericos">
-                <span>Periféricos</span>
+        <button onclick="mudarPagina(12)" id="btn_energia" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/energia.png' %}" alt="Energia">
+            <span>Cabo</span>
 
-            <button onclick="mudarPagina(12)" id="btn_energia" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/energia.png' %}" alt="Energia">
-                <span>Cabo</span>
+        <button onclick="mudarPagina(13)" id="btn_sistema" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/windows.png' %}" alt="Sistema Operacional">
+            <span>Sistema Operacional</span>
 
-            <button onclick="mudarPagina(13)" id="btn_sistema" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/windows.png' %}" alt="Sistema Operacional">
-                <span>Sistema Operacional</span>
+        <button onclick="mudarPagina(14)" id="btn_montado" class="categoria">
 
-            </button>
+            <img src="{% static 'resources/computer.png' %}" alt="Sistema Operacional">
+            <span>PC Montado</span>
 
-            <button onclick="mudarPagina(14)" id="btn_montado" class="categoria">
+        </button>
 
-                <img src="{% static 'resources/computer.png' %}" alt="Sistema Operacional">
-                <span>PC Montado</span>
+    </section>
+    <!-- FIM: CATEGORIAS DE PERIFERICOS -->
 
-            </button>
+    <!-- INICIO: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
+    <main class="montagem-container">
+        <section class="produtos-grid">
+            <!--INICIO BLOCO DE CONTEÚDO-->
+            <div class="produtos-grid-wrapper">
+                <div id="dv_um" class="categoria-container"><!--PROCESSADOR-->
+                    {% for produto in produtos %}
+                    {% if produto.tipo_produto == "Processador" %}
+                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                        data-preco="{{ produto.valor }}" data-fornecedor="{{ produto.fornecedor }}">
+
+                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                        <div class="produto-info">
+                            <p class="produto-nome">{{ produto.nome_produto }}</p>
+                            <p class="produto-descricao">{{ produto.descricao }}</p>
+                            <span class="produto-preco">R$ {{ produto.valor }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="dv_dois" class="categoria-container" style="display: none;"><!--PlACA MAE-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Placa Mae" %}
+                <div class="produto-card placa-mae-card" data-id="{{ produto.id_produto }}"
+                    data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
+                    data-fornecedor="{{ produto.fornecedor }}">
+
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_tres" class="categoria-container" style="display: none;"><!--MEMORIA RAM-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Memória RAM" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_quatro" class="categoria-container" style="display: none;"><!--PLACA DE VIDEO-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "GPU" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_cinco" class="categoria-container" style="display: none;"><!--HD & SSD-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Armazenamento" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_seis" class="categoria-container" style="display: none;"><!--COOLER-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Resfriamento" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_sete" class="categoria-container" style="display: none;"><!--FONTE-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Fonte" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_oito" class="categoria-container" style="display: none;"><!--GABINETE-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Gabinete" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_nove" class="categoria-container" style="display: none;"><!--FANS-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Fan" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_dez" class="categoria-container" style="display: none;"><!--MONITOR-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Monitor" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_onze" class="categoria-container" style="display: none;"><!--PERIFERICOS-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Perifericos" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_doze" class="categoria-container" style="display: none;"><!--ENERGIA-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Cabo" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_treze" class="categoria-container" style="display: none;"><!--SISTEMA OPERACIONAL-->
+                {% for produto in produtos %}
+                {% if produto.tipo_produto == "Sistema Operacional" %}
+                <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
+                    data-preco="{{ produto.valor }}">
+                    <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
+                    <div class="produto-info">
+                        <p class="produto-nome">{{ produto.nome_produto }}</p>
+                        <p class="produto-descricao">{{ produto.descricao }}</p>
+                        <span class="produto-preco">R$ {{ produto.valor }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div id="dv_quatorze" class="categoria-container" style="display: none;"><!--PC MONTADO-->
+
+                <div class="resumo-final-box">
+                    <h2>Configuração Escolhida</h2>
+                    <div id="lista-final-produtos">
+                    </div>
+                    <hr>
+                    <div class="total-final-container">
+                        <h3>Total do Setup: <span id="valor-total-final">R$ 0,00</span></h3>
+                    </div>
+                    <button onclick="window.print()" class="btn-info">Imprimir Orçamento</button>
+                </div>
 
         </section>
-        <!-- FIM: CATEGORIAS DE PERIFERICOS -->
 
-        <!-- INICIO: MAIN COM OS PRODUTOS DE CADA CATEGORIA -->
-        <main class="montagem-container">
-            <section class="produtos-grid">
-                <!--INICIO BLOCO DE CONTEÚDO-->
-                <div class="produtos-grid-wrapper">
-                    <div id="dv_um" class="categoria-container"><!--PROCESSADOR-->
-                        {% for produto in produtos %}
-                        {% if produto.tipo_produto == "Processador" %}
-                        <div class="produto-card" data-id="{{ produto.id_produto }}"
-                            data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
-                            data-fornecedor="{{ produto.fornecedor }}">
+        <div>
+            <aside class="produto-selecionado">
 
-                            <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                            <div class="produto-info">
-                                <p class="produto-nome">{{ produto.nome_produto }}</p>
-                                <p class="produto-descricao">{{ produto.descricao }}</p>
-                                <span class="produto-preco">R$ {{ produto.valor }}</span>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+                <img src="{% static 'resources/' %}" id="resumo-img">
 
-                <div id="dv_dois" class="categoria-container" style="display: none;"><!--PlACA MAE-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Placa Mae" %}
-                    <div class="produto-card placa-mae-card" data-id="{{ produto.id_produto }}"
-                        data-nome="{{ produto.nome_produto }}" data-preco="{{ produto.valor }}"
-                        data-fornecedor="{{ produto.fornecedor }}">
+                <p class="empty-message" id="resumo-nome">
+                    Nenhum produto selecionado
+                </p>
 
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+                <button onclick="mudarPagina()" class="btn-prosseguir">PROSSEGUIR</button>
 
-                <div id="dv_tres" class="categoria-container" style="display: none;"><!--MEMORIA RAM-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Memória RAM" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
+                <p class="resumo-preco" id="resumo-preco">R$ 0,00</p>
 
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+                <button onclick="mostrarDescricao()" class="btn-info">DESCRIÇÃO DO PRODUTO</button>
+                <button onclick="mostrarInfoTecnica()" class="btn-info">INFORMAÇÕES TÉCNICAS</button>
 
-                <div id="dv_quatro" class="categoria-container" style="display: none;"><!--PLACA DE VIDEO-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "GPU" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+            </aside>
+        </div>
+    </main>
 
-                <div id="dv_cinco" class="categoria-container" style="display: none;"><!--HD & SSD-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Armazenamento" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+    </body>
 
-                <div id="dv_seis" class="categoria-container" style="display: none;"><!--COOLER-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Resfriamento" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+    </html>
 
-                <div id="dv_sete" class="categoria-container" style="display: none;"><!--FONTE-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Fonte" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+    <script>
+        let etapaAtual = 1;
+        let escolhasUsuario = {
+            1: null, 2: null, 3: null, 4: null, 5: null,
+            6: null, 7: null, 8: null, 9: null, 10: null,
+            11: null, 12: null, 13: null
+        };
 
-                <div id="dv_oito" class="categoria-container" style="display: none;"><!--GABINETE-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Gabinete" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div id="dv_nove" class="categoria-container" style="display: none;"><!--FANS-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Fan" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div id="dv_dez" class="categoria-container" style="display: none;"><!--MONITOR-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Monitor" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div id="dv_onze" class="categoria-container" style="display: none;"><!--PERIFERICOS-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Perifericos" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div id="dv_doze" class="categoria-container" style="display: none;"><!--ENERGIA-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Cabo" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div id="dv_treze" class="categoria-container" style="display: none;"><!--SISTEMA OPERACIONAL-->
-                    {% for produto in produtos %}
-                    {% if produto.tipo_produto == "Sistema Operacional" %}
-                    <div class="produto-card" data-id="{{ produto.id_produto }}" data-nome="{{ produto.nome_produto }}"
-                        data-preco="{{ produto.valor }}">
-                        <img src="{{ produto.foto_produto.url }}" alt="{{ produto.nome_produto }}">
-                        <div class="produto-info">
-                            <p class="produto-nome">{{ produto.nome_produto }}</p>
-                            <p class="produto-descricao">{{ produto.descricao }}</p>
-                            <span class="produto-preco">R$ {{ produto.valor }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div id="dv_quatorze" class="categoria-container" style="display: none;"><!--PC MONTADO-->
-
-                    <div class="resumo-final-box">
-                        <h2>Configuração Escolhida</h2>
-                        <div id="lista-final-produtos">
-                        </div>
-                        <hr>
-                        <div class="total-final-container">
-                            <h3>Total do Setup: <span id="valor-total-final">R$ 0,00</span></h3>
-                        </div>
-                        <button onclick="window.print()" class="btn-info">Imprimir Orçamento</button>
-                    </div>
-
-            </section>
-
-            <div>
-                <aside class="produto-selecionado">
-
-                    <img src="{% static 'resources/' %}" id="resumo-img">
-
-                    <p class="empty-message" id="resumo-nome">
-                        Nenhum produto selecionado
-                    </p>
-
-                    <button onclick="mudarPagina()" class="btn-prosseguir">PROSSEGUIR</button>
-
-                    <p class="resumo-preco" id="resumo-preco">R$ 0,00</p>
-
-                    <button onclick="mostrarDescricao()" class="btn-info">DESCRIÇÃO DO PRODUTO</button>
-                    <button onclick="mostrarInfoTecnica()" class="btn-info">INFORMAÇÕES TÉCNICAS</button>
-
-                </aside>
-            </div>
-        </main>
-
-</body>
-
-</html>
-
-<script>
-    let etapaAtual = 1;
-    let escolhasUsuario = {
-        1: null, 2: null, 3: null, 4: null, 5: null,
-        6: null, 7: null, 8: null, 9: null, 10: null,
-        11: null, 12: null, 13: null
-    };
-
-    function sufixoEtapa(n) {
-        const nomes = ["um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "quatorze"];
-        return nomes[n - 1];
-    }
-
-    function mostrarEtapa(numero) {
-        for (let i = 1; i <= 14; i++) {
-            const div = document.getElementById(`dv_${sufixoEtapa(i)}`);
-            if (div) div.style.display = "none";
+        function sufixoEtapa(n) {
+            const nomes = ["um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "quatorze"];
+            return nomes[n - 1];
         }
 
-        const atual = document.getElementById(`dv_${sufixoEtapa(numero)}`);
-        if (atual) {
-            atual.style.setProperty('display', 'grid', 'important');
-        }
-
-        if (numero === 2) aplicarFiltroPlacaMae();
-
-        if (numero < 14) {
-            atualizarPreviewEtapa(numero);
-        } else {
-            renderizarResumoFinal();
-        }
-
-        document.querySelectorAll('.categoria').forEach(btn => btn.classList.remove('ativa'));
-        const botoes = document.querySelectorAll('.categoria');
-        if (botoes[numero - 1]) botoes[numero - 1].classList.add('ativa');
-
-        etapaAtual = numero;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function aplicarFiltroPlacaMae() {
-        const procEscolhido = escolhasUsuario[1];
-
-        // Se não escolheu processador ainda, não filtra (mostra todas)
-        if (!procEscolhido || !procEscolhido.fornecedor) {
-            console.warn("Nenhum processador selecionado para filtrar as placas.");
-            document.querySelectorAll('.placa-mae-card').forEach(p => p.style.display = "flex");
-            return;
-        }
-
-        // Normaliza a marca do processador: remove espaços e coloca em Maiúsculo
-        const marcaProcessador = String(procEscolhido.fornecedor).toUpperCase().trim();
-        const placas = document.querySelectorAll('.placa-mae-card');
-
-        console.log("Filtrando placas para a marca:", marcaProcessador);
-
-        placas.forEach(placa => {
-            // Pega o fornecedor do data-attribute da placa
-            const marcaPlaca = (placa.dataset.fornecedor || "").toUpperCase().trim();
-
-            console.log(`Comparando: Placa(${marcaPlaca}) com Processador(${marcaProcessador})`);
-
-            if (marcaPlaca === marcaProcessador) {
-                // Usamos !important para garantir que o 'display: none' do container não vença
-                placa.style.setProperty('display', 'flex', 'important');
-            } else {
-                placa.style.setProperty('display', 'none', 'important');
-            }
-        });
-    }
-
-    function atualizarPreviewEtapa(numero) {
-        const p = escolhasUsuario[numero];
-        const resNome = document.getElementById('resumo-nome');
-        const resPreco = document.getElementById('resumo-preco');
-        const resImg = document.getElementById('resumo-img');
-
-        if (p && p.preco !== undefined) {
-            // 1. Garantimos que o preço seja tratado como string e limpamos resquícios de formatação
-            let precoLimpo = String(p.preco).replace('R$', '').replace(/\s/g, '');
-
-            // 2. Se o banco enviou 1.200,00 (BR), transformamos em 1200.00 (US) para o parseFloat
-            if (precoLimpo.includes('.') && precoLimpo.includes(',')) {
-                precoLimpo = precoLimpo.replace(/\./g, '').replace(',', '.');
-            } else {
-                precoLimpo = precoLimpo.replace(',', '.');
+        function mostrarEtapa(numero) {
+            for (let i = 1; i <= 14; i++) {
+                const div = document.getElementById(`dv_${sufixoEtapa(i)}`);
+                if (div) div.style.display = "none";
             }
 
-            const valorNumerico = parseFloat(precoLimpo);
+            const atual = document.getElementById(`dv_${sufixoEtapa(numero)}`);
+            if (atual) {
+                atual.style.setProperty('display', 'grid', 'important');
+            }
 
-            // 3. Verificamos se a conversão foi bem sucedida
-            if (!isNaN(valorNumerico)) {
-                resNome.textContent = p.nome;
-                resPreco.textContent = valorNumerico.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                });
-                resImg.src = p.img;
-                resImg.style.display = "block";
+            if (numero === 2) aplicarFiltroPlacaMae();
+
+            if (numero < 14) {
+                atualizarPreviewEtapa(numero);
+            } else {
+                renderizarResumoFinal();
+            }
+
+            document.querySelectorAll('.categoria').forEach(btn => btn.classList.remove('ativa'));
+            const botoes = document.querySelectorAll('.categoria');
+            if (botoes[numero - 1]) botoes[numero - 1].classList.add('ativa');
+
+            etapaAtual = numero;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function aplicarFiltroPlacaMae() {
+            const procEscolhido = escolhasUsuario[1];
+
+            // Se não escolheu processador ainda, não filtra (mostra todas)
+            if (!procEscolhido || !procEscolhido.fornecedor) {
+                console.warn("Nenhum processador selecionado para filtrar as placas.");
+                document.querySelectorAll('.placa-mae-card').forEach(p => p.style.display = "flex");
+                return;
+            }
+
+            // Normaliza a marca do processador: remove espaços e coloca em Maiúsculo
+            const marcaProcessador = String(procEscolhido.fornecedor).toUpperCase().trim();
+            const placas = document.querySelectorAll('.placa-mae-card');
+
+            console.log("Filtrando placas para a marca:", marcaProcessador);
+
+            placas.forEach(placa => {
+                // Pega o fornecedor do data-attribute da placa
+                const marcaPlaca = (placa.dataset.fornecedor || "").toUpperCase().trim();
+
+                console.log(`Comparando: Placa(${marcaPlaca}) com Processador(${marcaProcessador})`);
+
+                if (marcaPlaca === marcaProcessador) {
+                    // Usamos !important para garantir que o 'display: none' do container não vença
+                    placa.style.setProperty('display', 'flex', 'important');
+                } else {
+                    placa.style.setProperty('display', 'none', 'important');
+                }
+            });
+        }
+
+        function atualizarPreviewEtapa(numero) {
+            const p = escolhasUsuario[numero];
+            const resNome = document.getElementById('resumo-nome');
+            const resPreco = document.getElementById('resumo-preco');
+            const resImg = document.getElementById('resumo-img');
+
+            if (p && p.preco !== undefined) {
+                // 1. Garantimos que o preço seja tratado como string e limpamos resquícios de formatação
+                let precoLimpo = String(p.preco).replace('R$', '').replace(/\s/g, '');
+
+                // 2. Se o banco enviou 1.200,00 (BR), transformamos em 1200.00 (US) para o parseFloat
+                if (precoLimpo.includes('.') && precoLimpo.includes(',')) {
+                    precoLimpo = precoLimpo.replace(/\./g, '').replace(',', '.');
+                } else {
+                    precoLimpo = precoLimpo.replace(',', '.');
+                }
+
+                const valorNumerico = parseFloat(precoLimpo);
+
+                // 3. Verificamos se a conversão foi bem sucedida
+                if (!isNaN(valorNumerico)) {
+                    resNome.textContent = p.nome;
+                    resPreco.textContent = valorNumerico.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    });
+                    resImg.src = p.img;
+                    resImg.style.display = "block";
+                } else {
+                    exibirVazio();
+                }
             } else {
                 exibirVazio();
             }
-        } else {
-            exibirVazio();
+
+            function exibirVazio() {
+                resNome.textContent = "Nenhum produto selecionado";
+                resPreco.textContent = "R$ 0,00";
+                resImg.style.display = "none";
+            }
         }
 
-        function exibirVazio() {
-            resNome.textContent = "Nenhum produto selecionado";
-            resPreco.textContent = "R$ 0,00";
-            resImg.style.display = "none";
+        function mudarPagina(numeroDestino = null) {
+            if (numeroDestino !== null) {
+                mostrarEtapa(numeroDestino);
+                return;
+            }
+
+            const obrigatorios = {
+                1: "Processador",
+                2: "Placa Mae",
+                3: "Memória RAM",
+                5: "Armazenamento (HD/SSD)",
+                6: "Cooler/Resfriamento",
+                7: "Fonte",
+                8: "Gabinete"
+            };
+
+            if (obrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
+                alert(`Atenção: A escolha do ${obrigatorios[etapaAtual]} é obrigatória!`);
+                return;
+            }
+
+            if (etapaAtual < 14) {
+                mostrarEtapa(etapaAtual + 1);
+            } else {
+                finalizarEIrParaCarrinho();
+            }
         }
-    }
 
-    function mudarPagina(numeroDestino = null) {
-        if (numeroDestino !== null) {
-            mostrarEtapa(numeroDestino);
-            return;
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll('.produto-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const container = this.closest('.categoria-container');
+                    container.querySelectorAll('.produto-card').forEach(c => c.classList.remove('ativo'));
+                    this.classList.add('ativo');
 
-        const obrigatorios = {
-            1: "Processador",
-            2: "Placa Mae",
-            3: "Memória RAM",
-            5: "Armazenamento (HD/SSD)",
-            6: "Cooler/Resfriamento",
-            7: "Fonte",
-            8: "Gabinete"
-        };
+                    escolhasUsuario[etapaAtual] = {
+                        id: this.dataset.id,
+                        nome: this.dataset.nome,
+                        preco: this.dataset.preco,
+                        img: this.querySelector('img').src,
+                        fornecedor: this.dataset.fornecedor
+                    };
 
-        if (obrigatorios[etapaAtual] && !escolhasUsuario[etapaAtual]) {
-            alert(`Atenção: A escolha do ${obrigatorios[etapaAtual]} é obrigatória!`);
-            return;
-        }
-
-        if (etapaAtual < 14) {
-            mostrarEtapa(etapaAtual + 1);
-        } else {
-            finalizarEIrParaCarrinho();
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const cards = document.querySelectorAll('.produto-card');
-        cards.forEach(card => {
-            card.addEventListener('click', function () {
-                const container = this.closest('.categoria-container');
-                container.querySelectorAll('.produto-card').forEach(c => c.classList.remove('ativo'));
-                this.classList.add('ativo');
-
-                escolhasUsuario[etapaAtual] = {
-                    id: this.dataset.id,
-                    nome: this.dataset.nome,
-                    preco: this.dataset.preco,
-                    img: this.querySelector('img').src,
-                    fornecedor: this.dataset.fornecedor
-                };
-
-                atualizarPreviewEtapa(etapaAtual);
-                if (etapaAtual === 1) escolhasUsuario[2] = null;
+                    atualizarPreviewEtapa(etapaAtual);
+                    if (etapaAtual === 1) escolhasUsuario[2] = null;
+                });
             });
         });
-    });
 
-    function renderizarResumoFinal() {
-        const listaFinal = document.getElementById('lista-final-produtos');
-        const totalFinal = document.getElementById('valor-total-final');
-        let somaTotal = 0;
+        function renderizarResumoFinal() {
+            const listaFinal = document.getElementById('lista-final-produtos');
+            const totalFinal = document.getElementById('valor-total-final');
+            let somaTotal = 0;
 
-        listaFinal.innerHTML = '';
+            listaFinal.innerHTML = '';
 
-        for (let i = 1; i <= 13; i++) {
-            const p = escolhasUsuario[i];
+            for (let i = 1; i <= 13; i++) {
+                const p = escolhasUsuario[i];
 
-            if (p && p.nome) {
-                // 1. Forçamos a conversão para String e limpamos qualquer formatação de milhar BR
-                // Isso garante que "2.200,00" vire "2200.00" e "2200.00" continue "2200.00"
-                let precoTexto = String(p.preco).replace(/\./g, '').replace(',', '.');
+                if (p && p.nome) {
+                    // 1. Forçamos a conversão para String e limpamos qualquer formatação de milhar BR
+                    // Isso garante que "2.200,00" vire "2200.00" e "2200.00" continue "2200.00"
+                    let precoTexto = String(p.preco).replace(/\./g, '').replace(',', '.');
 
-                // 2. Convertemos para número decimal
-                let valor = parseFloat(precoTexto);
+                    // 2. Convertemos para número decimal
+                    let valor = parseFloat(precoTexto);
 
-                // Se o resultado for inválido (NaN), definimos como 0
-                if (isNaN(valor)) valor = 0;
+                    // Se o resultado for inválido (NaN), definimos como 0
+                    if (isNaN(valor)) valor = 0;
 
-                somaTotal += valor;
+                    somaTotal += valor;
 
-                const itemHtml = `
+                    const itemHtml = `
                 <div class="item-resumo-final" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                     <span>${p.nome}</span>
                     <strong>${valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
                 </div>
             `;
-                listaFinal.insertAdjacentHTML('beforeend', itemHtml);
-            }
-        }
-
-        // 3. Exibição do Total Geral
-        totalFinal.textContent = somaTotal.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        });
-    }
-
-    async function finalizarEIrParaCarrinho() {
-        let itensParaEnviar = [];
-        let totalSoma = 0;
-
-        for (let i = 1; i <= 13; i++) {
-            if (escolhasUsuario[i]) {
-                // Criamos uma cópia do item para não estragar a exibição na tela
-                let itemLimpo = { ...escolhasUsuario[i] };
-
-                // Se o preço vier como string "1.500,00", removemos o ponto de milhar 
-                // e trocamos a vírgula decimal por ponto.
-                if (typeof itemLimpo.preco === 'string') {
-                    itemLimpo.preco = itemLimpo.preco.replace(/\./g, '').replace(',', '.');
+                    listaFinal.insertAdjacentHTML('beforeend', itemHtml);
                 }
+            }
 
-                itensParaEnviar.push(itemLimpo);
-                totalSoma += parseFloat(itemLimpo.preco);
+            // 3. Exibição do Total Geral
+            totalFinal.textContent = somaTotal.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+
+        async function finalizarEIrParaCarrinho() {
+            let itensParaEnviar = [];
+            let totalSoma = 0;
+
+            for (let i = 1; i <= 13; i++) {
+                if (escolhasUsuario[i]) {
+                    // Criamos uma cópia do item para não estragar a exibição na tela
+                    let itemLimpo = { ...escolhasUsuario[i] };
+
+                    // Se o preço vier como string "1.500,00", removemos o ponto de milhar 
+                    // e trocamos a vírgula decimal por ponto.
+                    if (typeof itemLimpo.preco === 'string') {
+                        itemLimpo.preco = itemLimpo.preco.replace(/\./g, '').replace(',', '.');
+                    }
+
+                    itensParaEnviar.push(itemLimpo);
+                    totalSoma += parseFloat(itemLimpo.preco);
+                }
+            }
+
+            const response = await fetch("{% url 'salvar_pc_completo' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({
+                    itens: itensParaEnviar,
+                    total: totalSoma.toFixed(2) // Envia o total como número puro
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.status === "sucesso") {
+                window.location.href = data.redirect;
+            } else {
+                alert("Erro ao salvar: " + data.message);
             }
         }
-
-        const response = await fetch("{% url 'salvar_pc_completo' %}", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: JSON.stringify({
-                itens: itensParaEnviar,
-                total: totalSoma.toFixed(2) // Envia o total como número puro
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.status === "sucesso") {
-            window.location.href = data.redirect;
-        } else {
-            alert("Erro ao salvar: " + data.message);
-        }
-    }
-</script>
-{% endblock %}
+    </script>
+    {% endblock %}

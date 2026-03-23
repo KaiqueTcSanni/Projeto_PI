@@ -1,17 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
-<!DOCTYPE html>
-<html lang="pt-br">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monteaki - Criar Conta</title>
-  <link rel="icon" type="image/png" href="{% static 'resources/Mini_Logo.png' %}">
-  <link rel="icon" href="{% static 'resources/Mini_Logo.png' %}" type="image/x-icon">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
+<style>
+  .content-overlay {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 84vh;
+  }
+
+  .main-cadastro {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+</style>
 
 <body>
 

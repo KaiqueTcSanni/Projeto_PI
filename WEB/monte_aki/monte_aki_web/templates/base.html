@@ -9,8 +9,89 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 2%;
+            gap: 15px;
+            min-height: 80px;
+            height: auto;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            background: #fff;
+        }
+
+       
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .footer-full-width {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            display: block !important;
+            clear: both;
+        }
+
+        .footer-full-width .container {
+            width: 100% !important;
+            max-width: 1200px;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        nav button {
+            white-space: nowrap;
+        }
+
+
+        @media (max-width: 768px) {
+            main {
+                padding-top: 180px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .user-area {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .montagem-container {
+                grid-template-columns: 1fr !important;
+                padding: 10px;
+            }
+
+            .produto-selecionado {
+                position: relative;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
 
     {% block extra_head %}{% endblock %}
 </head>
@@ -70,9 +151,13 @@
         {% endblock %}
     </main>
 
-    <footer class="bg-dark text-light py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2026 Monte Aki - Todos os direitos reservados.</p>
+    <footer class="footer-full-width bg-dark text-light mt-5">
+        <div class="footer-content text-center">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-0">&copy; 2026 Monte Aki - Todos os direitos reservados.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
